@@ -1,4 +1,4 @@
-function TwitterWidget(tweets, target, options) {
+function twitterWidget(tweets, target, options) {
     var statusHTML = [];
     var count = tweets.length;
 
@@ -43,14 +43,14 @@ function TwitterWidget(tweets, target, options) {
         status = template.replace('%text%', status);
         status = status.replace('%screen_name%', username);
         status = status.replace('%tweet_id%', tweets[i].id_str);
-        status = status.replace('%relative_time%', TwigetRelativeTime(tweets[i].created_at));
+        status = status.replace('%relative_time%', twitterRelativeTime(tweets[i].created_at));
 
         statusHTML.push(status);
     }
     document.getElementById(target).innerHTML = statusHTML.join('');
 }
 
-function TwigetRelativeTime(time_value) {
+function twitterRelativeTime(time_value) {
     var values = time_value.split(" ");
     time_value = values[1] + " " + values[2] + ", " + values[5] + " " + values[3];
     var parsed_date = Date.parse(time_value);

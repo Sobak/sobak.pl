@@ -131,7 +131,7 @@
         };
 
         $.get('{{ route('twitter.entries') }}', function (data) {
-            TwitterWidget(data, 'twitter-widget-tweets', tweetOptions);
+            twitterWidget(data, 'twitter-widget-tweets', tweetOptions);
         });
     });
 </script>
