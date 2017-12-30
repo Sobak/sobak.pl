@@ -18,8 +18,8 @@ class TwitterController extends Controller
             );
 
             return $client->get('statuses/user_timeline', [
-                'scren_name' => 'SobakPL',
-                'count' => 5,
+                'scren_name' => config('services.twitter.username'),
+                'count' => config('services.twitter.entries_count'),
                 'include_rts' => true,
                 'exclude_replies' => false,
             ]);
