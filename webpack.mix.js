@@ -1,6 +1,10 @@
 let mix = require('laravel-mix');
 
 mix
+    .options({
+        clearConsole: false,
+    })
+
     .copy('resources/assets/css/style.css', 'public/assets')
     .copyDirectory('resources/assets/fonts', 'public/assets/fonts')
     .copyDirectory('resources/assets/images', 'public/assets/images')
