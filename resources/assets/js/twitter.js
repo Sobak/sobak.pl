@@ -1,15 +1,7 @@
-function twitterWidget(tweets, target, options) {
+function twitterWidget(tweets, target) {
     var statusHTML = [];
-    var count = tweets.length;
 
-    // Get count and offset options
-    var offset = 1;
-    if (options.offset) offset = options.offset
-    offset -= 1;
-    if (options.count) count = options.count + offset;
-    if (count > tweets.length) count = tweets.length;
-
-    for (var i = offset; i < count; i++) {
+    for (var i = 0; i < tweets.length; i++) {
         var username = tweets[i].user.screen_name;
         var status = tweets[i].text;
 

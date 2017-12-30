@@ -123,15 +123,10 @@
 <script src="{{ asset('assets/js/menus.js') }}"></script>
 <script src="{{ asset('assets/js/skip-link-focus-fix.js') }}"></script>
 <script src="{{ asset('assets/js/twitter.js') }}"></script>
-<script type="text/javascript">
+<script>
     jQuery(document).ready(function($) {
-        var tweetOptions = {
-            screen_name: 		'SobakPL',
-            count: 				5,
-        };
-
         $.get('{{ route('twitter.entries') }}', function (data) {
-            twitterWidget(data, 'twitter-widget-tweets', tweetOptions);
+            twitterWidget(data, 'twitter-widget-tweets');
         });
     });
 </script>
