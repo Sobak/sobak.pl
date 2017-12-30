@@ -71,6 +71,15 @@
             </main>
         </div>
         <div id="secondary" class="widget-area" role="complementary">
+            <aside id="twiget-widget-2" class="widget twiget-widget">
+                <h1 class="widget-title">Mikroblog</h1>
+                <div class="twiget-feed">
+                    <ul id="tweet-wrap-twiget-widget-2" class="tweet-wrap">
+                        <li><img src="{{ asset('assets/images/ajax-loader.gif') }}" width="16" height="16" alt="">Ładowanie tweetów...</li>
+                    </ul>
+                </div><!-- .twiget-feed -->
+            </aside>
+
             <aside id="nav_menu-2" class="widget widget_nav_menu">
                 <h1 class="widget-title">Linki</h1>
                 <div class="menu-links-container">
@@ -113,6 +122,27 @@
 <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
 <script src="{{ asset('assets/js/menus.js') }}"></script>
 <script src="{{ asset('assets/js/skip-link-focus-fix.js') }}"></script>
+<script type='text/javascript'>
+    /* <![CDATA[ */
+    var TwigetArgs = {"via":"via twigetTweetClient","LessThanMin":"mniej ni\u017c minut\u0119 temu","AboutAMin":"oko\u0142o minuty temu","MinutesAgo":"twigetRelTime minut temu","AnHourAgo":"oko\u0142o godzin\u0119 temu","HoursAgo":"oko\u0142o twigetRelTime godzin temu","OneDayAgo":"wczoraj","DaysAgo":"twigetRelTime dni temu","isSSL":""};
+    /* ]]> */
+</script>
+<script src="{{ asset('assets/js/twitter.js') }}"></script>
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+        var tweetOptions = {
+            screen_name: 		'SobakPL',
+            count: 				5,
+            include_rts: 		true,
+            exclude_replies: 	false,
+            widget_id:			'twiget-widget-2'
+        };
+
+        $.get( '{{ url('api/twitter/entries') }}', function(data){
+            TwigetTwitter( data, 'tweet-wrap-twiget-widget-2', 'tweet-bio-twiget-widget-2', tweetOptions);
+        }, 'json');
+    });
+</script>
 @stack('footer_scripts')
 
 </body>

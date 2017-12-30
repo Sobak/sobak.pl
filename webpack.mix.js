@@ -9,5 +9,6 @@ mix
         'node_modules/jquery/dist/jquery.min.js',
         'resources/assets/js/menus.js',
         'resources/assets/js/portfolio.js',
-        'resources/assets/js/skip-link-focus-fix.js'
+        'resources/assets/js/skip-link-focus-fix.js',
+        'resources/assets/js/twitter.js'
     ], 'public/assets/js');
