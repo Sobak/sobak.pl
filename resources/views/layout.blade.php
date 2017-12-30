@@ -124,9 +124,9 @@
 <script src="{{ asset('assets/js/skip-link-focus-fix.js') }}"></script>
 <script src="{{ asset('assets/js/twitter.js') }}"></script>
 <script>
-    jQuery(document).ready(function($) {
+    $(function () {
         $.get('{{ route('twitter.entries') }}', function (data) {
-            twitterWidget(data, 'twitter-widget-tweets');
+            twitterWidget(data, '#twitter-widget-tweets');
         });
     });
 </script>

@@ -39,7 +39,8 @@ function twitterWidget(tweets, target) {
 
         statusHTML.push(status);
     }
-    document.getElementById(target).innerHTML = statusHTML.join('');
+
+    $(target).html(statusHTML.join(''));
 }
 
 function twitterRelativeTime(time_value) {
@@ -50,23 +51,24 @@ function twitterRelativeTime(time_value) {
     var delta = parseInt((relative_to.getTime() - parsed_date) / 1000);
     delta = delta + (relative_to.getTimezoneOffset() * 60);
 
+    var relTimeText = '';
+
     if (delta < 60) {
         return 'mniej niż minutę temu';
     } else if (delta < 120) {
         return 'około minuty temu';
     } else if (delta < (60 * 60)) {
-        var relTimeText = '%reltime% minut temu';
+        relTimeText = '%reltime% minut temu';
         return relTimeText.replace('%reltime%', (parseInt(delta / 60)).toString());
     } else if (delta < (120 * 60)) {
         return 'około godzinę temu';
     } else if (delta < (24 * 60 * 60)) {
-        var relTimeText = 'około %reltime% godzin temu';
+        relTimeText = 'około %reltime% godzin temu';
         return relTimeText.replace('%reltime%', (parseInt(delta / 3600)).toString());
-        ;
     } else if (delta < (48 * 60 * 60)) {
         return 'wczoraj';
     } else {
-        var relTimeText = '%reltime% dni temu';
+        relTimeText = '%reltime% dni temu';
         return relTimeText.replace('%reltime%', (parseInt(delta / 86400)).toString());
     }
 }
