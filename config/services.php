@@ -29,10 +29,8 @@ return [
         'secret' => env('SPARKPOST_SECRET'),
     ],
 
-    'stripe' => [
-        'model' => App\User::class,
-        'key' => env('STRIPE_KEY'),
-        'secret' => env('STRIPE_SECRET'),
+    'google' => [
+        'analytics' => env('GOOGLE_ANALYTICS_ID', false),
     ],
 
 ];

@@ -7,10 +7,16 @@
     "require": {
         "php": ">=7.0.0",
         "fideloper/proxy": "~3.3",
+        "kadet/keylighter": "dev-master",
         "laravel/framework": "5.5.*",
-        "laravel/tinker": "~1.0"
+        "laravel/tinker": "~1.0",
+        "league/commonmark": "^0.16.0",
+        "spatie/laravel-paginateroute": "^2.6",
+        "symfony/yaml": "^4.0"
     },
     "require-dev": {
+        "barryvdh/laravel-ide-helper": "^2.4",
+        "doctrine/dbal": "~2.0",
         "filp/whoops": "~2.0",
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "~1.0",
@@ -20,6 +26,9 @@
         "classmap": [
             "database/seeds",
             "database/factories"
+        ],
+        "files": [
+            "app/Utils/helpers.php"
         ],
         "psr-4": {
             "App\\": "app/"

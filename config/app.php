@@ -13,7 +13,19 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => 'Sobakowy Blog',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Application Description
+    |--------------------------------------------------------------------------
+    |
+    | This value is used in various places to display the website description,
+    | blog motto or whatever you wish to call it.
+    |
+    */
+
+    'description' => 'Trochę o wszystkim i wiele o niczym',
 
     /*
     |--------------------------------------------------------------------------
@@ -173,7 +185,6 @@ return [
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 

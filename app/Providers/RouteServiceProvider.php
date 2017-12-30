@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use PaginateRoute;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -17,13 +18,13 @@ class RouteServiceProvider extends ServiceProvider
     protected $namespace = 'App\Http\Controllers';
 
     /**
-     * Define your route model bindings, pattern filters, etc.
+     * Bootstrap any application services.
      *
      * @return void
      */
     public function boot()
     {
-        //
+        PaginateRoute::registerMacros();
 
         parent::boot();
     }
@@ -38,8 +39,6 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapApiRoutes();
 
         $this->mapWebRoutes();
-
-        //
     }
 
     /**
