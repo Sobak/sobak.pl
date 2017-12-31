@@ -24,7 +24,7 @@ use Symfony\Component\Yaml\Yaml;
 class Indexer extends Command
 {
     const MORE_DELIMETER = '{{{more}}}';
-    const VERBOSITY_ALL = null;
+    const VERBOSITY_NONE = null;
     const VERBOSITY_VERBOSE = 'v';
 
     /**
@@ -390,7 +390,7 @@ class Indexer extends Command
         }
     }
 
-    protected function indentedLine($text, $levels = 1, $verbosity = self::VERBOSITY_ALL)
+    protected function indentedLine($text, $levels = 1, $verbosity = self::VERBOSITY_NONE)
     {
         $indentationStep = 2;
 
