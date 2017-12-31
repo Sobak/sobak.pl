@@ -364,9 +364,25 @@ class Indexer extends Command
             exit(2);
         }
 
+        $body = $parts[2];
+        $metadata = Yaml::parse(trim($parts[1]));
+
+        // Try to read the title from Markdown
+        if (isset($metadata['title']) === false) {
+            $bodyLines = explode("\n", $body);
+
+            if (isset($bodyLines[0]) && substr($bodyLines[0], 0, 2) === '# ') {
+                $metadata['title'] = substr($bodyLines[0], 2);
+
+                unset($bodyLines[0]);
+
+                $body = implode("\n", $bodyLines);
+            }
+        }
+
         return (object) [
-            'body' => $this->parseMarkdown($parts[2]),
-            'metadata' => array_merge($defaultMetadata, Yaml::parse(trim($parts[1]))),
+            'body' => $this->parseMarkdown($body),
+            'metadata' => array_merge($defaultMetadata, $metadata),
         ];
     }
 
