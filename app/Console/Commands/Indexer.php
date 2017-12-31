@@ -270,15 +270,23 @@ class Indexer extends Command
 
     protected function indexRedirects()
     {
+        $redirectsPath = config('content.root') . '/redirects.php';
+
+        if (file_exists($redirectsPath) === false) {
+            return false;
+        }
+
         $this->line("\nIndexing redirects");
 
-        $redirects = require config('content.root') . '/redirects.php';
+        $redirects = require $redirectsPath;
 
         foreach ($redirects as $from => $to) {
             $this->indentedLine("> $from => $to", 2, self::VERBOSITY_VERBOSE);
 
             $this->createRedirect($from, $to);
         }
+
+        return true;
     }
 
     protected function cacheBlogStats()
