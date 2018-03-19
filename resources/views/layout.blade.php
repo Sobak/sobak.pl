@@ -42,7 +42,8 @@
     </div>
     <div id="social-links-toggle-nav" class="panel">
         <div class="social-links">
-            <ul id="menu-social" class="menu"><li id="menu-item-1470" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1470"><a href="http://github.com/Sobak"><span class="screen-reader-text">GitHub</span></a></li>
+            <ul id="menu-social" class="menu">
+                <li id="menu-item-1470" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1470"><a href="http://github.com/Sobak"><span class="screen-reader-text">GitHub</span></a></li>
                 <li id="menu-item-1468" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1468"><a href="http://twitter.com/SobakPL"><span class="screen-reader-text">Twitter</span></a></li>
                 <li id="menu-item-1469" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1469"><a href="http://facebook.com/SobakPL"><span class="screen-reader-text">Facebook</span></a></li>
                 <li id="menu-item-1650" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1650"><a href="http://sobak.pl/feed/"><span class="screen-reader-text">RSS</span></a></li>
