@@ -14,7 +14,7 @@ class BlogController extends Controller
 
         return view('blog.index', [
             'posts' => $posts,
-            'title' => config('app.name') . ' | ' . (($page = $posts->currentPage()) === 1 ? config('app.description') : "Strona {$page}"),
+            'title' => blog_title($posts->currentPage()),
         ]);
     }
 

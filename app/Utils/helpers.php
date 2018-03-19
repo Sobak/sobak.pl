@@ -55,6 +55,17 @@ function localized_date(\Carbon\Carbon $date)
 }
 
 /**
+ * Generate proper blog title given the current page.
+ *
+ * @param $page
+ * @return string
+ */
+function blog_title($page)
+{
+    return config('app.name') . ' | ' . ($page === 1 ? config('app.description') : "Strona {$page}");
+}
+
+/**
  * Generate standard format page title.
  *
  * @param $title
