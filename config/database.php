@@ -35,13 +35,13 @@ return [
 
         'website' => [
             'driver' => 'sqlite',
-            'database' => env('DB_DATABASE', database_path('website.sqlite')),
+            'database' => database_path('website.sqlite'),
             'prefix' => '',
         ],
 
         'indexer' => [
             'driver' => 'sqlite',
-            'database' => env('DB_DATABASE', database_path('indexer.sqlite')),
+            'database' => database_path('indexer.sqlite'),
             'prefix' => '',
         ],
 
