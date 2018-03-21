@@ -1,7 +1,7 @@
 @php
 $single = $single ?? false;
 @endphp
-<article class="post type-post status-publish format-standard hentry">
+<article class="post hentry">
     <header class="entry-header">
         <h1 class="entry-title">
             @if ($single)
@@ -18,7 +18,7 @@ $single = $single ?? false;
         @if ($post->excerpt && !$single)
             <p>
                 <a href="{{ route('post', $post) }}" class="more-link">
-                    Czytaj dalej <span class="meta-nav">&rarr;</span>
+                    Czytaj dalej &rarr;
                 </a>
             </p>
         @endif
