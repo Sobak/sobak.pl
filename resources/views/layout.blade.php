@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-{{-- @todo determine post language? --}}
-<html lang="pl">
+<html lang="{{ $language or config('app.locale') }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">

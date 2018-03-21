@@ -18,13 +18,14 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->text('excerpt')->nullable();
             $table->text('content');
+            $table->string('language', 10);
             $table->string('slug')->unique();
             $table->integer('status')->default(1);
             $table->timestamps();
         });
     }
 
-    /**
+    /**a
      * Reverse the migrations.
      *
      * @return void

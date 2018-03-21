@@ -21,6 +21,7 @@ class BlogController extends Controller
     public function show(Post $post)
     {
         return view('blog.single', [
+            'language' => $post->language,
             'post' => $post,
             'single' => true,
             'title' => page_title($post->title),

@@ -171,6 +171,7 @@ class Indexer extends Command
 
         $post = $this->parseContentFile($file->getPathname(), [
             'aliases' => [],
+            'language' => config('app.locale'),
             'slug' => $file->getBasename('.md'),
             'tags' => [],
         ]);
@@ -199,6 +200,7 @@ class Indexer extends Command
             'title' => $post->metadata['title'],
             'excerpt' => $excerpt,
             'content' => $content,
+            'language' => $post->metadata['language'],
             'slug' => $post->metadata['slug'],
             'created_at' => Carbon::createFromTimestamp(strtotime($post->metadata['date'])),
         ]);
