@@ -33,7 +33,7 @@
                     <li class="current-menu-item"><a href="{{ route('index') }}">Blog</a></li>
                     <li><a href="{{ route('projects') }}">Portfolio</a></li>
                     <li><a href="{{ route('page', ['o-mnie']) }}">O mnie</a></li>
-                    <li><a href="http://sobak.pl/kontakt/">Kontakt</a></li>
+                    <li><a href="{{ route('contact') }}">Kontakt</a></li>
                 </ul>
             </div>
         </nav><!-- #site-navigation -->
