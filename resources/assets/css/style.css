@@ -507,6 +507,7 @@ input[type="submit"], .site-footer, .main-navigation, .secondary-navigation, a.m
 .trackback .edit-link, #cancel-comment-reply-link, .reply, .comment-metadata, .comment-metadata a, .comment-form-author,
 .comment-form-email,
 .comment-form-url,
+.form-input,
 .comment-form-comment, #infinite-footer .blog-info a,
 #infinite-footer .blog-credits, #infinite-handle span {
     letter-spacing: 1px;
@@ -2236,6 +2237,7 @@ div#respond {
     }
 }
 
+.form label,
 .comment-form label {
     display: inline-block;
     width: 95px;
@@ -2245,6 +2247,7 @@ div#respond {
     color: #f45145;
 }
 
+.form-input,
 .comment-form-author,
 .comment-form-email,
 .comment-form-url,
@@ -2252,6 +2255,7 @@ div#respond {
     margin: 0 0 27px;
     position: relative;
 }
+.form-input label,
 .comment-form-author label,
 .comment-form-email label,
 .comment-form-url label,
@@ -2263,6 +2267,7 @@ div#respond {
     left: 0;
     top: 6.75px;
 }
+.form-input input,
 .comment-form-author input,
 .comment-form-email input,
 .comment-form-url input,
@@ -2272,6 +2277,7 @@ div#respond {
     padding-left: 100px;
     width: 100%;
 }
+.form-input textarea,
 .comment-form-author textarea,
 .comment-form-email textarea,
 .comment-form-url textarea,
