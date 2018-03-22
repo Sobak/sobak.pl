@@ -26,7 +26,7 @@
                     <input type="text" name="subject" id="subject" size="40">
                 </p>
                 <p class="form-input">
-                    <label for="message">Wiadomość</label>
+                    <label for="message">Wiadomość <span class="required">*</span></label>
                     <textarea name="message" id="message" cols="45" rows="10" required></textarea>
                 </p>
                 <p>
