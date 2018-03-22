@@ -494,9 +494,7 @@ h6, button,
 input[type="button"],
 input[type="reset"],
 input[type="submit"], .site-footer, .main-navigation, .secondary-navigation, a.more-link, .entry-meta, .entry-meta a,
-.form-input,
-#infinite-footer .blog-info a,
-#infinite-footer .blog-credits, #infinite-handle span {
+.form-input {
     letter-spacing: 1px;
     text-transform: uppercase;
 }
@@ -506,7 +504,7 @@ input[type="submit"], .site-footer, .main-navigation, .secondary-navigation, a.m
 .sticky .post-date:before,
 .tags-links:before,
 .byline:before,
-.edit-link:before, .page-title:before, .site-content [class*="paging-navigation"] a:before,
+.page-title:before, .site-content [class*="paging-navigation"] a:before,
 .site-content [class*="post-navigation"] a:before, .reply:before, .social-links ul a:before {
     -webkit-font-smoothing: antialiased;
     font-family: "Genericons";
@@ -1679,30 +1677,26 @@ a.more-link {
 .post-date,
 .sticky .post-date,
 .tags-links,
-.byline,
-.edit-link {
+.byline {
     margin-right: 27px;
 }
 .post-date a,
 .sticky .post-date a,
 .tags-links a,
-.byline a,
-.edit-link a {
+.byline a {
     text-decoration: none;
 }
 .post-date:before,
 .sticky .post-date:before,
 .tags-links:before,
-.byline:before,
-.edit-link:before {
+.byline:before {
     margin-right: 2px;
 }
 @media screen and (max-width: 47.2226em) {
     .post-date,
     .sticky .post-date,
     .tags-links,
-    .byline,
-    .edit-link {
+    .byline {
         clear: both;
         display: block;
         float: none;
@@ -1725,10 +1719,6 @@ a.more-link {
 
 .byline:before {
     content: "\f304";
-}
-
-.edit-link:before {
-    content: "\f411";
 }
 
 .sep {
@@ -2074,108 +2064,6 @@ object {
     line-height: 1.17391em;
     color: #242d36;
     margin: 13.5px 0;
-}
-
-.widget_search input {
-    border-color: #e2e4e8;
-    width: 100%;
-}
-.widget_search input[type="submit"] {
-    display: none;
-}
-@media screen and (max-width: 47.2226em) {
-    .widget_search input[type="submit"] {
-        font-size: 1.27778em;
-        line-height: 1.17391em;
-        display: block;
-    }
-}
-
-.wp_widget_tag_cloud div,
-.widget_tag_cloud .tagcloud {
-    text-align: center;
-}
-.wp_widget_tag_cloud div a,
-.widget_tag_cloud .tagcloud a {
-    color: #f45145;
-    text-decoration: none;
-}
-
-/* Calendar widget */
-#wp-calendar td, #wp-calendar th,
-#wp-calendar th {
-    text-align: center;
-}
-#wp-calendar caption {
-    font-weight: 700;
-    margin: 13.5px 0;
-    text-align: center;
-}
-
-/* =Jetpack */
-/* Globally hidden elements when Infinite Scroll is supported and in use. */
-.infinite-scroll .paging-navigation,
-.infinite-scroll.neverending .site-footer {
-    display: none;
-}
-
-/* When Infinite Scroll has reached its end we need to re-display elements that were hidden (via .neverending) before */
-.infinity-end.neverending .site-footer {
-    display: block;
-}
-
-#infinite-footer {
-    z-index: 999;
-}
-#infinite-footer .container {
-    background: #f0f1f3;
-    border-top: 0;
-    color: #9ba2af;
-    font-style: italic;
-    position: relative;
-}
-#infinite-footer .container a {
-    color: #9ba2af;
-}
-#infinite-footer .blog-info a,
-#infinite-footer .blog-credits {
-    font-size: 0.83333em;
-    line-height: 1.8em;
-    font-style: normal;
-    font-weight: normal;
-}
-
-.infinite-loader {
-    margin: 0 auto 54px;
-    width: 28px;
-}
-
-#infinite-handle span {
-    font-size: 0.83333em;
-    line-height: 1.8em;
-    -webkit-transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
-    background: #242d36;
-    color: white;
-    display: block;
-    float: none;
-    margin: 0 auto 54px;
-    text-align: center;
-    width: 140px;
-}
-#infinite-handle span:hover {
-    background: #242d36;
-    color: rgba(255, 255, 255, 0.7);
-    -webkit-transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
-}
-
-div.sharedaddy div.sd-block {
-    padding: 12.5px 0 13.5px !important;
 }
 
 /* =Social Links */
