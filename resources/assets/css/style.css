@@ -336,16 +336,6 @@ img {
     clear: both;
 }
 
-.comment-content:before,
-.comment-content:after {
-    content: '';
-    display: table;
-}
-
-.comment-content:after {
-    clear: both;
-}
-
 .site-header:before,
 .site-header:after {
     content: '';
@@ -503,24 +493,21 @@ html {
 h6, button,
 input[type="button"],
 input[type="reset"],
-input[type="submit"], .site-footer, .main-navigation, .secondary-navigation, a.more-link, .entry-meta, .entry-meta a, .pingback .edit-link,
-.trackback .edit-link, #cancel-comment-reply-link, .reply, .comment-metadata, .comment-metadata a, .comment-form-author,
-.comment-form-email,
-.comment-form-url,
+input[type="submit"], .site-footer, .main-navigation, .secondary-navigation, a.more-link, .entry-meta, .entry-meta a,
 .form-input,
-.comment-form-comment, #infinite-footer .blog-info a,
+#infinite-footer .blog-info a,
 #infinite-footer .blog-credits, #infinite-handle span {
     letter-spacing: 1px;
     text-transform: uppercase;
 }
 
-.entry-format, .hentry:before, .toggles .toggle:before, .comments-link:before,
+.entry-format, .hentry:before, .toggles .toggle:before,
 .post-date:before,
 .sticky .post-date:before,
 .tags-links:before,
 .byline:before,
 .edit-link:before, .page-title:before, .site-content [class*="paging-navigation"] a:before,
-.site-content [class*="post-navigation"] a:before, #cancel-comment-reply-link:before, .reply:before, .social-links ul a:before {
+.site-content [class*="post-navigation"] a:before, .reply:before, .social-links ul a:before {
     -webkit-font-smoothing: antialiased;
     font-family: "Genericons";
     font-size: 24px;
@@ -1680,18 +1667,15 @@ a.more-link {
     }
 }
 
-.entry-meta, .entry-meta a, .pingback .edit-link,
-.trackback .edit-link, #cancel-comment-reply-link, .reply {
+.entry-meta, .entry-meta a {
     color: #9ba2af;
     font-size: 0.83333em;
     line-height: 1.8em;
 }
-.entry-meta a, .pingback .edit-link a,
-.trackback .edit-link a, #cancel-comment-reply-link a, .reply a {
+.entry-meta a {
     font-size: inherit;
 }
 
-.comments-link,
 .post-date,
 .sticky .post-date,
 .tags-links,
@@ -1699,7 +1683,6 @@ a.more-link {
 .edit-link {
     margin-right: 27px;
 }
-.comments-link a,
 .post-date a,
 .sticky .post-date a,
 .tags-links a,
@@ -1707,7 +1690,6 @@ a.more-link {
 .edit-link a {
     text-decoration: none;
 }
-.comments-link:before,
 .post-date:before,
 .sticky .post-date:before,
 .tags-links:before,
@@ -1716,7 +1698,6 @@ a.more-link {
     margin-right: 2px;
 }
 @media screen and (max-width: 47.2226em) {
-    .comments-link,
     .post-date,
     .sticky .post-date,
     .tags-links,
@@ -1728,10 +1709,6 @@ a.more-link {
         margin: 0;
         width: 100%;
     }
-}
-
-.comments-link:before {
-    content: "\f300";
 }
 
 .post-date:before {
@@ -1895,8 +1872,7 @@ a.more-link {
 }
 
 /* =Media */
-.entry-content img.wp-smiley,
-.comment-content img.wp-smiley {
+.entry-content img.wp-smiley {
     border: none;
     margin-bottom: 0;
     margin-top: 0;
@@ -2030,29 +2006,6 @@ object {
     }
 }
 
-.comment-navigation:before,
-.comment-navigation:after {
-    content: "";
-    display: table;
-}
-
-.comment-navigation:after {
-    clear: both;
-}
-
-.site-content .comment-navigation {
-    margin-bottom: 27px;
-}
-.site-content .comment-navigation .nav-previous {
-    float: left;
-    width: 50%;
-}
-.site-content .comment-navigation .nav-next {
-    float: right;
-    text-align: right;
-    width: 50%;
-}
-
 .comments-disabled {
     background: white;
     border-top: 8px solid #9ba2af;
@@ -2072,213 +2025,15 @@ object {
     z-index: 1;
 }
 
-/* =Comments */
-div#respond {
-    background: white;
-    padding: 27px;
-    position: relative;
-}
-
-.comment-body {
-    background: white;
-    border-top: 8px solid #9ba2af;
-    padding: 27px;
-    position: relative;
-}
-.comment-body:after {
-    border-top: 3px solid #8a92a1;
-    content: "";
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 0;
-    z-index: 2;
-}
-
-.comment-content a {
-    word-wrap: break-word;
-}
-
-.comment-list {
-    list-style: none;
-    margin-left: 0;
-    margin-bottom: 27px;
-    padding: 0;
-}
-.comment-list .children {
-    list-style: none;
-    padding-left: 6.75px;
-}
-.comment-list li.comment {
-    margin-top: 54px;
-}
-
-.pingback,
-.trackback {
-    margin: 13.5px 0;
-}
-.pingback a,
-.trackback a {
-    text-decoration: none;
-}
-.pingback .edit-link,
-.trackback .edit-link {
-    float: right;
-    margin-left: 27px;
-    margin-right: 0;
-}
-.pingback .edit-link a,
-.trackback .edit-link a {
-    color: #9ba2af;
-}
-
-.comment-author {
-    font-size: 1.27778em;
-    line-height: 1.17391em;
-    color: #f45145;
-    font-family: "PT Serif", Georgia, Times, serif;
-    margin-top: 27px;
-    text-align: center;
-}
-.comment-author a {
-    text-decoration: none;
-}
-.comment-author .avatar-wrapper {
-    border: 8px solid #9ba2af;
-    border-radius: 50%;
-    display: block;
-    float: left;
-    margin: -8px 13.5px -8px -40px;
-    position: absolute;
-    top: -32px;
-    left: 50%;
-    width: 80px;
-    height: 80px;
-    z-index: 3;
-    background: white;
-}
-@media screen and (max-width: 47.2226em) {
-    .comment-author .avatar-wrapper {
-        border-width: 5px;
-        width: 60px;
-        height: 60px;
-        top: -22px;
-        margin-left: -30px;
-    }
-}
-.comment-author .avatar {
-    border-radius: 50%;
-}
-.comment-author cite {
-    font-style: normal;
-}
-
-.bypostauthor > .comment-body {
-    border-top-color: #f45145;
-}
-.bypostauthor > .comment-body:after {
-    border-top: 3px solid #f23628;
-}
-
-.bypostauthor > .comment-body .comment-author:first-of-type .avatar-wrapper {
-    border-color: #f45145;
-}
-
-.comment-metadata, .comment-metadata a {
-    color: #9ba2af;
-    font-size: 0.83333em;
-    line-height: 1.8em;
-}
-.comment-metadata a {
-    font-size: inherit;
-    text-decoration: none;
-}
-
-#cancel-comment-reply-link {
-    font-size: 0.83333em;
-    line-height: 1.8em;
-    float: right;
-    font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
-    display: inline-block;
-    text-decoration: none;
-}
-#cancel-comment-reply-link:before {
-    font-size: 1.61111em;
-    line-height: 1.86207em;
-    content: "\f412";
-    content: "\f405";
-    margin-right: 3px;
-    vertical-align: middle;
-}
-
-.reply {
-    display: inline-block;
-    font-size: inherit;
-    margin-right: 27px;
-    text-decoration: none;
-}
-.reply:before {
-    content: "\f412";
-    margin-right: 3px;
-}
-
-.comment-respond {
-    border-top: 8px solid #f45145;
-}
-.comment-respond:after {
-    border-top: 3px solid #f23628;
-    content: "";
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 0;
-    z-index: 1;
-}
-
-.comment-reply-title {
-    margin-top: 0;
-}
-
-.comments-title {
-    color: #9ba2af;
-    font-size: 1.27778em;
-    line-height: 1.17391em;
-    margin-bottom: 54px;
-}
-@media screen and (max-width: 47.2226em) {
-    .comments-title {
-        padding: 0 27px;
-        text-align: center;
-    }
-}
-
-.form label,
-.comment-form label {
-    display: inline-block;
-    width: 95px;
-}
-
 .required {
     color: #f45145;
 }
 
-.form-input,
-.comment-form-author,
-.comment-form-email,
-.comment-form-url,
-.comment-form-comment {
+.form-input {
     margin: 0 0 27px;
     position: relative;
 }
-.form-input label,
-.comment-form-author label,
-.comment-form-email label,
-.comment-form-url label,
-.comment-form-comment label {
+.form-input label {
     font-size: 0.83333em;
     line-height: 1.8em;
     padding: 6.75px 13.5px;
@@ -2286,45 +2041,17 @@ div#respond {
     left: 0;
     top: 6.75px;
 }
-.form-input input,
-.comment-form-author input,
-.comment-form-email input,
-.comment-form-url input,
-.comment-form-comment input {
+.form-input input {
     display: block;
     margin: 0 0 27px;
     padding-left: 100px;
     width: 100%;
 }
-.form-input textarea,
-.comment-form-author textarea,
-.comment-form-email textarea,
-.comment-form-url textarea,
-.comment-form-comment textarea {
+.form-input textarea {
     margin: 0 0 27px;
     padding: 54px 13.5px 6.75px;
     clear: both;
     width: 100%;
-}
-
-.says {
-    display: none;
-}
-
-.form-allowed-tags, .form-allowed-tags code {
-    color: #9ba2af;
-    font-size: 0.83333em;
-    line-height: 1.8em;
-}
-.form-allowed-tags code {
-    font-size: 0.83333em;
-    line-height: 1.8em;
-}
-
-.no-comments {
-    color: #9ba2af;
-    margin: 27px 0;
-    text-align: center;
 }
 
 /* =Widgets */

@@ -38,10 +38,6 @@ $single = $single ?? false;
                 <a href="{{ route('tag', $tag) }}" rel="tag">{{ $tag->name }}</a>@unless($loop->last),@endunless
             @endforeach
         </span>
-        @else
-        <span class="comments-link">
-            <a href="{{ route('post', $post) }}#respond">Skomentuj</a>
-        </span>
         @endif
 
     </footer>
