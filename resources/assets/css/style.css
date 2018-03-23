@@ -53,11 +53,6 @@ html {
 *,
 *:before,
 *:after {
-    /* apply a natural box layout model to all elements; see http://www.paulirish.com/2012/box-sizing-border-box-ftw/ */
-    -webkit-box-sizing: border-box;
-    /* Not needed for modern webkit but still used by Blackberry Browser 7.0; see http://caniuse.com/#search=box-sizing */
-    -moz-box-sizing: border-box;
-    /* Still needed for Firefox 28; see http://caniuse.com/#search=box-sizing */
     box-sizing: border-box;
 }
 
@@ -301,8 +296,6 @@ img {
 .screen-reader-text:focus {
     background-color: #fff;
     border: 1px solid #000;
-    -webkit-box-shadow: rgba(0, 0, 0, 0.6) 2px 2px 10px;
-    -moz-box-shadow: rgba(0, 0, 0, 0.6) 2px 2px 10px;
     box-shadow: rgba(0, 0, 0, 0.6) 2px 2px 10px;
     clip: auto !important;
     display: inline-block;
@@ -426,22 +419,12 @@ input[type="radio"] {
 input[type="search"] {
     -webkit-appearance: textfield;
     /* Addresses appearance set to searchfield in S5, Chrome */
-    -webkit-box-sizing: content-box;
-    /* Addresses box sizing set to border-box in S5, Chrome (include -moz to future-proof) */
-    -moz-box-sizing: content-box;
     box-sizing: content-box;
 }
 
 input[type="search"]::-webkit-search-decoration {
     /* Corrects inner padding displayed oddly in S5, Chrome on OSX */
     -webkit-appearance: none;
-}
-
-button::-moz-focus-inner,
-input::-moz-focus-inner {
-    /* Corrects inner padding and border displayed oddly in FF3/4 www.sitepen.com/blog/2008/05/14/the-devils-in-the-details-fixing-dojos-toolbar-buttons/ */
-    border: 0;
-    padding: 0;
 }
 
 input[type="text"],
@@ -493,7 +476,7 @@ html {
 h6, button,
 input[type="button"],
 input[type="reset"],
-input[type="submit"], .site-footer, .main-navigation, .secondary-navigation, a.more-link, .entry-meta, .entry-meta a,
+input[type="submit"], .site-footer, .main-navigation, a.more-link, .entry-meta, .entry-meta a,
 .form-input {
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -503,7 +486,6 @@ input[type="submit"], .site-footer, .main-navigation, .secondary-navigation, a.m
 .post-date:before,
 .sticky .post-date:before,
 .tags-links:before,
-.byline:before,
 .page-title:before, .site-content [class*="paging-navigation"] a:before,
 .site-content [class*="post-navigation"] a:before, .reply:before, .social-links ul a:before {
     -webkit-font-smoothing: antialiased;
@@ -720,17 +702,10 @@ button,
 input[type="button"],
 input[type="reset"],
 input[type="submit"] {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
     box-sizing: border-box;
     font-size: 0.83333em;
     line-height: 1.8em;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
     box-shadow: none;
-    -webkit-transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
     background-color: #242d36;
     border: 0;
@@ -743,12 +718,7 @@ button:hover,
 input[type="button"]:hover,
 input[type="reset"]:hover,
 input[type="submit"]:hover {
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
     box-shadow: none;
-    -webkit-transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
     background-color: #242d36;
     color: rgba(240, 241, 243, 0.7);
@@ -772,8 +742,6 @@ input[type="password"],
 input[type="search"] {
     background: #f9f9fa;
     border: 1px solid #f0f1f3;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
     box-sizing: border-box;
     max-width: 100%;
     padding: 12.5px;
@@ -801,8 +769,6 @@ input[type="search"]:focus {
 textarea {
     background: #f9f9fa;
     border: 1px solid #f0f1f3;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
     box-sizing: border-box;
     max-width: 100%;
     padding: 12.5px;
@@ -834,12 +800,6 @@ pre {
     overflow: auto;
     max-width: 100%;
 }
-
-/*code, kbd, tt, var {
-  font: 15px Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
-  font-size: 0.83333em;
-  line-height: 1.8em;
-}*/
 
 abbr, acronym {
     border-bottom: 1px dotted #9ba2af;
@@ -908,9 +868,6 @@ img {
 a {
     color: #f45145;
     text-decoration: none;
-    -webkit-transition: all 0.2s ease-in-out;
-    -moz-transition: all 0.2s ease-in-out;
-    -o-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
 }
 a:visited {
@@ -918,9 +875,6 @@ a:visited {
 }
 a:hover, a:focus, a:active {
     color: #f77e75;
-    -webkit-transition: all 0.2s ease-in-out;
-    -moz-transition: all 0.2s ease-in-out;
-    -o-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
 }
 
@@ -934,11 +888,6 @@ a:hover, a:focus, a:active {
     position: relative;
     width: 100%;
     z-index: 100;
-}
-.site-header img {
-    display: block;
-    margin: 0 auto;
-    max-height: 200px;
 }
 
 .site-content {
@@ -1101,9 +1050,6 @@ a:hover, a:focus, a:active {
     color: white;
 }
 .toggles .toggle:hover:before {
-    -webkit-transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
     color: white;
 }
@@ -1111,9 +1057,6 @@ a:hover, a:focus, a:active {
     vertical-align: middle;
     font-size: 1.61111em;
     line-height: 1.86207em;
-    -webkit-transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
     background-color: #f45145;
     border-radius: 50%;
@@ -1302,9 +1245,6 @@ a:hover, a:focus, a:active {
     position: relative;
 }
 .main-navigation ul li:hover > ul {
-    -webkit-transition: all 0.2s ease-in-out;
-    -moz-transition: all 0.2s ease-in-out;
-    -o-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
     opacity: 1;
     visibility: visible;
@@ -1430,33 +1370,6 @@ a:hover, a:focus, a:active {
     }
 }
 
-.secondary-navigation {
-    font-size: 0.83333em;
-    line-height: 1.8em;
-    margin: 27px 0;
-    text-align: center;
-}
-.secondary-navigation ul {
-    list-style: none;
-    margin: 0 27px;
-    padding: 0;
-}
-.secondary-navigation li {
-    display: inline-block;
-    list-style: none;
-    margin: 0 6.75px 0 0;
-}
-.secondary-navigation li:after {
-    content: "\007E";
-    margin: 0 0 0 9px;
-}
-.secondary-navigation li:last-of-type:after {
-    display: none;
-}
-.secondary-navigation a {
-    color: #9ba2af;
-}
-
 /* =Content */
 .entry-format {
     background: transparent;
@@ -1576,15 +1489,6 @@ a:hover, a:focus, a:active {
     margin-right: 13.5px;
 }
 
-.byline {
-    display: none;
-}
-
-.single .byline,
-.group-blog .byline {
-    display: inline;
-}
-
 .entry-content,
 .entry-summary {
     margin-bottom: 27px;
@@ -1603,9 +1507,6 @@ a:hover, a:focus, a:active {
     word-spacing: 6.75px;
 }
 .page-links span.active-link {
-    -webkit-transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
     background-color: #f45145;
     display: inline-block;
@@ -1618,9 +1519,6 @@ a:hover, a:focus, a:active {
     text-decoration: none;
 }
 .page-links a span.active-link {
-    -webkit-transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
     background-color: #f77e75;
     display: inline-block;
@@ -1633,9 +1531,6 @@ a:hover, a:focus, a:active {
     text-decoration: none;
 }
 .page-links a:hover span.active-link {
-    -webkit-transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
     background-color: #f45145;
 }
@@ -1676,27 +1571,23 @@ a.more-link {
 
 .post-date,
 .sticky .post-date,
-.tags-links,
-.byline {
+.tags-links {
     margin-right: 27px;
 }
 .post-date a,
 .sticky .post-date a,
-.tags-links a,
-.byline a {
+.tags-links a {
     text-decoration: none;
 }
 .post-date:before,
 .sticky .post-date:before,
-.tags-links:before,
-.byline:before {
+.tags-links:before {
     margin-right: 2px;
 }
 @media screen and (max-width: 47.2226em) {
     .post-date,
     .sticky .post-date,
-    .tags-links,
-    .byline {
+    .tags-links {
         clear: both;
         display: block;
         float: none;
@@ -1715,10 +1606,6 @@ a.more-link {
 
 .tags-links:before {
     content: "\f302";
-}
-
-.byline:before {
-    content: "\f304";
 }
 
 .sep {
@@ -1890,13 +1777,11 @@ a.more-link {
 .gallery-caption {
     font-size: 0.83333em;
     line-height: 1.8em;
-    line-height: 1.8em;
 }
 
 .size-thumbnail + .wp-caption-text,
 .size-medium + .wp-caption-text {
     font-size: 0.83333em;
-    line-height: 1.8em;
     line-height: 1.8em;
 }
 
@@ -1934,9 +1819,6 @@ object {
 .site-content [class*="post-navigation"] a:before {
     font-size: 2.61111em;
     line-height: 1.14894em;
-    -webkit-transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
     background: #9ba2af;
     border-radius: 50%;
@@ -1965,9 +1847,6 @@ object {
 .site-content [class*="paging-navigation"] a:hover:before,
 .site-content [class*="post-navigation"] a:hover:before {
     opacity: 1;
-    -webkit-transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
 }
 .site-content [class*="paging-navigation"] .nav-previous a:before,
@@ -2051,10 +1930,6 @@ object {
     margin-bottom: 10px;
     overflow: hidden;
 }
-.widget select {
-    max-width: 100%;
-    margin-left: 1px;
-}
 .widget a {
     text-decoration: none;
 }
@@ -2100,9 +1975,6 @@ object {
     margin-bottom: 6.75px;
     padding: 9px;
     text-align: center;
-    -webkit-transition: all 0.1s ease-in-out;
-    -moz-transition: all 0.1s ease-in-out;
-    -o-transition: all 0.1s ease-in-out;
     transition: all 0.1s ease-in-out;
 }
 .social-links ul a:hover {
@@ -2111,9 +1983,6 @@ object {
 .social-links ul a:hover:before {
     background: white;
     text-decoration: none;
-    -webkit-transition: all 0.1s ease-in-out;
-    -moz-transition: all 0.1s ease-in-out;
-    -o-transition: all 0.1s ease-in-out;
     transition: all 0.1s ease-in-out;
 }
 .social-links ul:last-of-type {
@@ -2265,10 +2134,8 @@ object {
     display: block;
     font-weight: 400;
     line-height: 25px;
-    moz-box-shadow: 0 1px 1px rgba(0,0,0,.05);
     padding: 0 10px;
     text-shadow: 0 1px 1px rgba(255,255,255,.5);
-    webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
 }
 .nimble-portfolio-content div.nimble-portfolio-filter ul li a:hover {
     background: #f4f4f4;
@@ -2278,14 +2145,10 @@ object {
 .nimble-portfolio-content div.nimble-portfolio-filter ul li a:active,div.nimble-portfolio-filter ul li.current a {
     background: #e7e7e7;
     box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
-    moz-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
-    webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
 }
 .nimble-portfolio-content .shadow {
     border: 6px #fff solid;
     box-shadow: 0 0 5px #ccc;
-    moz-box-shadow: 0 0 5px #ccc;
-    webkit-box-shadow: 0 0 5px#ccc;
 }
 .nimble-portfolio-content div.nimble-portfolio ul li a.item img {
     border: 1px solid #f4f4f4;
