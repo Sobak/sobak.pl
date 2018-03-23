@@ -1894,7 +1894,8 @@ object {
     z-index: 1;
 }
 
-.required {
+label.required:after {
+    content: " *";
     color: #f45145;
 }
 

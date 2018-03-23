@@ -14,11 +14,11 @@
             </p>
             <form action="{{ route('contact') }}" method="post" class="form" novalidate>
                 <p class="form-input">
-                    <label for="name">Podpis <span class="required">*</span></label>
+                    <label for="name" class="required">Podpis</label>
                     <input type="text" name="name" id="name" size="40" required>
                 </p>
                 <p class="form-input">
-                    <label for="email">Email <span class="required">*</span></label>
+                    <label for="email" class="required">Email</label>
                     <input type="email" name="email" id="email" size="40" required>
                 </p>
                 <p class="form-input">
@@ -26,7 +26,7 @@
                     <input type="text" name="subject" id="subject" size="40">
                 </p>
                 <p class="form-input">
-                    <label for="message">Wiadomość <span class="required">*</span></label>
+                    <label for="message" class="required">Wiadomość</label>
                     <textarea name="message" id="message" cols="45" rows="10" required></textarea>
                 </p>
                 <p>
