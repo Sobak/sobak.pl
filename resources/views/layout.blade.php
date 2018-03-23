@@ -107,11 +107,11 @@
 
     <footer class="site-footer" role="contentinfo">
         <div class="site-info">
-            <a href="http://wordpress.org/" title="Napędzane WordPressem">WordPress</a>
+            <a href="https://github.com/Sobak/homepage" title="Napędzane silnikiem Perception">Perception</a>
             <span class="sep"> | </span>
-            <a href="http://automattic.com/" title="Motyw Sorbet od Automattic">Sorbet</a>
+            <a href="https://automattic.com/" title="Motyw Sorbet od Automattic">Sorbet</a>
             <span class="sep"> | </span>
-            <a href="http://sobak.pl/polityka-prywatnosci/" title="Zapoznaj się z polityką prywatności">Polityka prywatności</a>
+            <a href="{{ route('page', ['polityka-prywatnosci']) }}" title="Zapoznaj się z polityką prywatności">Polityka prywatności</a>
         </div><!-- .site-info -->
     </footer>
 
