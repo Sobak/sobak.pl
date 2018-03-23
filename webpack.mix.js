@@ -5,7 +5,7 @@ mix
         clearConsole: false,
     })
 
-    .copy('resources/assets/css/style.css', 'public/assets')
+    .copy('resources/assets/css/style.css', 'public/assets/css')
     .copyDirectory('resources/assets/fonts', 'public/assets/fonts')
     .copyDirectory('resources/assets/images', 'public/assets/images')
 
