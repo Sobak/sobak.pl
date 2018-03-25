@@ -2052,7 +2052,7 @@ label.required:after {
     width: 200px;
 }
 .nimble-portfolio-content .nimble-portfolio-rollerbg {
-    background-image: url(images/item.png);
+    background-image: url(../images/item.png);
     background-position: top;
     background-repeat: no-repeat;
     display: block;
@@ -2060,7 +2060,7 @@ label.required:after {
     width: 200px;
 }
 .nimble-portfolio-content .nimble-portfolio-rollerbg:hover {
-    background-image: url(images/hover.png);
+    background-image: url(../images/hover.png);
     background-position: top;
     background-repeat: no-repeat;
     display: block;
