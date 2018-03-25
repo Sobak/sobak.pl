@@ -500,7 +500,6 @@ input[type="submit"], .site-footer, .main-navigation, a.more-link, .entry-meta, 
 
 .entry-format, .hentry:before {
     font-size: 2.61111em;
-    line-height: 1.14894em;
     background: #f45145;
     border-radius: 50%;
     color: white;
@@ -517,7 +516,6 @@ input[type="submit"], .site-footer, .main-navigation, a.more-link, .entry-meta, 
 @media screen and (max-width: 47.2226em) {
     .entry-format, .hentry:before {
         font-size: 1.61111em;
-        line-height: 1.86207em;
         width: 60px;
         height: 60px;
         top: -32px;
@@ -815,7 +813,6 @@ mark, ins {
 sup,
 sub {
     font-size: 0.83333em;
-    line-height: 1.8em;
     height: 0;
     line-height: 0;
     position: relative;
@@ -1056,7 +1053,6 @@ a:hover, a:focus, a:active {
 .toggles .toggle:before {
     vertical-align: middle;
     font-size: 1.61111em;
-    line-height: 1.86207em;
     transition: all 0.3s ease-in-out;
     background-color: #f45145;
     border-radius: 50%;
@@ -1079,7 +1075,6 @@ a:hover, a:focus, a:active {
     background-color: #f45145;
     content: "\f419";
     font-size: 1.27778em;
-    line-height: 1.17391em;
     line-height: 50px;
     top: -2px;
 }
@@ -1090,7 +1085,6 @@ a:hover, a:focus, a:active {
 }
 .toggles #social-links-toggle:before {
     font-size: 1.61111em;
-    line-height: 1.86207em;
     line-height: 50px;
     background-color: #cdd851;
     content: "\f461";
@@ -1555,7 +1549,6 @@ a.more-link {
 @media screen and (max-width: 47.2226em) {
     .entry-title {
         font-size: 1.61111em;
-        line-height: 1.86207em;
         line-height: 1.39655em;
     }
 }
@@ -1627,7 +1620,6 @@ a.more-link {
 }
 .page-title:before {
     font-size: 1.33333em;
-    line-height: 2.25em;
     line-height: 1.125em;
     margin-right: 3px;
 }
@@ -1818,7 +1810,6 @@ object {
 .site-content [class*="paging-navigation"] a:before,
 .site-content [class*="post-navigation"] a:before {
     font-size: 2.61111em;
-    line-height: 1.14894em;
     transition: all 0.3s ease-in-out;
     background: #9ba2af;
     border-radius: 50%;
@@ -1838,7 +1829,6 @@ object {
     .site-content [class*="paging-navigation"] a:before,
     .site-content [class*="post-navigation"] a:before {
         font-size: 1.61111em;
-        line-height: 1.86207em;
         line-height: 60px;
         width: 60px;
         height: 60px;
@@ -1966,7 +1956,6 @@ label.required:after {
 }
 .social-links ul a:before {
     font-size: 1.77778em;
-    line-height: 1.6875em;
     background: rgba(255, 255, 255, 0.5);
     border-radius: 50%;
     color: #cdd851;
@@ -2046,31 +2035,21 @@ label.required:after {
 .nimble-portfolio-content .nimble-portfolio-title {
     clear: both;
     display: block;
-    margin: -10px 0 0 32px;
-    margin-bottom: 10px;
+    margin: -10px 0 10px 32px;
     text-align: center;
     width: 200px;
 }
 .nimble-portfolio-content .nimble-portfolio-rollerbg {
-    background-image: url(../images/item.png);
-    background-position: top;
-    background-repeat: no-repeat;
+    background: url(../images/item.png) no-repeat top;
     display: block;
     height: 217px;
     width: 200px;
 }
 .nimble-portfolio-content .nimble-portfolio-rollerbg:hover {
-    background-image: url(../images/hover.png);
-    background-position: top;
-    background-repeat: no-repeat;
+    background: url(../images/hover.png) no-repeat top;
     display: block;
     height: 217px;
     width: 200px;
-}
-.nimble-portfolio-content nimble-portfolio-content .view-port {
-    float: left;
-    font-size: 12px;
-    width: 460px;
 }
 .nimble-portfolio-content div.nimble-portfolio ul li a.item:hover img {
     opacity: .1;
@@ -2082,8 +2061,7 @@ label.required:after {
     float: left;
     font-size: 12px;
     list-style: none;
-    margin: 0;
-    margin-left: 20px;
+    margin: 0 0 0 20px;
     padding: 0;
 }
 .nimble-portfolio-content .nimble-portfolio ul.nimble-portfolio-ul {
@@ -2370,7 +2348,7 @@ pre.keylighter span.kl-attribute.kl-namespace {
 /** Twitter widget styling **/
 .twiget-feed {
     margin: auto;
-    padding: 5px 5px 5px 0px;
+    padding: 5px 5px 5px 0;
     overflow:auto;
 }
 .twiget-tweet img {
@@ -2382,16 +2360,9 @@ pre.keylighter span.kl-attribute.kl-namespace {
 .twiget-feed a {
     display: inline !important;
 }
-.twigetfollow {
-    margin-top: 5px;
-    text-align: right;
-}
 .twiget-widget ul li {
     border-bottom: 1px solid #E3E3E3;
     padding: 6px 0;
-}
-.twiget-meta {
-    font-size: 0.9em;
 }
 .tweet-wrap li:before,
 .tweet-wrap li:after {
@@ -2404,7 +2375,4 @@ pre.keylighter span.kl-attribute.kl-namespace {
 }
 .tweet-wrap li:after {
     clear: both
-}
-.tweet-bio {
-    padding: 4px 0;
 }
