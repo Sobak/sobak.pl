@@ -21,13 +21,12 @@
     <aside class="widget">
         <h1 class="widget-title">Kategorie</h1>
         <ul>
-            <li><a href="http://sobak.pl/kategoria/html-css/" >HTML&amp;CSS</a> (3)</li>
-            <li><a href="http://sobak.pl/kategoria/informacje/" >Informacje</a> (31)</li>
-            <li><a href="http://sobak.pl/kategoria/inne/" >Inne</a> (1)</li>
-            <li><a href="http://sobak.pl/kategoria/php/" >PHP</a> (50)</li>
-            <li><a href="http://sobak.pl/kategoria/sql/" >SQL</a> (5)</li>
-            <li><a href="http://sobak.pl/kategoria/technologia/" >Technologia</a> (56)</li>
-            <li><a href="http://sobak.pl/kategoria/zycie/" >Życie</a> (34)</li>
+        @foreach (\App\Models\Category::withCount('posts')->orderBy('name')->get() as $category)
+            <li>
+                <a href="{{ route('category', [$category->slug]) }}">{{ $category->name }}</a>
+                ({{ $category->posts_count }})
+            </li>
+        @endforeach
         </ul>
     </aside>
 </div>
