@@ -12,10 +12,9 @@
         <h1 class="widget-title">Linki</h1>
         <div class="menu-links-container">
             <ul id="menu-links">
-                <li><a href="http://m4tx.pl">Blog m4tx'a</a></li>
-                <li><a href="http://mrowqa.pl/">Mrowqa's Blog</a></li>
-                <li><a href="http://rynko.pl">Rynko.pl</a></li>
-                <li><a href="http://webkrytyk.pl">WebKrytyk</a></li>
+            @foreach (shuffle_assoc(config('content.links')) as $url => $name)
+                <li><a href="{!! $url !!}">{{ $name }}</a></li>
+            @endforeach
             </ul>
         </div>
     </aside>

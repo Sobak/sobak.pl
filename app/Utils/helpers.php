@@ -75,3 +75,22 @@ function page_title($title)
 {
     return $title . ' | ' . config('app.name');
 }
+
+/**
+ * Shuffle an array preserving the keys.
+ *
+ * @param $array
+ * @return array
+ */
+function shuffle_assoc($array) {
+    $keys = array_keys($array);
+
+    shuffle($keys);
+
+    $new = [];
+    foreach($keys as $key) {
+        $new[$key] = $array[$key];
+    }
+
+    return $new;
+}
