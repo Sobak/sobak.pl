@@ -117,10 +117,7 @@
 
 @include('partials.analytics')
 
-<script src="{{ asset('assets/js/jquery.min.js') }}"></script>
-<script src="{{ asset('assets/js/menus.js') }}"></script>
-<script src="{{ asset('assets/js/skip-link-focus-fix.js') }}"></script>
-<script src="{{ asset('assets/js/twitter.js') }}"></script>
+<script src="{{ asset('assets/js/bundle.js') }}"></script>
 <script>
     $(function () {
         $.get('{{ route('twitter.entries') }}', function (data) {

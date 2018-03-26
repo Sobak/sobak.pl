@@ -9,10 +9,10 @@ mix
     .copyDirectory('resources/assets/fonts', 'public/assets/fonts')
     .copyDirectory('resources/assets/images', 'public/assets/images')
 
-    .copy([
+    .scripts([
         'node_modules/jquery/dist/jquery.min.js',
         'resources/assets/js/menus.js',
         'resources/assets/js/portfolio.js',
         'resources/assets/js/skip-link-focus-fix.js',
         'resources/assets/js/twitter.js'
-    ], 'public/assets/js');
+    ], 'public/assets/js/bundle.js');
