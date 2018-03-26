@@ -12,6 +12,10 @@ class BlogController extends Controller
     {
         $posts = Post::latest()->paginate(10);
 
+        if ($posts->isEmpty()) {
+            abort(404);
+        }
+
         return view('blog.index', [
             'posts' => $posts,
             'title' => blog_title($posts->currentPage()),
