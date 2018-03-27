@@ -26,7 +26,7 @@ $single = $single ?? false;
 
     <footer class="entry-meta">
         <span class="post-date">
-            <a href="{{ route('post', $post) }}" title="{{ $post->created_at->format('H:i') }}" rel="bookmark">
+            <a href="{{ route('post', $post) }}" title="{{ $post->created_at->format('d.m.Y H:i') }}" rel="bookmark">
                 <time class="entry-date" datetime="{{ $post->created_at->format(DATE_W3C) }}">
                     {{ localized_date($post->created_at) }}
                 </time>
