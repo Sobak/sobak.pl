@@ -325,7 +325,7 @@ class Indexer extends Command
 
             $category = Category::create([
                 'name' => $name,
-                'slug' => str_slug($name),
+                'slug' => str_slug(str_replace('&', '-', $name)),
             ]);
         }
 
