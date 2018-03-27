@@ -1,77 +1,42 @@
-jQuery(document).ready(function($) {
+$(function() {
+    var menuToggle = $('#menu-toggle');
+    var socialLinksToggle = $('#social-links-toggle');
+    var searchToggle = $('#search-toggle');
 
-	function navMenu() {
+    var menuNav = $('#menu-toggle-nav');
+    var socialLinksNav = $('#social-links-toggle-nav');
+    var searchNav = $('#search-toggle-nav');
 
-		var sidebarToggle = $('#sidebar-toggle');
-		var menuToggle = $('#menu-toggle');
-		var socialLinksToggle = $('#social-links-toggle');
-		var searchToggle = $('#search-toggle');
+    menuToggle.click(function () {
+        menuNav.slideToggle();
+        $(this).toggleClass('active');
 
-		var socialLinksNav = $('#social-links-toggle-nav');
-		var sidebarNav = $('#sidebar-toggle-nav');
-		var searchNav = $('#search-toggle-nav');
-		var menuNav = $('#menu-toggle-nav');
+        searchNav.hide();
+        socialLinksNav.hide();
 
-		function myToggleClass( $myvar ) {
-			if ( $myvar.hasClass( 'active' ) ) {
-				$myvar.removeClass( 'active' );
-			} else {
-				$myvar.addClass('active');
-			}
-		}
+        searchToggle.removeClass('active');
+        socialLinksToggle.removeClass('active');
+    });
 
-		// Display/hide sidebar
-		sidebarToggle.on('click', function() {
-			sidebarNav.slideToggle();
-			myToggleClass($(this));
+    socialLinksToggle.click(function () {
+        socialLinksNav.slideToggle();
+        $(this).toggleClass('active');
 
-			socialLinksNav.hide();
-			menuNav.hide();
-			searchNav.hide();
+        menuNav.hide();
+        searchNav.hide();
 
-			searchToggle.removeClass('active');
-			menuToggle.removeClass('active');
-			socialLinksToggle.removeClass('active');
-		});
-		// Display/hide social links
-		socialLinksToggle.on('click', function() {
-			socialLinksNav.slideToggle();
-			myToggleClass($(this));
+        searchToggle.removeClass('active');
+        menuToggle.removeClass('active');
+    });
 
-			menuNav.hide();
-			searchNav.hide();
-			sidebarNav.hide();
+    searchToggle.click(function () {
+        searchNav.slideToggle();
+        $(this).toggleClass('active');
 
-			searchToggle.removeClass('active');
-			menuToggle.removeClass('active');
-			sidebarToggle.removeClass('active');
-		});
-		// Display/hide menu
-		menuToggle.on('click', function() {
-			menuNav.slideToggle();
-			myToggleClass($(this));
+        socialLinksNav.hide();
+        menuNav.hide();
 
-			searchNav.hide();
-			sidebarNav.hide();
-			socialLinksNav.hide();
-
-			searchToggle.removeClass('active');
-			sidebarToggle.removeClass('active');
-			socialLinksToggle.removeClass('active');
-		});
-		// Display/hide search
-		searchToggle.on('click', function() {
-			searchNav.slideToggle();
-			myToggleClass($(this));
-
-			sidebarNav.hide();
-			socialLinksNav.hide();
-			menuNav.hide();
-
-			sidebarToggle.removeClass('active');
-			menuToggle.removeClass('active');
-			socialLinksToggle.removeClass('active');
-		});
-	}
-	$(window).on('load', navMenu);
-} );
+        menuToggle.removeClass('active');
+        socialLinksToggle.removeClass('active');
+    });
+});
