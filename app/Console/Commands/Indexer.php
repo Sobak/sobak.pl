@@ -171,9 +171,15 @@ class Indexer extends Command
 
         $post = $this->parseContentFile($file->getPathname(), [
             'aliases' => [],
+            'categories' => [],
             'language' => config('app.locale'),
             'slug' => $file->getBasename('.md'),
             'tags' => [],
+        ]);
+
+        $post = $this->parseSingularMetadataAliases($post, [
+            'aliases' => 'alias',
+            'categories' => 'category',
         ]);
 
         $this->validateMetadata($post->metadata, [
@@ -394,6 +400,19 @@ class Indexer extends Command
             'body' => $this->parseMarkdown($body),
             'metadata' => array_merge($defaultMetadata, $metadata),
         ];
+    }
+
+    protected function parseSingularMetadataAliases($post, $mappings)
+    {
+        foreach ($mappings as $key => $alias) {
+            if (!isset($post->metadata[$alias])) {
+                continue;
+            }
+
+            $post->metadata[$key] = array_merge($post->metadata[$key], [$post->metadata[$alias]]);
+        }
+
+        return $post;
     }
 
     protected function parseMarkdown($string)
