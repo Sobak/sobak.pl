@@ -87,6 +87,7 @@
 .panel#menu-toggle-nav {
   background: #f45145;
   border-bottom: 5px solid #f23628;
+  display: block;
 }
 .panel .widget-areas:before,
 .panel .widget-areas:after {
@@ -416,8 +417,4 @@
 }
 .social-links ul a[href*="sobak.pl/feed/"]:before {
   content: "\f413";
-}
-
-#menu-toggle-nav {
-  display: block;
 }

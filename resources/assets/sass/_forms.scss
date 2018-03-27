@@ -90,15 +90,6 @@ input[type="search"] {
   padding: 3px;
 }
 
-textarea {
-  overflow: auto;
-  /* Removes default vertical scrollbar in IE6/7/8/9 */
-  padding-left: 3px;
-  vertical-align: top;
-  /* Improves readability and alignment in all browsers */
-  width: 98%;
-}
-
 button,
 input[type="button"],
 input[type="reset"],
@@ -191,7 +182,10 @@ textarea {
   border: 1px solid #f0f1f3;
   box-sizing: border-box;
   max-width: 100%;
+  overflow: auto;
   padding: 12.5px;
+  vertical-align: top;
+  width: 98%;
 }
 textarea:focus {
   background: white;
@@ -234,4 +228,3 @@ label.required:after {
   clear: both;
   width: 100%;
 }
-
