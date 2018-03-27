@@ -1459,6 +1459,9 @@ a:hover, a:focus, a:active {
 .hentry.format-gallery:before {
     content: "\f103";
 }
+.hentry.format-none:before {
+    display: none;
+}
 @media screen and (max-width: 47.2226em) {
     .hentry {
         margin-bottom: 54px;
@@ -1469,15 +1472,6 @@ a:hover, a:focus, a:active {
     display: none;
 }
 .search-no-results .hentry .search-field {
-    display: block;
-    float: left;
-    margin-right: 13.5px;
-}
-
-.error404 .hentry:before {
-    display: none;
-}
-.error404 .hentry .search-field {
     display: block;
     float: left;
     margin-right: 13.5px;
