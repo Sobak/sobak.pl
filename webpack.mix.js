@@ -3,11 +3,13 @@ let mix = require('laravel-mix');
 mix
     .options({
         clearConsole: false,
+        processCssUrls: false,
     })
 
-    .copy('resources/assets/css/style.css', 'public/assets/css')
     .copyDirectory('resources/assets/fonts', 'public/assets/fonts')
     .copyDirectory('resources/assets/images', 'public/assets/images')
+
+    .sass('resources/assets/sass/app.scss', 'public/assets/css')
 
     .scripts([
         'node_modules/jquery/dist/jquery.min.js',

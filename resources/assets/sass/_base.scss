@@ -1,0 +1,373 @@
+@font-face {
+  font-family: "Genericons";
+  src: url("../fonts/genericons-regular-webfont.eot");
+}
+
+@font-face {
+  font-family: "Genericons";
+  src: url("../fonts/genericons-regular-webfont.ttf") format("truetype"), url("../fonts/genericons-regular-webfont.svg#genericonsregular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+html {
+  font-size: 18px;
+  line-height: 1.5em;
+}
+
+body,
+button,
+input,
+select,
+textarea {
+  color: #404040;
+  font-family: Georgia, "Bitstream Charter", serif;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+// Headings
+h1, h2, h3, h4, h5, h6 {
+  clear: both;
+}
+
+hr {
+  border: 1px solid #ccc;
+  border-width: 0 0 1px 0;
+  height: 0;
+  margin-top: -1px;
+  margin-bottom: 24px;
+  padding-top: 24px;
+}
+
+/* Text elements */
+p {
+  margin-bottom: 24px;
+}
+
+ul, ol {
+  margin: 0 0 24px 36px;
+}
+
+ul {
+  list-style: disc;
+}
+
+ol {
+  list-style: decimal;
+}
+
+li > ul,
+li > ol {
+  margin-bottom: 0;
+  margin-left: 24px;
+}
+
+dd {
+  margin: 0 24px 24px;
+}
+
+b, strong, th {
+  font-weight: 600;
+}
+
+dfn, cite, em, i {
+  font-style: italic;
+}
+
+blockquote {
+  margin: 0 24px;
+}
+
+address {
+  margin: 0 0 24px;
+}
+
+pre {
+  background: rgba(119, 119, 119, 0.5);
+  font-family: "Courier 10 Pitch", Courier, monospace;
+  font-size: 0.9375em;
+  line-height: 1.6em;
+  margin-top: -2px;
+  margin-bottom: 24px;
+  max-width: 100%;
+  overflow: auto;
+  padding: 24px;
+}
+
+code, kbd, tt, var {
+  font-family: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+  font-size: 0.875em;
+  line-height: 1.71429em;
+}
+
+abbr, acronym {
+  border-bottom: 1px dotted #666;
+  cursor: help;
+}
+
+mark, ins {
+  background: #fff9c0;
+  text-decoration: none;
+}
+
+sup,
+sub {
+  font-size: 75%;
+  height: 0;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sup {
+  bottom: 1ex;
+}
+
+sub {
+  top: .5ex;
+}
+
+small {
+  font-size: 75%;
+}
+
+big {
+  font-size: 125%;
+}
+
+figure {
+  margin: 0;
+}
+
+table {
+  margin: 0 0 24px;
+  width: 100%;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+}
+
+body {
+  background: #f0f1f3;
+  color: #656e7f;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 27px;
+}
+
+/* Headings */
+h1 {
+  line-height: 0.57447em;
+  color: #242d36;
+  font-family: "PT Serif", Georgia, Times, serif;
+  font-size: 47px;
+  margin: 27px 0;
+}
+
+h2 {
+  line-height: 0.93103em;
+  color: #242d36;
+  font-family: "PT Serif", Georgia, Times, serif;
+  font-size: 29px;
+  margin: 27px 0;
+}
+
+h3 {
+  line-height: 1.17391em;
+  color: #242d36;
+  font-family: "PT Serif", Georgia, Times, serif;
+  font-size: 23px;
+  margin: 27px 0;
+}
+
+h4 {
+  line-height: 1.5em;
+  color: #242d36;
+  font-family: "PT Serif", Georgia, Times, serif;
+  font-size: 18px;
+  margin: 27px 0;
+}
+
+h5 {
+  line-height: 1.5em;
+  color: #242d36;
+  font-family: "PT Serif", Georgia, Times, serif;
+  font-size: 18px;
+  margin: 27px 0;
+}
+
+h6 {
+  line-height: 1.8em;
+  color: #242d36;
+  font-family: "PT Serif", Georgia, Times, serif;
+  font-size: 15px;
+  margin: 27px 0;
+}
+
+h5 {
+  font-style: italic;
+}
+
+hr {
+  background-color: #242d36;
+  height: 1px;
+  margin-bottom: 26px;
+  padding: 0;
+}
+
+/* Text elements */
+p {
+  margin-bottom: 27px;
+}
+
+ul {
+  margin: 0 0 27px 27px;
+  list-style: disc;
+}
+ul ul {
+  list-style: square;
+}
+ul ul ul {
+  list-style: circle;
+}
+
+ol {
+  margin: 0 0 27px 27px;
+  list-style: decimal;
+}
+ol ol {
+  list-style: lower-alpha;
+}
+ol ol ol {
+  list-style: lower-roman;
+}
+
+li > ul,
+li > ol {
+  margin-bottom: 0;
+  margin-left: 27px;
+}
+
+dt {
+  font-weight: 400;
+}
+
+dd {
+  margin: 13.5px 0 13.5px 27px;
+}
+
+dfn, cite, em, i {
+  font-style: italic;
+}
+
+blockquote {
+  color: #9ba2af;
+  font-family: "PT Serif", Georgia, Times, serif;
+  border-left: 5px solid rgba(155, 162, 175, 0.25);
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 27px;
+  padding-left: 27px;
+}
+blockquote blockquote {
+  font-size: inherit;
+}
+
+address {
+  font-style: italic;
+  margin-bottom: 27px;
+}
+
+pre {
+  background: rgba(0, 0, 0, 0.03);
+  font-family: "Courier 10 Pitch", Courier, monospace;
+  font-size: 0.83333em;
+  line-height: 1.8em;
+  margin-bottom: 27px;
+  padding: 27px;
+  overflow: auto;
+  max-width: 100%;
+}
+
+abbr, acronym {
+  border-bottom: 1px dotted #9ba2af;
+  cursor: help;
+  margin-bottom: 26px;
+}
+
+mark, ins {
+  background: fff9c0;
+  text-decoration: none;
+}
+
+sup,
+sub {
+  font-size: 0.83333em;
+  height: 0;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sup {
+  bottom: 1ex;
+}
+
+sub {
+  top: 0.5ex;
+}
+
+small {
+  font-size: 0.83333em;
+  line-height: 1.8em;
+}
+
+big {
+  font-size: 1.27778em;
+  line-height: 1.17391em;
+}
+
+figure {
+  margin: 0;
+}
+
+table {
+  margin-bottom: 27px;
+  width: 100%;
+}
+
+td, th {
+  border-bottom: 1px solid rgba(155, 162, 175, 0.25);
+  border-collapse: collapse;
+  padding: 6.75px 3px 5.75px;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+}
+
+/* Links */
+a {
+  color: #f45145;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+a:visited {
+  color: #f45145;
+}
+a:hover, a:focus, a:active {
+  color: #f77e75;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Make sure embeds and iframes fit their containers */
+embed,
+iframe,
+object {
+  max-width: 100%;
+}
