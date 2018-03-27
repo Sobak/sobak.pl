@@ -77,7 +77,7 @@
         <div class="site-info">
             <a href="https://github.com/Sobak/homepage" title="Napędzane silnikiem Perception">Perception</a>
             <span class="sep"> | </span>
-            <a href="https://automattic.com/" title="Motyw Sorbet od Automattic">Sorbet</a>
+            <a href="http://wordpress.com/themes/sorbet/" title="Motyw Sorbet od Automattic">Sorbet</a>
             <span class="sep"> | </span>
             <a href="{{ route('page', ['polityka-prywatnosci']) }}" title="Zapoznaj się z polityką prywatności">Polityka prywatności</a>
         </div><!-- .site-info -->

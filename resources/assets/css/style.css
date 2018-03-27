@@ -283,8 +283,6 @@ img {
     position: absolute !important;
 }
 
-.screen-reader-text:hover,
-.screen-reader-text:active,
 .screen-reader-text:focus {
     background-color: #fff;
     border: 1px solid #000;
@@ -360,8 +358,6 @@ textarea {
     margin: 0;
     /* Addresses margins set differently in IE6/7, F3/4, S5, Chrome */
     vertical-align: baseline;
-    /* Improves appearance and consistency in all browsers */
-    *vertical-align: middle;
     /* Improves appearance and consistency in all browsers */
 }
 
@@ -491,7 +487,7 @@ input[type="submit"], .site-footer, .main-navigation, a.more-link, .entry-meta, 
 }
 
 .entry-format, .hentry:before {
-    font-size: 2.61111em;
+    font-size: 48px;
     background: #f45145;
     border-radius: 50%;
     color: white;
@@ -507,7 +503,7 @@ input[type="submit"], .site-footer, .main-navigation, a.more-link, .entry-meta, 
 }
 @media screen and (max-width: 47.2226em) {
     .entry-format, .hentry:before {
-        font-size: 1.61111em;
+        font-size: 29px;
         width: 60px;
         height: 60px;
         top: -32px;
@@ -1026,6 +1022,7 @@ a:hover, a:focus, a:active {
 .toggles .toggle {
     cursor: pointer;
     display: inline-block;
+    vertical-align: top;
 }
 .toggles .toggle.active:before {
     color: white;
@@ -1036,7 +1033,7 @@ a:hover, a:focus, a:active {
 }
 .toggles .toggle:before {
     vertical-align: middle;
-    font-size: 1.61111em;
+    font-size: 32px;
     transition: all 0.3s ease-in-out;
     background-color: #f45145;
     border-radius: 50%;
@@ -1058,23 +1055,17 @@ a:hover, a:focus, a:active {
 .toggles #menu-toggle:before {
     background-color: #f45145;
     content: "\f419";
-    font-size: 1.27778em;
-    line-height: 50px;
-    top: -2px;
+    font-size: 24px;
 }
 .toggles #sidebar-toggle:before {
-    line-height: 50px;
     background-color: #f77e75;
     content: "\f445";
 }
 .toggles #social-links-toggle:before {
-    font-size: 1.61111em;
-    line-height: 50px;
     background-color: #cdd851;
     content: "\f461";
 }
 .toggles #search-toggle:before {
-    line-height: 50px;
     background-color: #b1e8e6;
     content: "\f400";
 }
@@ -1222,7 +1213,8 @@ a:hover, a:focus, a:active {
     padding-left: 0;
     position: relative;
 }
-.main-navigation ul li:hover > ul {
+.main-navigation ul li:hover > ul,
+.main-navigation ul li:focus > ul {
     transition: all 0.2s ease-in-out;
     opacity: 1;
     visibility: visible;
@@ -1329,7 +1321,8 @@ a:hover, a:focus, a:active {
     .main-navigation ul ul ul a {
         padding-left: 54px;
     }
-    .main-navigation ul li:hover > ul {
+    .main-navigation ul li:hover > ul,
+    .main-navigation ul li:focus > ul {
         display: block;
     }
     .main-navigation li {
@@ -1352,7 +1345,7 @@ a:hover, a:focus, a:active {
 .entry-format {
     background: transparent;
     color: transparent;
-    z-index: 4;
+    z-index: 2;
 }
 
 .hentry {
@@ -1597,8 +1590,8 @@ a.more-link {
     }
 }
 .page-title:before {
-    font-size: 1.33333em;
-    line-height: 1.125em;
+    font-size: 32px;
+    line-height: 34px;
     margin-right: 3px;
 }
 
@@ -1787,7 +1780,7 @@ object {
 }
 .site-content [class*="paging-navigation"] a:before,
 .site-content [class*="post-navigation"] a:before {
-    font-size: 2.61111em;
+    font-size: 48px;
     transition: all 0.3s ease-in-out;
     background: #9ba2af;
     border-radius: 50%;
@@ -1806,7 +1799,7 @@ object {
 @media screen and (max-width: 47.2226em) {
     .site-content [class*="paging-navigation"] a:before,
     .site-content [class*="post-navigation"] a:before {
-        font-size: 1.61111em;
+        font-size: 32px;
         line-height: 60px;
         width: 60px;
         height: 60px;
@@ -1933,12 +1926,12 @@ label.required:after {
     text-decoration: none;
 }
 .social-links ul a:before {
-    font-size: 1.77778em;
+    font-size: 32px;
+    line-height: 32px;
     background: rgba(255, 255, 255, 0.5);
     border-radius: 50%;
     color: #cdd851;
     display: block;
-    line-height: 1;
     margin-top: 6.75px;
     margin-bottom: 6.75px;
     padding: 9px;
