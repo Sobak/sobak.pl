@@ -9,6 +9,7 @@ use App\Models\Project;
 use App\Models\Redirect;
 use App\Models\Tag;
 use App\Utils\CommonMark\CodeBlockRenderer;
+use App\Utils\CommonMark\LinkRenderer;
 use Cache;
 use Carbon\Carbon;
 use DB;
@@ -133,7 +134,9 @@ class Indexer extends Command
         $environment = Environment::createCommonMarkEnvironment();
 
         $codeRenderer = new CodeBlockRenderer();
+        $linkRenderer = new LinkRenderer();
         $environment->addBlockRenderer('League\CommonMark\Block\Element\FencedCode', $codeRenderer);
+        $environment->addInlineRenderer('League\CommonMark\Inline\Element\Link', $linkRenderer);
 
         $this->markdownParser = new DocParser($environment);
         $this->markdownHtmlRenderer = new HtmlRenderer($environment);
