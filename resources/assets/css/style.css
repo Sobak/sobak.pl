@@ -2231,33 +2231,6 @@ label.required:after {
     }
 }
 
-.post .note,
-.post .warning {
-    font-size: 0.9em;
-    margin: .5em 0;
-    padding: 10px;
-}
-
-.post .note p,
-.post .warning p {
-    margin: .5em 0 0 0;
-}
-
-.post .note {
-    background: #6F6;
-    border-left: 10px #090 solid;
-}
-/*.warning {
-    background: @bg-warning;
-    border-left: 5px @br-warning solid;
-}*/
-.post .note h4,
-.post .warning h4 {
-    font-size: 1em;
-    font-weight: bold;
-    margin: 0;
-}
-
 .token.operator,
 .token.entity,
 .token.url,
