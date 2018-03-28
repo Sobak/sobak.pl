@@ -35,6 +35,7 @@ class BlogController extends Controller
     public function category(Category $category)
     {
         return view('blog.category', [
+            'body_classes' => ['archive', 'category'],
             'category' => $category,
             'posts' => $category->posts()->latest()->paginate(10),
             'title' => page_title($category->name),
@@ -44,6 +45,7 @@ class BlogController extends Controller
     public function tag(Tag $tag)
     {
         return view('blog.tag', [
+            'body_classes' => ['archive', 'tag'],
             'posts' => $tag->posts()->latest()->paginate(10),
             'tag' => $tag,
             'title' => page_title($tag->name),

@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic,700italic&amp;subset=latin,latin-ext">
 </head>
 
-<body class="right-sidebar {{ body_class() }}">
+<body class="right-sidebar {{ implode(' ', $body_classes ?? []) }}">
     <header class="site-header">
         <div class="site-header-wrapper">
             <div class="site-branding">

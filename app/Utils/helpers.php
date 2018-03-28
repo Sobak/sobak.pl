@@ -1,34 +1,6 @@
 <?php
 
 /**
- * Tries to mimic important behavior of its WordPress counterpart.
- *
- * Watch out! This function is full of bad magic. Stay alerted, do
- * not come close and do not invite it for a dinner. Most importantly,
- * though, refactor whenever possible!
- *
- * @return string
- */
-function body_class()
-{
-    $classes = [];
-
-    $routeName = \Request::route()->getName();
-
-    if ($routeName === 'category') {
-        $classes[] = 'archive';
-        $classes[] = 'category';
-    }
-
-    if ($routeName === 'tag') {
-        $classes[] = 'archive';
-        $classes[] = 'tag';
-    }
-
-    return join(' ', $classes);
-}
-
-/**
  * There must be a better way...
  *
  * @param \Carbon\Carbon $date
