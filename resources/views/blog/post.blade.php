@@ -32,7 +32,7 @@ $single = $single ?? false;
                 </time>
             </a>
         </span>
-        @if ($single)
+        @if ($single && $post->tags->isNotEmpty())
         <span class="tags-links">
             @foreach ($post->tags as $tag)
                 <a href="{{ route('tag', $tag) }}" rel="tag">{{ $tag->name }}</a>@unless($loop->last),@endunless
