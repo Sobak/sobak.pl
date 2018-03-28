@@ -52,10 +52,10 @@
     <div id="search-toggle-nav" class="panel">
         <div class="search-wrapper">
             <div class="search-wrapper">
-                <form role="search" method="get" class="search-form" action="http://sobak.pl/">
+                <form role="search" method="get" class="search-form" action="{{ route('search') }}">
                     <label>
                         <span class="screen-reader-text">Wyszukiwanie:</span>
-                        <input type="search" placeholder="Wpisz szukany tekst&hellip;" name="s">
+                        <input type="search" name="search" placeholder="Wpisz szukany tekst…">
                     </label>
                     <input type="submit" value="Szukaj">
                 </form>

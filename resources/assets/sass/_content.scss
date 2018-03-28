@@ -340,15 +340,6 @@ a.more-link,
   }
 }
 
-.search-no-results .hentry:before {
-  display: none;
-}
-.search-no-results .hentry .search-field {
-  display: block;
-  float: left;
-  margin-right: 13.5px;
-}
-
 .entry-content {
   margin-bottom: 27px;
   margin-top: 27px;
@@ -460,11 +451,6 @@ a.more-link {
 
 .archive.tag .page-title:before {
   content: "\f302";
-}
-
-/* Search */
-.search-results .page .sep:first-of-type {
-  display: none;
 }
 
 /* =Media */

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BlogController extends Controller
 {
@@ -39,6 +41,23 @@ class BlogController extends Controller
             'category' => $category,
             'posts' => $category->posts()->latest()->paginate(10),
             'title' => page_title($category->name),
+        ]);
+    }
+
+    public function search(Request $request)
+    {
+        $phrase = $request->get('search');
+
+        $posts = Post::where('title', 'like', "%{$phrase}%")
+            ->orWhere('content', 'like', "%{$phrase}%")
+            ->orderBy(DB::raw("title LIKE '%{$phrase}%'"), 'desc')
+            ->latest()
+            ->paginate(10);
+
+        return view('blog.search', [
+            'phrase' => $phrase,
+            'posts' => $posts,
+            'title' => page_title('Wyniki wyszukiwania'),
         ]);
     }
 
