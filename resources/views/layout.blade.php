@@ -26,7 +26,7 @@
     </header>
     <div id="menu-toggle-nav" class="panel">
         <nav id="site-navigation" class="main-navigation">
-            <a class="skip-link screen-reader-text" href="#content">Przejdź do treści</a>
+            <a class="screen-reader-text" href="#content">Przejdź do treści</a>
 
             <div class="menu-main-container">
                 <ul id="menu-main">
@@ -57,7 +57,7 @@
                         <span class="screen-reader-text">Wyszukiwanie:</span>
                         <input type="search" placeholder="Wpisz szukany tekst&hellip;" name="s">
                     </label>
-                    <input type="submit" class="search-submit" value="Szukaj">
+                    <input type="submit" value="Szukaj">
                 </form>
             </div>
         </div>
