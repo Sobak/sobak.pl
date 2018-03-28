@@ -17,4 +17,6 @@ mix
         'resources/assets/js/portfolio.js',
         'resources/assets/js/skip-link-focus-fix.js',
         'resources/assets/js/twitter.js'
-    ], 'public/assets/js/bundle.js');
+    ], 'public/assets/js/bundle.js')
+
+    .version();

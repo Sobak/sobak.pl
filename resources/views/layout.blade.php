@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ $title or config('app.name') }}</title>
-    <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
+    <link rel="stylesheet" href="{{ mix('assets/css/app.css') }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic&amp;subset=latin,latin-ext">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic,700italic&amp;subset=latin,latin-ext">
 </head>
@@ -85,7 +85,7 @@
 
 @include('partials.analytics')
 
-<script src="{{ asset('assets/js/bundle.js') }}"></script>
+<script src="{{ mix('assets/js/bundle.js') }}"></script>
 <script>
     $(function () {
         $.get('{{ route('twitter.entries') }}', function (data) {
