@@ -41,8 +41,9 @@
     <div id="social-links-toggle-nav" class="panel">
         <div class="social-links">
             <ul id="menu-social">
-                <li><a href="http://github.com/Sobak"><span class="screen-reader-text">GitHub</span></a></li>
+                <li><a href="https://www.linkedin.com/in/msobaczewski/"><span class="screen-reader-text">LinkedIn</span></a></li>
                 <li><a href="http://twitter.com/SobakPL"><span class="screen-reader-text">Twitter</span></a></li>
+                <li><a href="http://github.com/Sobak"><span class="screen-reader-text">GitHub</span></a></li>
                 <li><a href="http://facebook.com/SobakPL"><span class="screen-reader-text">Facebook</span></a></li>
                 <li><a href="http://sobak.pl/feed/"><span class="screen-reader-text">RSS</span></a></li>
             </ul>
