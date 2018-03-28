@@ -48,12 +48,12 @@ a.more-link,
 }
 
 
-.entry-format, .hentry:before, .toggles .toggle:before,
+.entry-format, .hentry:before,
 .post-date:before,
 .sticky .post-date:before,
 .tags-links:before,
 .page-title:before, .site-content [class*="paging-navigation"] a:before,
-.site-content [class*="post-navigation"] a:before, .reply:before, .social-links ul a:before {
+.site-content [class*="post-navigation"] a:before, .reply:before {
   -webkit-font-smoothing: antialiased;
   font-family: "Genericons";
   font-size: 24px;

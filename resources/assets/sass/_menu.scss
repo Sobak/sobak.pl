@@ -17,6 +17,17 @@
   display: inline-block;
   vertical-align: top;
 }
+
+.toggles .toggle:before,
+.social-links ul a:before {
+  -webkit-font-smoothing: antialiased;
+  font-family: "Genericons";
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: none;
+  vertical-align: text-bottom;
+}
+
 .toggles .toggle.active:before {
   color: white;
 }
@@ -40,6 +51,7 @@
   width: 50px;
   height: 50px;
 }
+
 @media screen and (max-width: 47.2226em) {
   .toggles .toggle:before {
     margin: 0 3.375px;
