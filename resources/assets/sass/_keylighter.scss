@@ -2,6 +2,11 @@ pre.keylighter {
   background: #181818;
   padding: 15px;
 }
+@media screen and (max-width: 47.2226em) {
+  pre.keylighter {
+    max-height: 450px;
+  }
+}
 pre.keylighter span.kl-language, pre.keylighter span.kl-expression {
   color: white;
 }
