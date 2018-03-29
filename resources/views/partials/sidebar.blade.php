@@ -1,4 +1,4 @@
-<div id="secondary" class="widget-area" role="complementary">
+<div class="widget-area" role="complementary">
     <aside class="widget twiget-widget">
         <h1 class="widget-title">Mikroblog</h1>
         <div class="twiget-feed">
