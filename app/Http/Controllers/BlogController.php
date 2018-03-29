@@ -47,10 +47,11 @@ class BlogController extends Controller
     public function search(Request $request)
     {
         $phrase = $request->get('search');
+        $phraseQuoted = DB::getPdo()->quote($phrase);
 
         $posts = Post::where('title', 'like', "%{$phrase}%")
             ->orWhere('content', 'like', "%{$phrase}%")
-            ->orderBy(DB::raw("title LIKE '%{$phrase}%'"), 'desc')
+            ->orderBy(DB::raw("title LIKE '%{$phraseQuoted}%'"), 'desc')
             ->latest()
             ->paginate(10);
 
