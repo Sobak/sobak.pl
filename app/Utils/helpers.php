@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Request;
+
 /**
  * There must be a better way...
  *
@@ -46,6 +48,43 @@ function blog_title($page)
 function page_title($title)
 {
     return $title . ' | ' . config('app.name');
+}
+
+/**
+ * Determines whether given menu item should be marked active.
+ *
+ * @param $conditions
+ * @return bool
+ */
+function is_menu_link_active($conditions)
+{
+    $conditions = (array) $conditions;
+    $routeName = Request::route()->getName();
+
+    foreach ($conditions as $condition) {
+        if (starts_with($condition, 'page:')) {
+            return Request::url() === route('page', [substr($condition, strlen('page:'))]);
+        }
+
+        if ($routeName === $condition) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+/**
+ * Marks menu item active if conditions are met.
+ *
+ * @param $conditions
+ * @return string
+ */
+function if_active($conditions)
+{
+    $isActive = is_menu_link_active($conditions);
+
+    return $isActive ? 'class="current-menu-item"' : '';
 }
 
 /**

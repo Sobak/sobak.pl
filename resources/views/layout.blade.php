@@ -30,10 +30,18 @@
 
             <div class="menu-main-container">
                 <ul id="menu-main">
-                    <li class="current-menu-item"><a href="{{ route('index') }}">Blog</a></li>
-                    <li><a href="{{ route('projects') }}">Portfolio</a></li>
-                    <li><a href="{{ route('page', ['o-mnie']) }}">O mnie</a></li>
-                    <li><a href="{{ route('contact') }}">Kontakt</a></li>
+                    <li {!! if_active(['index', 'blog', 'post', 'category', 'tag', 'search']) !!}>
+                        <a href="{{ route('index') }}">Blog</a>
+                    </li>
+                    <li {!! if_active(['projects', 'project']) !!}>
+                        <a href="{{ route('projects') }}">Portfolio</a>
+                    </li>
+                    <li {!! if_active('page:o-mnie') !!}>
+                        <a href="{{ route('page', ['o-mnie']) }}">O mnie</a>
+                    </li>
+                    <li {!! if_active('contact') !!}>
+                        <a href="{{ route('contact') }}">Kontakt</a>
+                    </li>
                 </ul>
             </div>
         </nav><!-- #site-navigation -->
