@@ -39,12 +39,17 @@
   font-weight: 600;
 }
 
+.pagination-container a.change-page span {
+  display: none;
+}
+
 @media screen and (max-width: 670px) {
   .pagination-container span, .pagination-container a {
     display: none;
   }
 
-  .pagination-container a.next-page, .pagination-container a.previous-page {
+  .pagination-container a.change-page,
+  .pagination-container a.change-page span {
     display: inline-block;
   }
 }

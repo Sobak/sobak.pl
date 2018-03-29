@@ -24,7 +24,7 @@
         @if ($paginator->onFirstPage())
             <span>&laquo;</span>
         @else
-            <a href="{{ PaginateRoute::previousPageUrl() }}" class="previous-page">&laquo;</a>
+            <a href="{{ PaginateRoute::previousPageUrl() }}" class="change-page">&laquo; <span>Poprzednia</span></a>
         @endif
 
         {{-- Pagination Elements --}}
@@ -48,7 +48,7 @@
 
         {{-- Next Page Link --}}
         @if (PaginateRoute::hasNextPage($paginator))
-            <a href="{{ PaginateRoute::nextPageUrl($paginator) }}" class="next-page">&raquo;</a>
+            <a href="{{ PaginateRoute::nextPageUrl($paginator) }}" class="change-page"><span>Następna</span> &raquo;</a>
         @else
             <span>&raquo;</span>
         @endif
