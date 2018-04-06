@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-    <article class="type-page hentry">
+    <article class="hentry type-page">
         <header class="entry-header">
             <h1 class="entry-title">Kontakt</h1>
         </header>

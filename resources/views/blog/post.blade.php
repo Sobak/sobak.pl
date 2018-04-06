@@ -1,7 +1,7 @@
 @php
 $single = $single ?? false;
 @endphp
-<article class="post hentry">
+<article class="hentry">
     <header class="entry-header">
         <h1 class="entry-title">
             @if ($single)

@@ -268,6 +268,9 @@ a.more-link,
 .hentry.type-page:before {
   content: "\f443";
 }
+.hentry.type-none:before {
+  display: none;
+}
 .hentry.sticky, .hentry.format-image {
   border-color: #cdd851;
 }
@@ -330,9 +333,6 @@ a.more-link,
 }
 .hentry.format-gallery:before {
   content: "\f103";
-}
-.hentry.format-none:before {
-  display: none;
 }
 @media screen and (max-width: 47.2226em) {
   .hentry {

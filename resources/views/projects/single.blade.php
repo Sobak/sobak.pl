@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-    <article class="page type-page hentry">
+    <article class="hentry type-page">
         <header class="entry-header">
             <h1 class="entry-title">{{ $project->title }}</h1>
         </header>
