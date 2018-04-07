@@ -7,42 +7,22 @@ a.more-link,
   text-transform: uppercase;
 }
 
-.entry-content:before,
-.entry-content:after {
-  content: '';
-  display: table;
-}
-
-.entry-content:after {
-  clear: both;
-}
-
+// Clearfixes
 .site-header:before,
-.site-header:after {
-  content: '';
-  display: table;
-}
-
-.site-header:after {
-  clear: both;
-}
-
+.site-header:after,
 .site-content:before,
-.site-content:after {
-  content: '';
-  display: table;
-}
-
-.site-content:after {
-  clear: both;
-}
-
+.site-content:after,
+.entry-content:before,
+.entry-content:after,
 .site-footer:before,
 .site-footer:after {
   content: '';
   display: table;
 }
 
+.site-header:after,
+.site-content:after,
+.entry-content:after,
 .site-footer:after {
   clear: both;
 }
