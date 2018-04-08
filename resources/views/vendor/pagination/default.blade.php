@@ -1,5 +1,5 @@
 @if ($paginator->hasPages())
-    <nav class="navigation paging-navigation">
+    <nav class="navigation sibblings-navigation">
         <h1 class="screen-reader-text">Nawigacja wpisów</h1>
         <div class="nav-links">
             @if (PaginateRoute::hasPreviousPage())

@@ -4,15 +4,16 @@
   margin-bottom: 10px;
   overflow: hidden;
 }
-.widget a {
-  text-decoration: none;
-}
 
-.widget-title {
+.widget h1 {
   font-size: 1.27778em;
   line-height: 1.17391em;
   color: #242d36;
   margin: 13.5px 0;
+}
+
+.widget a {
+  text-decoration: none;
 }
 
 .tweet-wrap {
@@ -33,7 +34,7 @@
 .twiget-feed {
   margin: auto;
   padding: 5px 5px 5px 0;
-  overflow:auto;
+  overflow: auto;
 }
 .twiget-tweet img {
   float: left;
@@ -44,7 +45,7 @@
 .twiget-feed a {
   display: inline !important;
 }
-.twiget-widget ul li {
+.tweet-wrap li {
   border-bottom: 1px solid #E3E3E3;
   padding: 6px 0;
 }

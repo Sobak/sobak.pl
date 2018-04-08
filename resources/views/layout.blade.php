@@ -69,7 +69,7 @@
         </div>
     </div>
     <div id="content" class="site-content">
-        <div id="primary" class="content-area">
+        <div class="content-area">
             <main id="main" class="site-main">
 
                 @yield('content')
