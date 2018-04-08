@@ -144,7 +144,7 @@ class Indexer extends Command
 
     protected function iterateOverContentTypes()
     {
-        $iterator = new DirectoryIterator(config('content.root'));
+        $iterator = new DirectoryIterator(config('content.path'));
 
         foreach ($iterator as $fileinfo) {
             if ($fileinfo->isDir() && $fileinfo->isDot() === false) {
@@ -159,7 +159,7 @@ class Indexer extends Command
 
         $indexerName = 'index' . studly_case(str_singular($contentType));
 
-        $iterator = new DirectoryIterator(config('content.root') . '/' . $contentType);
+        $iterator = new DirectoryIterator(config('content.path') . '/' . $contentType);
 
         foreach ($iterator as $fileinfo) {
             if ($fileinfo->isFile() && $fileinfo->getExtension() === 'md') {
@@ -281,7 +281,7 @@ class Indexer extends Command
 
     protected function indexRedirects()
     {
-        $redirectsPath = config('content.root') . '/redirects.php';
+        $redirectsPath = config('content.path') . '/redirects.php';
 
         if (file_exists($redirectsPath) === false) {
             return false;
