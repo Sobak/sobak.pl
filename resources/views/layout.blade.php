@@ -18,15 +18,15 @@
             </div>
 
             <div class="toggles">
-                <div id="menu-toggle" class="toggle active" title="Menu"><span class="screen-reader-text">Menu</span></div>
-                <div id="social-links-toggle" class="toggle" title="Serwisy społecznościowe"><span class="screen-reader-text">Serwisy społecznościowe</span></div>
-                <div id="search-toggle" class="toggle" title="Szukaj"><span class="screen-reader-text">Szukaj</span></div>
+                <div id="menu-toggle" class="toggle active" title="Menu"><span class="sr-only">Menu</span></div>
+                <div id="social-links-toggle" class="toggle" title="Social media"><span class="sr-only">Social media</span></div>
+                <div id="search-toggle" class="toggle" title="Szukaj"><span class="sr-only">Szukaj</span></div>
             </div>
         </div>
     </header>
     <div id="menu-toggle-nav" class="panel">
         <nav id="site-navigation" class="main-navigation">
-            <a class="screen-reader-text" href="#content">Przejdź do treści</a>
+            <a class="sr-only" href="#content">Przejdź do treści</a>
 
             <div class="menu-main-container">
                 <ul id="menu-main">
@@ -49,11 +49,11 @@
     <div id="social-links-toggle-nav" class="panel">
         <div class="social-links">
             <ul id="menu-social">
-                <li><a href="https://www.linkedin.com/in/msobaczewski/"><span class="screen-reader-text">LinkedIn</span></a></li>
-                <li><a href="https://twitter.com/SobakPL"><span class="screen-reader-text">Twitter</span></a></li>
-                <li><a href="https://github.com/Sobak"><span class="screen-reader-text">GitHub</span></a></li>
-                <li><a href="https://facebook.com/SobakPL"><span class="screen-reader-text">Facebook</span></a></li>
-                <li><a href="http://sobak.pl/feed/"><span class="screen-reader-text">RSS</span></a></li>
+                <li><a href="https://www.linkedin.com/in/msobaczewski/"><span class="sr-only">LinkedIn</span></a></li>
+                <li><a href="https://twitter.com/SobakPL"><span class="sr-only">Twitter</span></a></li>
+                <li><a href="https://github.com/Sobak"><span class="sr-only">GitHub</span></a></li>
+                <li><a href="https://facebook.com/SobakPL"><span class="sr-only">Facebook</span></a></li>
+                <li><a href="http://sobak.pl/feed/"><span class="sr-only">RSS</span></a></li>
             </ul>
         </div>
     </div>
@@ -61,7 +61,7 @@
         <div class="search-wrapper">
             <form role="search" method="get" class="search-form" action="{{ route('search') }}">
                 <label>
-                    <span class="screen-reader-text">Wyszukiwanie:</span>
+                    <span class="sr-only">Wyszukiwanie:</span>
                     <input type="search" name="search" placeholder="Wpisz szukany tekst…">
                 </label>
                 <input type="submit" value="Szukaj">

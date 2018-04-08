@@ -1,18 +1,18 @@
 @if ($paginator->hasPages())
     <nav class="navigation sibblings-navigation">
-        <h1 class="screen-reader-text">Nawigacja wpisów</h1>
+        <h1 class="sr-only">Nawigacja wpisów</h1>
         <div class="nav-links">
             @if (PaginateRoute::hasPreviousPage())
             <div class="nav-previous">
                 <a href="{{ PaginateRoute::previousPageUrl() }}">
-                    <span class="meta-nav screen-reader-text">&larr;</span>
+                    <span class="meta-nav sr-only">&larr;</span>
                 </a>
             </div>
             @endif
             @if (PaginateRoute::hasNextPage($paginator))
                 <div class="nav-next">
                     <a href="{{ PaginateRoute::nextPageUrl($paginator) }}">
-                        <span class="meta-nav screen-reader-text">&rarr;</span>
+                        <span class="meta-nav sr-only">&rarr;</span>
                     </a>
                 </div>
             @endif
