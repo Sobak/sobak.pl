@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\HtmlString;
+use Illuminate\Support\ViewErrorBag;
 
 /**
  * There must be a better way...
@@ -104,4 +106,22 @@ function shuffle_assoc($array) {
     }
 
     return $new;
+}
+
+/**
+ * Handle errors for the given form input
+ *
+ * @param $inputName string Form input name
+ * @param $errors \Illuminate\Support\ViewErrorBag Form errors bag instance
+ * @return \Illuminate\Support\HtmlString
+ */
+function form_error($inputName, ViewErrorBag $errors)
+{
+    if ($errors->has($inputName)) {
+        $output = '<span class="validation-error">' . $errors->first($inputName) . '</span>';
+    } else {
+        $output = '';
+    }
+
+    return new HtmlString($output);
 }

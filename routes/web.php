@@ -7,6 +7,7 @@ Route::get('blog/{post}', 'BlogController@show')->name('post');
 Route::paginate('kategoria/{category}', 'BlogController@category')->name('category');
 
 Route::get('kontakt', 'ContactController@show')->name('contact');
+Route::post('kontakt', 'ContactController@send');
 
 Route::get('portfolio', 'ProjectController@index')->name('projects');
 Route::get('portfolio/{project}', 'ProjectController@show')->name('project');

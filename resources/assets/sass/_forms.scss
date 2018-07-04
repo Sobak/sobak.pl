@@ -218,13 +218,21 @@ label.required:after {
 }
 .form-input input {
   display: block;
-  margin: 0 0 27px;
+  margin: 0;
   padding-left: 100px;
   width: 100%;
 }
 .form-input textarea {
-  margin: 0 0 27px;
+  margin: 0;
   padding: 54px 13.5px 6.75px;
   clear: both;
   width: 100%;
+}
+
+span.validation-error {
+  color: red;
+  display: block;
+  font-size: 0.85em;
+  margin: 0 0 -10px 5px;
+  text-transform: none;
 }
