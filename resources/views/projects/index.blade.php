@@ -26,7 +26,3 @@
         </div>
     </article>
 @endsection
-
-@push('footer_scripts')
-    <script src="{{ asset('assets/js/portfolio.js') }}"></script>
-@endpush
