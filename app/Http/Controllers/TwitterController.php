@@ -17,12 +17,23 @@ class TwitterController extends Controller
                 config('services.twitter.access_token_secret')
             );
 
-            return $client->get('statuses/user_timeline', [
+            $entries = $client->get('statuses/user_timeline', [
                 'scren_name' => config('services.twitter.username'),
                 'count' => config('services.twitter.entries_count'),
                 'include_rts' => true,
                 'exclude_replies' => false,
             ]);
+
+            return array_map(function ($entry) {
+                return (object) [
+                    'created_at' => $entry->created_at,
+                    'id_str' => $entry->id_str,
+                    'text' => $entry->text,
+                    'user' => (object) [
+                        'screen_name' => $entry->user->screen_name,
+                    ],
+                ];
+            }, $entries);
         });
 
         return response()->json($entries);
