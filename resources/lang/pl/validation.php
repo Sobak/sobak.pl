@@ -124,9 +124,10 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'g-recaptcha-response' => [
+            'required' => 'Weryfikacja przeciwko botom jest wymagana',
         ],
+        'recaptcha' => 'Niepoprawna weryfikacja przeciwko botom',
     ],
 
     /*

@@ -38,6 +38,11 @@
                     <textarea name="message" id="message" cols="45" rows="10" required>{{ old('message') }}</textarea>
                     {{ form_error('message', $errors)  }}
                 </p>
+
+                <div class="form-input">
+                    <div class="g-recaptcha" data-sitekey="{{ config('services.google.recaptcha.key') }}"></div>
+                    {{ form_error('g-recaptcha-response', $errors)  }}
+                </div>
                 <p>
                     <input type="submit" value="Wyślij">
                 </p>
@@ -45,3 +50,7 @@
         </div>
     </article>
 @endsection
+
+@push('footer_scripts')
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+@endpush

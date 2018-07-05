@@ -16,6 +16,10 @@ return [
 
     'google' => [
         'analytics' => env('GOOGLE_ANALYTICS_ID', false),
+        'recaptcha' => [
+            'key' => env('GOOGLE_RECAPTCHA_KEY'),
+            'secret' => env('GOOGLE_RECAPTCHA_SECRET'),
+        ]
     ],
 
     'mailgun' => [

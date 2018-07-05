@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\ContactMail;
+use App\Rules\ReCaptcha;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -21,6 +22,7 @@ class ContactController extends Controller
             'name' => 'required',
             'email' => 'required|email',
             'message' => 'required',
+            'g-recaptcha-response' => ['required', new ReCaptcha()],
         ]);
 
         Mail::send(new ContactMail(
