@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{ mix('assets/css/app.css') }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic&amp;subset=latin,latin-ext">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic,700italic&amp;subset=latin,latin-ext">
+    <link rel="alternate" href="{{ route('feed') }}" type="application/rss+xml" title="Kanał z wpisami">
 </head>
 
 <body class="right-sidebar {{ implode(' ', $body_classes ?? []) }}">
@@ -53,7 +54,7 @@
                 <li><a href="https://twitter.com/SobakPL"><span class="sr-only">Twitter</span></a></li>
                 <li><a href="https://github.com/Sobak"><span class="sr-only">GitHub</span></a></li>
                 <li><a href="https://facebook.com/SobakPL"><span class="sr-only">Facebook</span></a></li>
-                <li><a href="http://sobak.pl/feed/"><span class="sr-only">RSS</span></a></li>
+                <li><a href="{{ route('feed') }}"><span class="sr-only">RSS</span></a></li>
             </ul>
         </div>
     </div>
