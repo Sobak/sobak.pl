@@ -26,7 +26,7 @@ use Symfony\Component\Yaml\Yaml;
 class Indexer extends Command
 {
     const ASSETS_PATH_PLACEHOLDER = '{{{assets}}}';
-    const MORE_DELIMETER = '{{{more}}}';
+    const MORE_DELIMITER = '{{{more}}}';
     const VERBOSITY_NONE = null;
     const VERBOSITY_VERBOSE = 'v';
 
@@ -196,7 +196,7 @@ class Indexer extends Command
         ]);
 
         $excerpt = null;
-        $contentParts = explode(self::MORE_DELIMETER, $post->body, 2);
+        $contentParts = explode(self::MORE_DELIMITER, $post->body, 2);
 
         if (count($contentParts) === 2) {
             $excerpt = trim($contentParts[0]);
@@ -204,7 +204,7 @@ class Indexer extends Command
             $this->indentedLine('> indexed excerpt for the post', 2, self::VERBOSITY_VERBOSE);
         }
 
-        $content = str_replace(self::MORE_DELIMETER, '', $post->body);
+        $content = str_replace(self::MORE_DELIMITER, '', $post->body);
 
         $postEntity = Post::create([
             'title' => $post->metadata['title'],
