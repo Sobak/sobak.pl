@@ -25,6 +25,7 @@ use Symfony\Component\Yaml\Yaml;
 
 class Indexer extends Command
 {
+    const ASSETS_PATH_PLACEHOLDER = '{{{assets}}}';
     const MORE_DELIMETER = '{{{more}}}';
     const VERBOSITY_NONE = null;
     const VERBOSITY_VERBOSE = 'v';
@@ -448,6 +449,8 @@ class Indexer extends Command
                 $body = implode("\n", $bodyLines);
             }
         }
+
+        $body = str_replace(self::ASSETS_PATH_PLACEHOLDER, asset('assets/images'), $body);
 
         return (object) [
             'body' => $this->parseMarkdown($body),
