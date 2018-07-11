@@ -61,7 +61,8 @@ function page_title($title)
 function is_menu_link_active($conditions)
 {
     $conditions = (array) $conditions;
-    $routeName = Request::route()->getName();
+    $currentRoute = Request::route();
+    $routeName = isset($currentRoute) ? $currentRoute->getName() : null;
 
     foreach ($conditions as $condition) {
         if (starts_with($condition, 'page:')) {
