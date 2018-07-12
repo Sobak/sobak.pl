@@ -10,6 +10,16 @@ class ProjectController extends Controller
     {
         $projects = Project::latest()->get();
 
+        $projects = $projects->map(function ($project) {
+            if (mb_strlen($project->title) > 20) {
+                $project->title = mb_substr($project->title, 0, 17) . '...';
+            }
+
+            $project->thumbnail = asset("assets/images/{$project->thumbnail}");
+
+            return $project;
+        });
+
         return view('projects.index', [
             'projects' => $projects,
             'title' => 'Portfolio',
