@@ -32,7 +32,7 @@ class ImageRenderer extends ParentImageRenderer
 
         // Conditional customization
         if ($this->isInternalAsset($inline)) {
-            $attrs['src'] = $this->convertToAssetThumbLink($inline->getUrl());
+            $attrs['src'] = $this->convertToAssetLink($inline->getUrl());
         }
 
         $alt = $htmlRenderer->renderInlines($inline->children());

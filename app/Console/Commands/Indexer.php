@@ -330,7 +330,7 @@ class Indexer extends Command
                 $this->indentedLine($fileinfo->getFilename());
 
                 $this->copyAsset($fileinfo, $targetPath);
-                $this->createAssetThumbnail($fileinfo, $targetPath);
+//              $this->createAssetThumbnail($fileinfo, $targetPath);
             }
         }
 
