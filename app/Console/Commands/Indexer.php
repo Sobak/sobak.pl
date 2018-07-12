@@ -156,9 +156,13 @@ class Indexer extends Command
 
     protected function indexContentType($contentType)
     {
-        $this->line("\nIndexing {$contentType}");
-
         $indexerName = 'index' . studly_case(str_singular($contentType));
+
+        if (method_exists($this, $indexerName) === false) {
+            return false;
+        }
+
+        $this->line("\nIndexing {$contentType}");
 
         $iterator = new DirectoryIterator(config('content.path') . '/' . $contentType);
 
