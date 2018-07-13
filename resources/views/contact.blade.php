@@ -8,7 +8,7 @@
 
         <div class="entry-content">
             @if (session('contact_success'))
-                <div class="box-success">
+                <div class="box-info">
                     <p>Wiadomość została wysłana pomyślnie</p>
                 </div>
             @endif

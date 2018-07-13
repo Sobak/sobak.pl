@@ -1,16 +1,25 @@
-.box-success {
-  // @fixme
-  background-color: #4caf50;
-  border-bottom: 8px solid #00af49;
-  color: white;
+.box-info {
+  background-color: #b1e8e6;
+  border-bottom: 4px solid #a5e5e2;
+  color: #0c5460;
   font-size: 0.9em;
   font-weight: normal;
   margin-bottom: 13px;
-  padding: 15px;
+  padding: 12px 12px 8px 12px;
+
+  a, a:link, a:active, a:visited {
+    color: #062c33;
+    font-weight: bold;
+  }
+
+  a:hover {
+    color: inherit;
+    text-decoration: underline;
+  }
 
   p {
     font-weight: inherit;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
   }
 
   p:last-of-type {
