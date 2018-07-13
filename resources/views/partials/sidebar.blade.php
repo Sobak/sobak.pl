@@ -12,13 +12,11 @@
 
     <aside class="widget">
         <h1>Linki</h1>
-        <div class="menu-links-container">
-            <ul id="menu-links">
-            @foreach (shuffle_assoc(config('content.links')) as $url => $name)
-                <li><a href="{!! $url !!}">{{ $name }}</a></li>
-            @endforeach
-            </ul>
-        </div>
+        <ul>
+        @foreach (shuffle_assoc(config('content.links')) as $url => $name)
+            <li><a href="{!! $url !!}">{{ $name }}</a></li>
+        @endforeach
+        </ul>
     </aside>
     <aside class="widget">
         <h1>Kategorie</h1>
