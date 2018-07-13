@@ -156,6 +156,8 @@ function twitter_parse_status($status)
         return '<strong>#<a href="https://twitter.com/hashtag/' . $matches[2] . '">' . $matches[2] . '</a></strong>';
     }, $status);
 
+    $status = nl2br($status);
+
     return $status;
 }
 

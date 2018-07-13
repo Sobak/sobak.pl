@@ -2,27 +2,6 @@ function twitterWidget(tweets, target) {
     var statusHTML = [];
 
     for (var i = 0; i < tweets.length; i++) {
-        var status = tweets[i].text;
-
-        // Linkify links
-        status = status.replace(/((https?|s?ftp|ssh)\:\/\/[^"\s\<\>]*[^.,;'">\:\s\<\>\)\]\!])/g, function (url) {
-            return '<a href="' + url + '">' + url + '</a>';
-        });
-
-        // Linkify @
-        status = status.replace(/\B@([_a-z0-9]+)/ig, function (reply) {
-            return reply.charAt(0) + '<a href="https://twitter.com/' + reply.substring(1) + '">' + reply.substring(1) + '</a>';
-        });
-
-        // Linkify hashtags
-        status = status.replace(/(^|[^&\w'"]+)\#([a-zA-Z0-9_^"^<]+)/g, function (m, m1, m2) {
-            return m.substr(-1) === '"' || m.substr(-1) == '<' ? m : m1 + '<strong>#<a href="https://twitter.com/hashtag/' + m2 + '">' + m2 + '</a></strong>';
-        });
-
-        // Replace line breaks with <br>
-        status = status.replace(/\n/g, '<br>');
-
-        // Get template
         var template = '<li>\
             <p class="tweet-text">%text%</p>\
             <p class="tweet-meta">\
@@ -31,43 +10,14 @@ function twitterWidget(tweets, target) {
         </li>';
 
         // Replace template tags
-        status = template.replace('%text%', status);
+        var status = '';
+        status = template.replace('%text%', tweets[i].text);
         status = status.replace('%screen_name%', tweets[i].username);
         status = status.replace('%tweet_id%', tweets[i].id);
-        status = status.replace('%relative_time%', twitterRelativeTime(tweets[i].created_at));
+        status = status.replace('%relative_time%', tweets[i].relative_time);
 
         statusHTML.push(status);
     }
 
     $(target).html(statusHTML.join(''));
-}
-
-function twitterRelativeTime(time_value) {
-    var values = time_value.split(" ");
-    time_value = values[1] + " " + values[2] + ", " + values[5] + " " + values[3];
-    var parsed_date = Date.parse(time_value);
-    var relative_to = new Date();
-    var delta = parseInt((relative_to.getTime() - parsed_date) / 1000);
-    delta = delta + (relative_to.getTimezoneOffset() * 60);
-
-    var relTimeText = '';
-
-    if (delta < 60) {
-        return 'mniej niż minutę temu';
-    } else if (delta < 120) {
-        return 'około minuty temu';
-    } else if (delta < (60 * 60)) {
-        relTimeText = '%reltime% minut temu';
-        return relTimeText.replace('%reltime%', (parseInt(delta / 60)).toString());
-    } else if (delta < (120 * 60)) {
-        return 'około godzinę temu';
-    } else if (delta < (24 * 60 * 60)) {
-        relTimeText = 'około %reltime% godzin temu';
-        return relTimeText.replace('%reltime%', (parseInt(delta / 3600)).toString());
-    } else if (delta < (48 * 60 * 60)) {
-        return 'wczoraj';
-    } else {
-        relTimeText = '%reltime% dni temu';
-        return relTimeText.replace('%reltime%', (parseInt(delta / 86400)).toString());
-    }
 }

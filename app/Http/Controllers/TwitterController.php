@@ -26,9 +26,9 @@ class TwitterController extends Controller
 
             return array_map(function ($entry) {
                 return (object) [
-                    'created_at' => $entry->created_at,
                     'id' => $entry->id_str,
-                    'text' => $entry->text,
+                    'relative_time' => twitter_relative_time($entry->created_at),
+                    'text' => twitter_parse_status($entry->text),
                     'username' =>  $entry->user->screen_name,
                 ];
             }, $entries);
