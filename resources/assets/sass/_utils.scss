@@ -1,14 +1,11 @@
-.box-info {
-  background-color: #b1e8e6;
-  border-bottom: 4px solid #a5e5e2;
-  color: #0c5460;
+.box {
+  border-bottom: 4px solid #fff;
   font-size: 0.9em;
   font-weight: normal;
   margin-bottom: 13px;
   padding: 12px 12px 8px 12px;
 
   a, a:link, a:active, a:visited {
-    color: #062c33;
     font-weight: bold;
   }
 
@@ -24,6 +21,26 @@
 
   p:last-of-type {
     margin-bottom: 0;
+  }
+}
+
+.box-info {
+  background-color: #b1e8e6;
+  border-color: #a5e5e2;
+  color: #0c5460;
+
+  a, a:link, a:active, a:visited {
+    color: #062c33;
+  }
+}
+
+.box-warning {
+  background-color: #ffeeba;
+  border-color: #f4e899;
+  color: #856404;
+
+  a, a:link, a:active, a:visited {
+    color: #533f03;
   }
 }
 
