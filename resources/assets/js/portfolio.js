@@ -4,7 +4,7 @@ jQuery(document).ready(function() {
         jQuery(this).css('outline','none');
         jQuery('.nimble-portfolio-filter ul .current').removeClass('current');
         jQuery(this).parent().addClass('current');
-        var filterVal = jQuery(this).attr('rel');
+        var filterVal = jQuery(this).data('type');
         if(filterVal == 'all') {
             jQuery('.nimble-portfolio ul li.hidden').fadeIn('normal').removeClass('hidden');
         } else {

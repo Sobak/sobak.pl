@@ -81,7 +81,7 @@
         @include ('partials.sidebar')
     </div>
 
-    <footer class="site-footer" role="contentinfo">
+    <footer class="site-footer">
         <div class="site-info">
             <a href="https://github.com/Sobak/homepage" title="Napędzane silnikiem Perception">Perception</a>
             <span class="sep"> | </span>

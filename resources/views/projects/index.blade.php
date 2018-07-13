@@ -10,9 +10,9 @@
             <div class="nimble-portfolio-content">
                 <div class="nimble-portfolio-filter">
                     <ul class="nimble-portfolio-ul">
-                        <li class="current"><a href="#" rel="all">Wszystko</a></li>
+                        <li class="current"><a href="#" data-type="all">Wszystko</a></li>
                         @foreach (config('projects.types') as $id => $name)
-                        <li><a href="#"  rel="{{ $id }}">{{ $name }}</a></li>
+                        <li><a href="#"  data-type="{{ $id }}">{{ $name }}</a></li>
                         @endforeach
                     </ul>
                 </div>
