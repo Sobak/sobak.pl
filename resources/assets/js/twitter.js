@@ -27,7 +27,7 @@ function twitterWidget(tweets, target) {
         var template = '<li>\
             <p class="twiget-tweet">%text%</p>\
             <p class="twiget-meta">\
-                <span class="timestamp"><a href="http://twitter.com/%screen_name%/statuses/%tweet_id%">%relative_time%</a></span>\
+                <a href="http://twitter.com/%screen_name%/statuses/%tweet_id%">%relative_time%</a>\
             </p>\
         </li>';
 
