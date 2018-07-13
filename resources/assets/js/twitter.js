@@ -2,7 +2,6 @@ function twitterWidget(tweets, target) {
     var statusHTML = [];
 
     for (var i = 0; i < tweets.length; i++) {
-        var username = tweets[i].user.screen_name;
         var status = tweets[i].text;
 
         // Linkify links
@@ -12,12 +11,12 @@ function twitterWidget(tweets, target) {
 
         // Linkify @
         status = status.replace(/\B@([_a-z0-9]+)/ig, function (reply) {
-            return reply.charAt(0) + '<a href="http://twitter.com/#!/' + reply.substring(1) + '">' + reply.substring(1) + '</a>';
+            return reply.charAt(0) + '<a href="https://twitter.com/' + reply.substring(1) + '">' + reply.substring(1) + '</a>';
         });
 
         // Linkify hashtags
         status = status.replace(/(^|[^&\w'"]+)\#([a-zA-Z0-9_^"^<]+)/g, function (m, m1, m2) {
-            return m.substr(-1) === '"' || m.substr(-1) == '<' ? m : m1 + '<strong>#<a href="http://twitter.com/#!/search/%23' + m2 + '">' + m2 + '</a></strong>';
+            return m.substr(-1) === '"' || m.substr(-1) == '<' ? m : m1 + '<strong>#<a href="https://twitter.com/hashtag/' + m2 + '">' + m2 + '</a></strong>';
         });
 
         // Replace line breaks with <br>
@@ -25,16 +24,16 @@ function twitterWidget(tweets, target) {
 
         // Get template
         var template = '<li>\
-            <p class="twiget-tweet">%text%</p>\
-            <p class="twiget-meta">\
-                <a href="http://twitter.com/%screen_name%/statuses/%tweet_id%">%relative_time%</a>\
+            <p class="tweet-text">%text%</p>\
+            <p class="tweet-meta">\
+                <a href="https://twitter.com/%screen_name%/statuses/%tweet_id%">%relative_time%</a>\
             </p>\
         </li>';
 
         // Replace template tags
         status = template.replace('%text%', status);
-        status = status.replace('%screen_name%', username);
-        status = status.replace('%tweet_id%', tweets[i].id_str);
+        status = status.replace('%screen_name%', tweets[i].username);
+        status = status.replace('%tweet_id%', tweets[i].id);
         status = status.replace('%relative_time%', twitterRelativeTime(tweets[i].created_at));
 
         statusHTML.push(status);
@@ -47,7 +46,7 @@ function twitterRelativeTime(time_value) {
     var values = time_value.split(" ");
     time_value = values[1] + " " + values[2] + ", " + values[5] + " " + values[3];
     var parsed_date = Date.parse(time_value);
-    var relative_to = (arguments.length > 1) ? arguments[1] : new Date();
+    var relative_to = new Date();
     var delta = parseInt((relative_to.getTime() - parsed_date) / 1000);
     delta = delta + (relative_to.getTimezoneOffset() * 60);
 

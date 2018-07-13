@@ -16,41 +16,21 @@
   text-decoration: none;
 }
 
-.tweet-wrap {
+// Twitter widget
+.twitter-feed {
+  font-size: 0.9em;
   list-style-type: none;
-  margin-left: 0;
-  font-size: 0.9em;
-}
-
-.twiget-tweet {
-  margin-bottom: 5px;
-}
-
-.twiget-meta {
-  font-size: 0.9em;
-  margin-bottom: 7px;
-}
-
-.twiget-feed {
-  margin: auto;
-  padding: 5px 5px 5px 0;
+  margin: auto auto auto 0;
   overflow: auto;
+  padding: 5px 5px 5px 0;
 }
-.twiget-tweet img {
-  float: left;
-  border: none !important;
-  margin: 4px 5px 0 0 !important;
-  display: block !important;
-}
-.twiget-feed a {
-  display: inline !important;
-}
-.tweet-wrap li {
+
+.twitter-feed li {
   border-bottom: 1px solid #E3E3E3;
   padding: 6px 0;
 }
-.tweet-wrap li:before,
-.tweet-wrap li:after {
+.twitter-feed li:before,
+.twitter-feed li:after {
   content: '\0020';
   display: block;
   overflow: hidden;
@@ -58,6 +38,26 @@
   width: 0;
   height: 0;
 }
-.tweet-wrap li:after {
+.twitter-feed li:after {
   clear: both
+}
+
+.tweet-text {
+  margin-bottom: 5px;
+
+  a {
+    display: inline !important;
+  }
+
+  img {
+    float: left;
+    border: none !important;
+    margin: 4px 5px 0 0 !important;
+    display: block !important;
+  }
+}
+
+.tweet-meta {
+  font-size: 0.9em;
+  margin-bottom: 7px;
 }

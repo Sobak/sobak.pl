@@ -145,7 +145,7 @@ function twitter_parse_status($status)
     }, $status);
 
     $status = preg_replace_callback("/\B@([_a-z0-9]+)/i", function ($matches) {
-        return '@<a href="http://twitter.com/#!/' . $matches[1] . '">' . $matches[1] . '</a>';
+        return '@<a href="https://twitter.com/' . $matches[1] . '">' . $matches[1] . '</a>';
     }, $status);
 
     $status = preg_replace_callback("/(^|[^&\w'\"]+)\#([a-zA-Z0-9_^\"^<]+)/", function ($matches) {
@@ -153,7 +153,7 @@ function twitter_parse_status($status)
             return $matches[0];
         }
 
-        return '<strong>#<a href="http://twitter.com/#!/search/%23' . $matches[2] . '">' . $matches[2] . '</a></strong>';
+        return '<strong>#<a href="https://twitter.com/hashtag/' . $matches[2] . '">' . $matches[2] . '</a></strong>';
     }, $status);
 
     return $status;

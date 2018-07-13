@@ -1,15 +1,13 @@
 <div class="widget-area" role="complementary">
     <aside class="widget">
         <h1>Mikroblog</h1>
-        <div class="twiget-feed">
-            <ul id="twitter-widget-tweets" class="tweet-wrap">
-                @if (cache()->has('twitter_entries'))
-                    @include('partials.twitter', ['entries' => cache('twitter_entries')])
-                @else
-                    <li><img src="{{ asset('assets/images/ajax-loader.gif') }}" width="16" height="16" alt="">Ładowanie tweetów...</li>
-                @endif
-            </ul>
-        </div><!-- .twiget-feed -->
+        <ul id="twitter-widget-tweets" class="twitter-feed">
+            @if (cache()->has('twitter_entries'))
+                @include('partials.twitter', ['entries' => cache('twitter_entries')])
+            @else
+                <li><img src="{{ asset('assets/images/ajax-loader.gif') }}" width="16" height="16" alt="">Ładowanie tweetów...</li>
+            @endif
+        </ul>
     </aside>
 
     <aside class="widget">

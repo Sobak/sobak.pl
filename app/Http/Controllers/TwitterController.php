@@ -27,11 +27,9 @@ class TwitterController extends Controller
             return array_map(function ($entry) {
                 return (object) [
                     'created_at' => $entry->created_at,
-                    'id_str' => $entry->id_str,
+                    'id' => $entry->id_str,
                     'text' => $entry->text,
-                    'user' => (object) [
-                        'screen_name' => $entry->user->screen_name,
-                    ],
+                    'username' =>  $entry->user->screen_name,
                 ];
             }, $entries);
         });
