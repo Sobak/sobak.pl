@@ -8,8 +8,8 @@ Route::get('feed', 'FeedController@index')->name('feed');
 
 Route::paginate('kategoria/{category}', 'BlogController@category')->name('category');
 
-Route::get('kontakt', 'ContactController@show')->name('contact');
-Route::post('kontakt', 'ContactController@send');
+Route::get('kontakt', 'ContactController@show')->middleware('stateful')->name('contact');
+Route::post('kontakt', 'ContactController@send')->middleware('stateful');
 
 Route::get('portfolio', 'ProjectController@index')->name('projects');
 Route::get('portfolio/{project}', 'ProjectController@show')->name('project');
