@@ -2,7 +2,7 @@
     <h6>{{ $project->title }}</h6>
 
     <div class="nimble-portfolio-holder">
-        <div class="nimble-portfolio-item" style="background: url('{{ $project->thumbnail }}') center center !important;">
+        <div class="nimble-portfolio-item" style="background-image: url('{{ $project->thumbnail }}');">
             <a href="{{ route('project', $project) }}">
                 <div class="nimble-portfolio-rollerbg"></div>
             </a>
