@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ mix('assets/css/app.css') }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic&amp;subset=latin,latin-ext">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic,700italic&amp;subset=latin,latin-ext">
-    <link rel="alternate" href="{{ route('feed') }}" type="application/rss+xml" title="Kanał z wpisami">
+    <link rel="alternate" href="{{ route('feed') }}" type="application/rss+xml" title="Kanał ze wpisami">
 </head>
 
 <body class="right-sidebar {{ implode(' ', $body_classes ?? []) }}">
@@ -26,30 +26,28 @@
         </div>
     </header>
     <div id="menu-toggle-nav" class="panel">
-        <nav id="site-navigation" class="main-navigation">
+        <nav class="main-navigation">
             <a class="sr-only" href="#content">Przejdź do treści</a>
 
-            <div class="menu-main-container">
-                <ul id="menu-main">
-                    <li {!! if_active(['index', 'blog', 'post', 'category', 'tag', 'search']) !!}>
-                        <a href="{{ route('index') }}">Blog</a>
-                    </li>
-                    <li {!! if_active(['projects', 'project']) !!}>
-                        <a href="{{ route('projects') }}">Portfolio</a>
-                    </li>
-                    <li {!! if_active('page:o-mnie') !!}>
-                        <a href="{{ route('page', ['o-mnie']) }}">O mnie</a>
-                    </li>
-                    <li {!! if_active('contact') !!}>
-                        <a href="{{ route('contact') }}">Kontakt</a>
-                    </li>
-                </ul>
-            </div>
-        </nav><!-- #site-navigation -->
+            <ul>
+                <li {!! if_active(['index', 'blog', 'post', 'category', 'tag', 'search']) !!}>
+                    <a href="{{ route('index') }}">Blog</a>
+                </li>
+                <li {!! if_active(['projects', 'project']) !!}>
+                    <a href="{{ route('projects') }}">Portfolio</a>
+                </li>
+                <li {!! if_active('page:o-mnie') !!}>
+                    <a href="{{ route('page', ['o-mnie']) }}">O mnie</a>
+                </li>
+                <li {!! if_active('contact') !!}>
+                    <a href="{{ route('contact') }}">Kontakt</a>
+                </li>
+            </ul>
+        </nav>
     </div>
     <div id="social-links-toggle-nav" class="panel">
         <div class="social-links">
-            <ul id="menu-social">
+            <ul>
                 <li><a href="https://www.linkedin.com/in/msobaczewski/"><span class="sr-only">LinkedIn</span></a></li>
                 <li><a href="https://twitter.com/SobakPL"><span class="sr-only">Twitter</span></a></li>
                 <li><a href="https://github.com/Sobak"><span class="sr-only">GitHub</span></a></li>
@@ -78,7 +76,7 @@
             </main>
         </div>
 
-        @include ('partials.sidebar')
+        @include('partials.sidebar')
     </div>
 
     <footer class="site-footer">
