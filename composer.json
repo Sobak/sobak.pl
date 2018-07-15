@@ -12,7 +12,7 @@
         "kadet/keylighter": "dev-master",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
-        "league/commonmark": "^0.16.0",
+        "league/commonmark": "^0.17.0",
         "spatie/laravel-paginateroute": "^2.6",
         "symfony/yaml": "^4.0"
     },
