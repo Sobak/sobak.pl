@@ -26,6 +26,7 @@ use Symfony\Component\Yaml\Yaml;
 class Indexer extends Command
 {
     const ASSETS_PATH_PLACEHOLDER = '{{{assets}}}';
+    const BASE_URL_PLACEHOLDER = '{{{base}}}';
     const MORE_DELIMITER = '{{{more}}}';
     const VERBOSITY_NONE = null;
     const VERBOSITY_VERBOSE = 'v';
@@ -454,7 +455,10 @@ class Indexer extends Command
             }
         }
 
-        $body = str_replace(self::ASSETS_PATH_PLACEHOLDER, asset('assets/images'), $body);
+        $body = strtr($body, [
+            self::ASSETS_PATH_PLACEHOLDER => asset('assets/images'),
+            self::BASE_URL_PLACEHOLDER => route('index'),
+        ]);
 
         return (object) [
             'body' => $this->parseMarkdown($body),
