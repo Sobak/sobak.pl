@@ -156,6 +156,16 @@ a.more-link,
 .site-footer a {
   color: #f0f1f3;
   text-decoration: none;
+
+  &:after {
+    content: " | ";
+    margin: 0 6.75px;
+  }
+
+  &:last-child:after {
+    content: '';
+    margin: 0;
+  }
 }
 
 .site-info {
