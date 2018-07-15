@@ -1,3 +1,4 @@
+// Generic pagination
 .pagination-container {
   background: white;
   padding: 27px;
@@ -51,5 +52,77 @@
   .pagination-container a.change-page,
   .pagination-container a.change-page span {
     display: inline-block;
+  }
+}
+
+// Sibblings pagination
+.sibblings-navigation a:before {
+  -webkit-font-smoothing: antialiased;
+  font-family: "Genericons";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  text-decoration: none;
+  vertical-align: text-bottom;
+}
+
+.site-content [class*="navigation"] {
+  margin-bottom: 0;
+  position: relative;
+  width: 100%;
+}
+
+.sibblings-navigation a {
+  color: white;
+}
+.sibblings-navigation a:before {
+  font-size: 48px;
+  transition: all 0.3s ease-in-out;
+  background: #9ba2af;
+  border-radius: 50%;
+  color: white;
+  display: block;
+  line-height: 90px;
+  opacity: 0.25;
+  position: fixed;
+  top: 50%;
+  text-decoration: none;
+  width: 90px;
+  height: 90px;
+  content: "\f430";
+  z-index: 1;
+}
+@media screen and (max-width: 47.2226em) {
+  .sibblings-navigation a:before {
+    font-size: 32px;
+    line-height: 60px;
+    width: 60px;
+    height: 60px;
+  }
+}
+.sibblings-navigation a:hover:before {
+  opacity: 1;
+  transition: all 0.3s ease-in-out;
+}
+.sibblings-navigation .nav-previous a:before {
+  left: 0;
+  margin-left: -48px;
+  text-align: right;
+}
+@media screen and (max-width: 47.2226em) {
+  .sibblings-navigation .nav-previous a:before {
+    margin-left: -33px;
+  }
+}
+.sibblings-navigation .nav-next a:before {
+  right: 0;
+  margin-right: -48px;
+  text-align: left;
+  content: "\f429";
+}
+@media screen and (max-width: 47.2226em) {
+  .sibblings-navigation .nav-next a:before {
+    margin-right: -33px;
   }
 }

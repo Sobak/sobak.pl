@@ -71,16 +71,6 @@
   content: "\f400";
 }
 
-.panel .widget-area:before,
-.panel .widget-area:after {
-  content: "";
-  display: table;
-}
-
-.panel .widget-area:after {
-  clear: both;
-}
-
 .panel {
   display: none;
   margin: 0;
@@ -149,7 +139,7 @@
   }
 }
 
-/* =Menu */
+// Main menu
 .main-navigation {
   font-size: 0.83333em;
   line-height: 1.8em;
@@ -298,6 +288,7 @@
   }
 }
 
+// Social media menu
 .social-links {
   margin: 0 auto;
   max-width: 55.556em;
@@ -355,6 +346,6 @@
 .social-links ul a[href*="linkedin.com"]:before {
   content: "\f207";
 }
-.social-links ul a[href*="sobak.pl/feed/"]:before {
+.social-links ul a[href*="/feed/"]:before {
   content: "\f413";
 }

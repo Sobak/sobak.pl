@@ -144,57 +144,42 @@ body {
 
 // Headings
 h1, h2, h3, h4, h5, h6 {
+  color: #242d36;
   clear: both;
+  font-family: "PT Serif", Georgia, Times, serif;
+  margin: 27px 0;
 }
 
 h1 {
   line-height: 0.57447em;
-  color: #242d36;
-  font-family: "PT Serif", Georgia, Times, serif;
   font-size: 47px;
-  margin: 27px 0;
 }
 
 h2 {
   line-height: 0.93103em;
-  color: #242d36;
-  font-family: "PT Serif", Georgia, Times, serif;
   font-size: 29px;
-  margin: 27px 0;
 }
 
 h3 {
   line-height: 1.17391em;
-  color: #242d36;
-  font-family: "PT Serif", Georgia, Times, serif;
   font-size: 23px;
-  margin: 27px 0;
 }
 
 h4 {
   line-height: 1.5em;
-  color: #242d36;
-  font-family: "PT Serif", Georgia, Times, serif;
   font-size: 18px;
-  margin: 27px 0;
 }
 
 h5 {
   line-height: 1.5em;
-  color: #242d36;
-  font-family: "PT Serif", Georgia, Times, serif;
   font-size: 18px;
   font-style: italic;
-  margin: 27px 0;
 }
 
 h6 {
   line-height: 1.8em;
-  color: #242d36;
-  font-family: "PT Serif", Georgia, Times, serif;
   font-size: 15px;
   letter-spacing: 1px;
-  margin: 27px 0;
   text-transform: uppercase;
 }
 
