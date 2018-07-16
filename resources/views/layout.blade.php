@@ -6,7 +6,7 @@
     <title>{{ $title or config('app.name') }}</title>
     <link rel="stylesheet" href="{{ mix('assets/css/app.css') }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic&amp;subset=latin,latin-ext">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic,700italic&amp;subset=latin,latin-ext">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic&amp;subset=latin,latin-ext">
     <link rel="alternate" href="{{ route('feed') }}" type="application/rss+xml" title="Kanał ze wpisami">
 </head>
 
