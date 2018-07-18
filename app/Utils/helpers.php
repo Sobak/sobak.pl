@@ -130,11 +130,6 @@ function form_error($inputName, ViewErrorBag $errors)
 /**
  * Linkify URLs, mentions and hashtags inside the Twitter entry.
  *
- * This function is meant to exactly mimic logic within the twitterWidget()
- * when rendering the tweets client-side.
- *
- * @see resources/assets/js/twitter.js
- *
  * @param string $status
  * @return string
  */
@@ -163,11 +158,6 @@ function twitter_parse_status($status)
 
 /**
  * Return human-readable date difference for Twitter entry.
- *
- * This function is meant to exactly mimic twitterRelativeTime()'s behaviour
- * when rendering the tweets client-side.
- *
- * @see resources/assets/js/twitter.js
  *
  * @param string $datetime
  * @return string
