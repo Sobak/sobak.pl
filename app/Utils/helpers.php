@@ -33,7 +33,7 @@ function localized_date(\Carbon\Carbon $date)
 /**
  * Generate proper blog title given the current page.
  *
- * @param $page
+ * @param int $page Current page number
  * @return string
  */
 function blog_title($page)
@@ -44,7 +44,7 @@ function blog_title($page)
 /**
  * Generate standard format page title.
  *
- * @param $title
+ * @param string $title
  * @return string
  */
 function page_title($title)
@@ -55,7 +55,7 @@ function page_title($title)
 /**
  * Determines whether given menu item should be marked active.
  *
- * @param $conditions
+ * @param array|string $conditions
  * @return bool
  */
 function is_menu_link_active($conditions)
@@ -80,7 +80,7 @@ function is_menu_link_active($conditions)
 /**
  * Marks menu item active if conditions are met.
  *
- * @param $conditions
+ * @param array|string $conditions
  * @return string
  */
 function if_active($conditions)
@@ -93,7 +93,7 @@ function if_active($conditions)
 /**
  * Shuffle an array preserving the keys.
  *
- * @param $array
+ * @param array $array
  * @return array
  */
 function shuffle_assoc($array) {
@@ -112,8 +112,8 @@ function shuffle_assoc($array) {
 /**
  * Handle errors for the given form input
  *
- * @param $inputName string Form input name
- * @param $errors \Illuminate\Support\ViewErrorBag Form errors bag instance
+ * @param string $inputName Form input name
+ * @param \Illuminate\Support\ViewErrorBag $errors Form errors bag instance
  * @return \Illuminate\Support\HtmlString
  */
 function form_error($inputName, ViewErrorBag $errors)
