@@ -114,7 +114,7 @@ class Indexer extends Command
     protected function switchWebsiteDatabase()
     {
         if ($this->option('dry-run')) {
-            $this->line('Dry run finished - indexer database will be overriden next time');
+            $this->line('Dry run finished - website database has not been changed');
             return true;
         }
 
