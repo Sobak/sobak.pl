@@ -36,7 +36,9 @@ class Indexer extends Command
      *
      * @var string
      */
-    protected $signature = 'content:index {--D|dry-run : Dry run does not alter the live database}';
+    protected $signature = 'content:index
+        {--D|dry-run : Dry run does not alter the live database}
+        {--N|no-assets : Skip assets processing}';
 
     /**
      * The console command description.
@@ -320,6 +322,11 @@ class Indexer extends Command
 
     protected function processAssets()
     {
+        if ($this->option('no-assets')) {
+            $this->line("\nSkipped assets processing\n");
+            return true;
+        }
+
         $this->line("\nProcessing assets");
 
         $iterator = new DirectoryIterator(config('content.path') . '/assets/');
