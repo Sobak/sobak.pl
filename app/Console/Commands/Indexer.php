@@ -289,6 +289,11 @@ class Indexer extends Command
 
     protected function indexRedirects()
     {
+        if ($this->option('dry-run')) {
+            $this->line("\nSkipped indexing redirects");
+            return true;
+        }
+
         $redirectsPath = config('content.path') . '/redirects.php';
 
         if (file_exists($redirectsPath) === false) {
@@ -310,6 +315,10 @@ class Indexer extends Command
 
     protected function cacheBlogStats()
     {
+        if ($this->option('dry-run')) {
+            return true;
+        }
+
         $wordCountQuery = DB::raw("SUM(LENGTH(content) - LENGTH(REPLACE(content, ' ', '')) + 1) AS words");
 
         Cache::rememberForever('blog_stats', function () use ($wordCountQuery) {
