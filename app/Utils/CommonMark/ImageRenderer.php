@@ -12,6 +12,8 @@ use League\CommonMark\Util\Xml;
 
 class ImageRenderer extends ParentImageRenderer
 {
+    use LinksAssets;
+
     public function render(AbstractInline $inline, ElementRendererInterface $htmlRenderer)
     {
         if (!($inline instanceof Image)) {
@@ -53,18 +55,6 @@ class ImageRenderer extends ParentImageRenderer
         } else {
             return new HtmlElement('img', $attrs, '', true);
         }
-    }
-
-    protected function isInternalAsset(Image $link)
-    {
-        return starts_with($link->getUrl(), '../assets/');
-    }
-
-    protected function convertToAssetLink(string $url): string
-    {
-        $file = substr($url, strlen('../assets/'));
-
-        return asset("assets/images/$file");
     }
 
     protected function convertToAssetThumbLink(string $url): string

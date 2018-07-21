@@ -9,6 +9,8 @@ use League\CommonMark\Inline\Renderer\LinkRenderer as ParentLinkRenderer;
 
 class LinkRenderer extends ParentLinkRenderer
 {
+    use LinksAssets;
+
     public function render(AbstractInline $inline, ElementRendererInterface $htmlRenderer)
     {
         if (!($inline instanceof Link)) {
@@ -17,6 +19,12 @@ class LinkRenderer extends ParentLinkRenderer
 
         if ($this->isBlogLink($inline)) {
             $url = $this->convertToBlogPostLink($inline->getUrl());
+
+            $inline->setUrl($url);
+        }
+
+        if ($this->isInternalAsset($inline)) {
+            $url = $this->convertToAssetLink($inline->getUrl());
 
             $inline->setUrl($url);
         }
