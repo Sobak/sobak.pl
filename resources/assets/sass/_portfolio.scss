@@ -8,10 +8,7 @@
   width: 200px;
 }
 .nimble-portfolio-content .nimble-portfolio-title {
-  clear: both;
-  display: block;
-  margin: -10px 0 10px 32px;
-  text-align: center;
+  margin: -10px 0 10px 0;
   width: 200px;
 }
 .nimble-portfolio-content .nimble-portfolio-rollerbg {
@@ -60,15 +57,16 @@
   margin: 18px 15px 0 0;
   width: 200px;
 }
-.nimble-portfolio-content div.nimble-portfolio ul li a.button-fixed,div.description a.button-fixed {
-  float: left;
-  font-size: 11px;
+.nimble-portfolio-content a.button {
+  font-size: 12px;
   font-weight: 400;
-  height: 29px;
-  line-height: 26px;
   margin: 10px 0 0;
-  text-align: left;
-  width: 88px;
+}
+.nimble-portfolio-content a.button.info {
+  float: left;
+}
+.nimble-portfolio-content a.button.view {
+  float: right;
 }
 .nimble-portfolio-content div.three h6 {
   font-size: 13px;

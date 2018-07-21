@@ -8,9 +8,9 @@
             </a>
         </div>
         <div class="nimble-portfolio-title">
-            <a href="{{ route('project', $project) }}" class="button-fixed">Informacje →</a>
+            <a href="{{ route('project', $project) }}" class="button info">Informacje →</a>
             @if ($project->url)
-            <a href="{{ $project->url }}" class="button-fixed">Zobacz project →</a>
+            <a href="{{ $project->url }}" class="button view">Zobacz projekt →</a>
             @endif
         </div>
     </div>
