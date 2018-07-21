@@ -47,7 +47,7 @@ class BlogController extends Controller
     public function search(Request $request)
     {
         $phrase = $request->get('search');
-        $phraseQuoted = DB::getPdo()->quote($phrase);
+        $phraseQuoted = str_replace("'", "\\'", $phrase);
 
         $posts = Post::where('title', 'like', "%{$phrase}%")
             ->orWhere('content', 'like', "%{$phrase}%")
