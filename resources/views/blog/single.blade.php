@@ -8,7 +8,7 @@
 
         <p>
             Możliwość komentowania na blogu została wyłączona. Zapraszam do kontaktu na
-            Twitterze, Facebooku lub do poprzez formularz, <a href="{{ route('contact') }}">o
+            Twitterze, Facebooku lub poprzez formularz, <a href="{{ route('contact') }}">o
             ten tutaj</a>. Do usłyszenia!
         </p>
     </div>
