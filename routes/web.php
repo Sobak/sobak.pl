@@ -14,7 +14,7 @@ Route::post('kontakt', 'ContactController@send')->middleware('stateful');
 Route::get('portfolio', 'ProjectController@index')->name('projects');
 Route::get('portfolio/{project}', 'ProjectController@show')->name('project');
 
-Route::paginate('search', 'BlogController@search')->name('search');
+Route::paginate('szukaj', 'BlogController@search')->name('search');
 
 Route::paginate('tag/{tag}', 'BlogController@tag')->name('tag');
 

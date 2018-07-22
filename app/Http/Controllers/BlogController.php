@@ -46,7 +46,7 @@ class BlogController extends Controller
 
     public function search(Request $request)
     {
-        $phrase = $request->get('search');
+        $phrase = $request->get('q');
         $phraseQuoted = str_replace("'", "\\'", $phrase);
 
         $posts = Post::where('title', 'like', "%{$phrase}%")
