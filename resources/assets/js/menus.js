@@ -33,6 +33,10 @@ $(function() {
         searchNav.slideToggle();
         $(this).toggleClass('active');
 
+        // Toggle search input's focus
+        var searchInput = $('.search-form input[name="q"]')[0];
+        $(this).hasClass('active') ? searchInput.focus() : searchInput.blur();
+
         socialLinksNav.hide();
         menuNav.hide();
 
