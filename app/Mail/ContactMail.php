@@ -45,6 +45,6 @@ class ContactMail extends Mailable
         return $this->text('emails.contact')
             ->from(config('mail.from.address'), $this->senderName)
             ->replyTo($this->senderEmail, $this->senderName)
-            ->subject('Wiadomość z formularza kontaktowego');
+            ->subject('[sobak.pl] Wiadomość z formularza kontaktowego');
     }
 }
