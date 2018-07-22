@@ -25,12 +25,18 @@ class ContactController extends Controller
             'g-recaptcha-response' => ['required', new ReCaptcha()],
         ]);
 
-        Mail::send(new ContactMail(
-            $request->get('name'),
-            $request->get('email'),
-            $request->get('subject'),
-            $request->get('message')
-        ));
+        try {
+            Mail::send(new ContactMail(
+                $request->get('name'),
+                $request->get('email'),
+                $request->get('subject'),
+                $request->get('message')
+            ));
+        } catch (\Exception $exception) {
+            report($exception);
+
+            return redirect()->route('contact')->with('contact_failure', true);
+        }
 
         return redirect()->route('contact')->with('contact_success', true);
     }
