@@ -35,9 +35,17 @@ class ContactController extends Controller
         } catch (\Exception $exception) {
             report($exception);
 
-            return redirect()->route('contact')->with('contact_failure', true);
+            return redirect()
+                ->route('contact')
+                ->with('message_type', 'warning')
+                ->with('message', 'Wystąpił błąd przy wysyłaniu wiadomości. Spróbuj ponownie później
+                        lub wyśli ją bezpośrednio pod podany niżej adres email. Przepraszam
+                        za utrudnienia.');
         }
 
-        return redirect()->route('contact')->with('contact_success', true);
+        return redirect()
+            ->route('contact')
+            ->with('message_type', 'info')
+            ->with('message', 'Wiadomość została wysłana pomyślnie');
     }
 }

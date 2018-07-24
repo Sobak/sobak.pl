@@ -7,20 +7,7 @@
         </header>
 
         <div class="entry-content">
-            @if (session('contact_success'))
-                <div class="box box-info">
-                    <p>Wiadomość została wysłana pomyślnie</p>
-                </div>
-            @endif
-            @if (session('contact_failure'))
-                <div class="box box-warning">
-                    <p>
-                        Wystąpił błąd przy wysyłaniu wiadomości. Spróbuj ponownie później
-                        lub wyśli ją bezpośrednio pod podany niżej adres email. Przepraszam
-                        za utrudnienia.
-                    </p>
-                </div>
-            @endif
+            @include('partials.box')
             <p>
                 Masz jakąś sprawę? Chcesz się ze mną skontaktować? Użyj, proszę,
                 poniższego formularza. Jeżeli z preferujesz kontakt poprzez email,
