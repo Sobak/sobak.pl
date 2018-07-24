@@ -37,6 +37,7 @@ class ContactController extends Controller
 
             return redirect()
                 ->route('contact')
+                ->withInput()
                 ->with('message_type', 'warning')
                 ->with('message', 'Wystąpił błąd przy wysyłaniu wiadomości. Spróbuj ponownie później
                         lub wyśli ją bezpośrednio pod podany niżej adres email. Przepraszam
