@@ -112,7 +112,17 @@
   }
 }
 
+@media screen and (max-width: 480px) {
+  .nimble-portfolio-content div.three ul li {
+    margin-right: 3px;
+  }
+}
+
 @media screen and (max-width: 400px) {
+  .nimble-portfolio-content div.three ul {
+    margin: 0;
+  }
+
   .nimble-portfolio-content div.three ul li {
     float: none;
     margin: 0 auto;
