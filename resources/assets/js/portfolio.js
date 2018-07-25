@@ -1,18 +1,19 @@
-jQuery(document).ready(function() {
-    // Portfolio Filtering
-    jQuery('.nimble-portfolio-filter ul li a').click(function() {
-        jQuery(this).css('outline','none');
-        jQuery('.nimble-portfolio-filter ul .current').removeClass('current');
-        jQuery(this).parent().addClass('current');
-        var filterVal = jQuery(this).data('type');
-        if(filterVal == 'all') {
-            jQuery('.nimble-portfolio ul li.hidden').fadeIn('normal').removeClass('hidden');
+$(function() {
+    $('.portfolio .filters li a').click(function () {
+        $(this).css('outline','none');
+        $('.portfolio .filters .current').removeClass('current');
+        $(this).parent().addClass('current');
+
+        var filter = $(this).data('type');
+        if (filter === 'all') {
+            $('.portfolio .projects li.hidden').fadeIn('normal').removeClass('hidden');
         } else {
-            jQuery('.nimble-portfolio ul li').each(function() {
-                if(!jQuery(this).hasClass(filterVal)) {
-                    jQuery(this).fadeOut('slow').addClass('hidden');
+            $('.portfolio .projects li').each(function () {
+                project = $(this);
+                if(project.hasClass(filter) === false) {
+                    project.fadeOut('slow').addClass('hidden');
                 } else {
-                    jQuery(this).fadeIn('slow').removeClass('hidden');
+                    project.fadeIn('slow').removeClass('hidden');
                 }
             });
         }

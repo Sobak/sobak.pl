@@ -1,83 +1,69 @@
-.nimble-portfolio-content .nimble-portfolio-holder {
-  float: left;
-}
-.nimble-portfolio-content .nimble-portfolio-item {
-  background: none center center no-repeat;
-  display: block;
-  height: 217px;
-  width: 200px;
-}
-.nimble-portfolio-content .nimble-portfolio-title {
-  margin: -10px 0 10px 0;
-  width: 200px;
-}
-.nimble-portfolio-content .nimble-portfolio-rollerbg {
-  background: url(../images/item.png) no-repeat top;
-  display: block;
-  height: 217px;
-  width: 200px;
-}
-.nimble-portfolio-content .nimble-portfolio-rollerbg:hover {
-  background: url(../images/hover.png) no-repeat top;
-  display: block;
-  height: 217px;
-  width: 200px;
-}
-.nimble-portfolio-content div.nimble-portfolio ul li a.item:hover img {
-  opacity: .1;
-}
-.nimble-portfolio-content .nimble-portfolio-filter {
-  height: 30px;
-}
-.nimble-portfolio-content ul.nimble-portfolio-ul {
+.portfolio .filters,
+.portfolio .projects {
   float: left;
   font-size: 12px;
   list-style: none;
   margin: 0 0 0 20px;
   padding: 0;
 }
-.nimble-portfolio-content .nimble-portfolio ul.nimble-portfolio-ul {
+
+// Projects
+.portfolio .projects {
   margin-top: 20px;
   padding-bottom: 20px;
   width: 650px;
 }
-.nimble-portfolio-content .nimble-portfolio-filter li {
-  float: left;
-  list-style: none;
-  margin-left: 10px;
-  margin-right: 25px;
-  padding: 0;
-}
-.nimble-portfolio-content div.three ul li.bigcard {
+.portfolio .projects li {
   background-color: #fff;
-}
-.nimble-portfolio-content div.three ul li {
   float: left;
   list-style: none;
   margin: 18px 15px 0 0;
   width: 200px;
 }
-.nimble-portfolio-content a.button {
-  font-size: 12px;
-  font-weight: 400;
-  margin: 10px 0 0;
-}
-.nimble-portfolio-content a.button.info {
-  float: left;
-}
-.nimble-portfolio-content a.button.view {
-  float: right;
-}
-.nimble-portfolio-content div.three h6 {
+.portfolio .projects li h6 {
   font-size: 13px;
   margin: 10px 0;
   text-align: center;
 }
-.nimble-portfolio-content div.nimble-portfolio-filter ul li {
-  float: left;
-  margin: 0 8px 0 0;
+.portfolio .projects li .image {
+  background: none center center no-repeat;
+  display: block;
+  height: 217px;
+  width: 200px;
 }
-.nimble-portfolio-content div.nimble-portfolio-filter ul li a {
+.portfolio .projects li .rollerbg {
+  background: url(../images/item.png) no-repeat top;
+  display: block;
+  height: 217px;
+  width: 200px;
+  &:hover {
+    background-image: url(../images/hover.png);
+  }
+}
+.portfolio .projects li .meta {
+  margin: -10px 0 10px 0;
+  width: 200px;
+  .button {
+    font-size: 12px;
+    font-weight: 400;
+    margin: 10px 0 0;
+  }
+  .button.info {
+    float: left;
+  }
+  .button.view {
+    float: right;
+  }
+}
+
+// Filters
+.portfolio .filters li {
+  float: left;
+  list-style: none;
+  margin: 0 8px 0 0;
+  padding: 0;
+}
+.portfolio .filters li a {
   background: #fdfdfd;
   background: -moz-linear-gradient(90deg,#fdfdfd,#f9f9f9);
   background: -webkit-gradient(linear,center top,center bottom,from(#fdfdfd),to(#f9f9f9));
@@ -87,48 +73,38 @@
   font-weight: 400;
   line-height: 25px;
   padding: 0 10px;
-  text-shadow: 0 1px 1px rgba(255,255,255,.5);
+  &:hover {
+    background: #f4f4f4;
+    background: -moz-linear-gradient(90deg,#f4f4f4,#fefefe);
+    background: -webkit-gradient(linear,center top,center bottom,from(#f4f4f4),to(#fefefe));
+  }
 }
-.nimble-portfolio-content div.nimble-portfolio-filter ul li a:hover {
-  background: #f4f4f4;
-  background: -moz-linear-gradient(90deg,#f4f4f4,#fefefe);
-  background: -webkit-gradient(linear,center top,center bottom,from(#f4f4f4),to(#fefefe));
-}
-.nimble-portfolio-content div.nimble-portfolio-filter ul li a:active,div.nimble-portfolio-filter ul li.current a {
+.portfolio .filters li a:active,
+.portfolio .filters li.current a {
   background: #e7e7e7;
   box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
 }
-.nimble-portfolio-content .shadow {
-  border: 6px #fff solid;
-  box-shadow: 0 0 5px #ccc;
-}
-.nimble-portfolio-content div.nimble-portfolio ul li a.item img {
-  border: 1px solid #f4f4f4;
-}
 
+// Responsive styles
 @media screen and (max-width: 650px) {
-  .nimble-portfolio-content .nimble-portfolio ul.nimble-portfolio-ul {
+  .portfolio .projects {
     width: auto;
   }
 }
 
 @media screen and (max-width: 480px) {
-  .nimble-portfolio-content div.three ul li {
+  .portfolio .projects li {
     margin-right: 3px;
   }
 }
 
 @media screen and (max-width: 400px) {
-  .nimble-portfolio-content div.three ul {
+  .portfolio .projects {
     margin: 0;
+    width: 100%;
   }
-
-  .nimble-portfolio-content div.three ul li {
+  .portfolio .projects li {
     float: none;
     margin: 0 auto;
-  }
-
-  .nimble-portfolio-content .nimble-portfolio ul.nimble-portfolio-ul {
-    width: 100%;
   }
 }
