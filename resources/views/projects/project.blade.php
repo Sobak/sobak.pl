@@ -1,7 +1,7 @@
 <li class="{{ $project->type }}">
     <h6>{{ $project->title }}</h6>
 
-    <div class="image" style="background-image: url('{{ $project->thumbnail }}');">
+    <div class="image" style="background-image: url('{{ $project->thumbnail_url }}');">
         <a href="{{ route('project', $project) }}">
             <div class="rollerbg"></div>
         </a>

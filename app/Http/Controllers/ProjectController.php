@@ -15,8 +15,6 @@ class ProjectController extends Controller
                 $project->title = mb_substr($project->title, 0, 17) . '...';
             }
 
-            $project->thumbnail = asset("assets/images/{$project->thumbnail}");
-
             return $project;
         });
 
