@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{ mix('assets/css/app.css') }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|PT+Serif:400,400italic&amp;subset=latin,latin-ext">
     <link rel="alternate" href="{{ route('feed') }}" type="application/rss+xml" title="Kanał ze wpisami">
+    @stack('header_extras')
 </head>
 
 <body class="right-sidebar {{ implode(' ', $body_classes ?? []) }}">
