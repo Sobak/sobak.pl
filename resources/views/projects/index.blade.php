@@ -21,7 +21,7 @@
     </article>
 @endsection
 
-@push('footer_scripts')
+@push('footer_extras')
     <script>
         hoverImage = new Image();
         hoverImage.src = '{{ asset('assets/images/hover.png') }}';

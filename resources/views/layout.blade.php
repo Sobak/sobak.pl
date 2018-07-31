@@ -100,7 +100,7 @@
 </script>
 @endif
 
-@stack('footer_scripts')
+@stack('footer_extras')
 
 </body>
 </html>
