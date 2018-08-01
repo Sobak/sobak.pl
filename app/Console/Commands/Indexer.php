@@ -17,6 +17,8 @@ use DB;
 use DirectoryIterator;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Validator;
+use Joli\JoliNotif\Notification;
+use Joli\JoliNotif\NotifierFactory;
 use League\CommonMark\DocParser;
 use League\CommonMark\Environment;
 use League\CommonMark\HtmlRenderer;
@@ -79,6 +81,7 @@ class Indexer extends Command
         $this->cacheBlogStats();
         $this->processAssets();
         $this->switchWebsiteDatabase();
+        $this->sendSuccessNotification();
 
         $time = number_format(microtime(true) - $timeStart, 4);
 
@@ -329,6 +332,35 @@ class Indexer extends Command
         });
     }
 
+    protected function sendSuccessNotification()
+    {
+        $this->sendSystemNotification('Build successful', resource_path('assets/cli/pass.png'));
+    }
+
+    protected function sendFailureNotification()
+    {
+        $this->sendSystemNotification('Build failed', resource_path('assets/cli/fail.png'));
+    }
+
+    protected function sendSystemNotification($body, $icon)
+    {
+        if (app()->environment() !== 'local' || class_exists(NotifierFactory::class) === false) {
+            return true;
+        }
+
+        $notifier = NotifierFactory::create();
+
+        $notification =
+            (new Notification())
+                ->setTitle('Perception')
+                ->setBody($body)
+                ->setIcon($icon);
+
+        $notifier->send($notification);
+
+        return true;
+    }
+
     protected function processAssets()
     {
         if ($this->option('no-assets') || $this->option('dry-run')) {
@@ -452,6 +484,7 @@ class Indexer extends Command
 
         if (count($parts) < 3) {
             $this->indentedLine('FAIL: No YAML front matter found', 2);
+            $this->sendFailureNotification();
             exit(2);
         }
 
@@ -511,6 +544,7 @@ class Indexer extends Command
         }
 
         if ($validator->fails()) {
+            $this->sendFailureNotification();
             exit(3);
         }
     }

@@ -8,4 +8,7 @@ The code itself is licensed under [MIT](LICENSE.md). However, it **DOES NOT** ap
 to the page content which is proprietary and copying it without my explicit permission
 is strictly forbidden.
 
+The success/failure icons used for CLI notifications are owned by Jeffrey Way, author
+of [laravel-mix](https://github.com/JeffreyWay/laravel-mix).
+
 [homepage]: http://sobak.pl
