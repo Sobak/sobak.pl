@@ -33,6 +33,9 @@ class Indexer extends Command
     /** @var string Placeholder which will be replaced with root site URL when parsing content */
     const BASE_URL_PLACEHOLDER = '{{{base}}}';
 
+    /** @var integer Indentation level step used for indexer's output */
+    const INDENTATION_STEP = 2;
+
     /** @var string Optional text marker which indicates end of an excerpt within the posts */
     const MORE_DELIMITER = '{{{more}}}';
 
@@ -560,9 +563,7 @@ class Indexer extends Command
 
     protected function indentedLine($text, $levels = 1, $verbosity = self::VERBOSITY_NONE)
     {
-        $indentationStep = 2;
-
-        $indentation = str_repeat(' ', $levels * $indentationStep);
+        $indentation = str_repeat(' ', $levels * self::INDENTATION_STEP);
 
         $this->line($indentation . $text, null, $verbosity);
     }
