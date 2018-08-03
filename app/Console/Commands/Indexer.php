@@ -27,10 +27,19 @@ use Symfony\Component\Yaml\Yaml;
 
 class Indexer extends Command
 {
+    /** @var string Placeholder which will be replaced with assets root path when parsing content */
     const ASSETS_PATH_PLACEHOLDER = '{{{assets}}}';
+
+    /** @var string Placeholder which will be replaced with root site URL when parsing content */
     const BASE_URL_PLACEHOLDER = '{{{base}}}';
+
+    /** @var string Optional text marker which indicates end of an excerpt within the posts */
     const MORE_DELIMITER = '{{{more}}}';
+
+    /** @var mixed Zero verbosity level flag used by underlying Symfony's Console component */
     const VERBOSITY_NONE = null;
+
+    /** @var string Verbosity level flag used by underlying Symfony's Console component */
     const VERBOSITY_VERBOSE = 'v';
 
     /**
