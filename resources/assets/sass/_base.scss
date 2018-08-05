@@ -188,8 +188,12 @@ p {
   margin-bottom: 24px;
 }
 
-ul ul {
+ul {
   list-style: square;
+}
+
+ul ul {
+  list-style: disc;
 }
 ul ul ul {
   list-style: circle;
