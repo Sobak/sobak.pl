@@ -13,9 +13,9 @@ $single = $single ?? false;
     </header>
 
     <div class="entry-content">
-        {!! $post->excerpt && !$single ? $post->excerpt : $post->content !!}
+        {!! !$single && $post->excerpt ? $post->excerpt : $post->content !!}
 
-        @if ($post->excerpt && !$single)
+        @if (!$single && $post->excerpt)
             <p>
                 <a href="{{ route('post', $post) }}" class="more-link">
                     Czytaj dalej &rarr;
