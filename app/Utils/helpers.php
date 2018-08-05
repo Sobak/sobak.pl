@@ -8,9 +8,10 @@ use Illuminate\Support\ViewErrorBag;
  * There must be a better way...
  *
  * @param \Carbon\Carbon $date
+ * @param bool $withTime
  * @return string
  */
-function localized_date(\Carbon\Carbon $date)
+function localized_date(\Carbon\Carbon $date, $withTime = false)
 {
     $genitives = [
         'stycznia',
@@ -27,7 +28,13 @@ function localized_date(\Carbon\Carbon $date)
         'grudnia',
     ];
 
-    return $date->format('d') . ' ' . $genitives[$date->format('m') - 1] . ' ' . $date->format('Y');
+    $out = $date->format('d') . ' ' . $genitives[$date->format('m') - 1] . ' ' . $date->format('Y');
+
+    if ($withTime) {
+        $out .= ' ' . $date->format('H:i');
+    }
+
+    return $out;
 }
 
 /**

@@ -13,6 +13,14 @@ $single = $single ?? false;
     </header>
 
     <div class="entry-content">
+        @if (config('content.show_scheduled') && $post->created_at > now())
+            <div class="box box-warning">
+                <p>
+                    Publikacja tego wpisu została zaplanowana na {{ localized_date($post->created_at, true) }}.
+                </p>
+            </div>
+        @endif
+
         {!! !$single && $post->excerpt ? $post->excerpt : $post->content !!}
 
         @if (!$single && $post->excerpt)
