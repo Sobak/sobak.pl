@@ -305,18 +305,25 @@ a.more-link,
 .hentry.format-audio:before {
   content: "\f109";
 }
-.hentry.format-status, .hentry.format-quote {
+.hentry.format-status, .hentry.format-quote, .hentry.format-error {
   border-color: #242d36;
 }
-.hentry.format-status:before, .hentry.format-quote:before {
+.hentry.format-status:before, .hentry.format-quote:before, .hentry.format-error:before {
   background: #242d36;
   content: "\f106";
 }
-.hentry.format-status:after, .hentry.format-quote:after {
+.hentry.format-status:after, .hentry.format-quote:after, .hentry.format-error:after {
   border-color: #050708;
 }
 .hentry.format-status:before {
   content: "\f105";
+}
+.hentry.format-error:before {
+  content: "\2639";
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+}
+.hentry.format-error .entry-title {
+   color: #242d36;
 }
 .hentry.format-gallery:before {
   content: "\f103";
@@ -353,6 +360,9 @@ a.more-link {
 .entry-title a {
   color: #f45145;
   text-decoration: none;
+}
+.entry-title.black {
+  color: #242d36; // Yep, I dared
 }
 @media screen and (max-width: 47.2226em) {
   .entry-title {
