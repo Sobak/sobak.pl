@@ -185,7 +185,7 @@ h6 {
 
 // Text elements
 p {
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 ul {
@@ -210,6 +210,11 @@ li > ul,
 li > ol {
   margin-bottom: 0;
   margin-left: 27px;
+}
+
+li p,
+li li p {
+  margin-bottom: 16px;
 }
 
 dt {
