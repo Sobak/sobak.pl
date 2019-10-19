@@ -1,7 +1,7 @@
 @php
 $single = $single ?? false;
 @endphp
-<article class="hentry">
+<article class="hentry"@if ($post->language !== config('app.locale')) lang="{{ $post->language }}" @endif>
     <header class="entry-header">
         <h1 class="entry-title">
             @if ($single)

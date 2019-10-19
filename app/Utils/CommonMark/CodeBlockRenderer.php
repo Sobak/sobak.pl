@@ -20,6 +20,6 @@ class CodeBlockRenderer implements BlockRendererInterface
 
         $result = \Kadet\Highlighter\highlight($source, $language, $formatter);
 
-        return '<pre class="keylighter"><code>' . $result . '</code></pre>';
+        return '<pre class="keylighter" lang="en"><code>' . $result . '</code></pre>';
     }
 }
