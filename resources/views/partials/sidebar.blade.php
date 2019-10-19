@@ -1,4 +1,4 @@
-<div class="widget-area" role="complementary">
+<div id="sidebar" class="widget-area" role="complementary">
     <aside class="widget">
         <h1>Mikroblog</h1>
         <ul id="twitter-widget-tweets" class="twitter-feed">

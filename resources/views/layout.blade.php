@@ -27,7 +27,10 @@
     </header>
     <div id="menu-toggle-nav" class="panel">
         <nav class="main-navigation">
-            <a class="sr-only" href="#content">Przejdź do treści</a>
+            <div class="sr-only">
+                <a href="#content">Przejdź do treści</a><br>
+                <a href="#sidebar">Przejdź do menu bocznego</a>
+            </div>
 
             <ul>
                 <li {!! if_active(['index', 'blog', 'post', 'category', 'tag', 'search']) !!}>
