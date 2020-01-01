@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Page;
 use App\Models\Redirect;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Str;
 
 class PageController extends Controller
 {
@@ -24,7 +25,7 @@ class PageController extends Controller
 
     protected function checkForAlias()
     {
-        $sourceUrl = trim(Request::getRequestUri(), '/');
+        $sourceUrl = Str::before(trim(Request::getRequestUri(), '/'), '?');
 
         $redirect = Redirect::where('source_url', $sourceUrl)->first();
 
