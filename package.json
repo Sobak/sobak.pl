@@ -10,7 +10,9 @@
     },
     "devDependencies": {
         "cross-env": "^5.1",
-        "laravel-mix": "2.1.11"
+        "laravel-mix": "^5.0.4",
+        "sass": "^1.26.3",
+        "sass-loader": "8.*"
     },
     "dependencies": {
         "jquery": "^3.2.1"
