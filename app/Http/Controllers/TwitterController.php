@@ -9,7 +9,7 @@ class TwitterController extends Controller
 {
     public function entries()
     {
-        $entries = Cache::remember('twitter_entries', 15, function () {
+        $entries = Cache::remember('twitter_entries', 15 * 60, function () {
             $client = new TwitterOAuth(
                 config('services.twitter.consumer_key'),
                 config('services.twitter.consumer_secret'),

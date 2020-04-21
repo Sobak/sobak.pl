@@ -17,6 +17,7 @@ use DB;
 use DirectoryIterator;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 use Joli\JoliNotif\Notification;
 use Joli\JoliNotif\NotifierFactory;
 use League\CommonMark\DocParser;
@@ -174,7 +175,7 @@ class Indexer extends Command
 
     protected function indexContentType($contentType)
     {
-        $indexerName = 'index' . studly_case(str_singular($contentType));
+        $indexerName = 'index' . Str::studly(Str::singular($contentType));
 
         if (method_exists($this, $indexerName) === false) {
             return false;
@@ -444,7 +445,7 @@ class Indexer extends Command
 
             $category = Category::create([
                 'name' => $name,
-                'slug' => str_slug(str_replace('&', '-', $name)),
+                'slug' => Str::slug(str_replace('&', '-', $name)),
             ]);
         }
 
@@ -477,7 +478,7 @@ class Indexer extends Command
 
             $tag = Tag::create([
                 'name' => $name,
-                'slug' => str_slug($name),
+                'slug' => Str::slug($name),
             ]);
         }
 
