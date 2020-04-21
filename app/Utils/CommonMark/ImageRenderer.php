@@ -6,13 +6,18 @@ use League\CommonMark\ElementRendererInterface;
 use League\CommonMark\HtmlElement;
 use League\CommonMark\Inline\Element\AbstractInline;
 use League\CommonMark\Inline\Element\Image;
-use League\CommonMark\Inline\Renderer\ImageRenderer as ParentImageRenderer;
+use League\CommonMark\Inline\Renderer\InlineRendererInterface;
+use League\CommonMark\Util\ConfigurationAwareInterface;
+use League\CommonMark\Util\ConfigurationInterface;
 use League\CommonMark\Util\RegexHelper;
 use League\CommonMark\Util\Xml;
 
-class ImageRenderer extends ParentImageRenderer
+class ImageRenderer implements InlineRendererInterface, ConfigurationAwareInterface
 {
     use LinksAssets;
+
+    /** @var ConfigurationInterface */
+    protected $config;
 
     public function render(AbstractInline $inline, ElementRendererInterface $htmlRenderer)
     {
@@ -22,14 +27,14 @@ class ImageRenderer extends ParentImageRenderer
 
         $attrs = [];
         foreach ($inline->getData('attributes', []) as $key => $value) {
-            $attrs[$key] = Xml::escape($value, true);
+            $attrs[$key] = Xml::escape($value);
         }
 
-        $forbidUnsafeLinks = $this->config->getConfig('safe') || !$this->config->getConfig('allow_unsafe_links');
+        $forbidUnsafeLinks = $this->config->get('safe') || !$this->config->get('allow_unsafe_links');
         if ($forbidUnsafeLinks && RegexHelper::isLinkPotentiallyUnsafe($inline->getUrl())) {
             $attrs['src'] = '';
         } else {
-            $attrs['src'] = Xml::escape($inline->getUrl(), true);
+            $attrs['src'] = Xml::escape($inline->getUrl());
         }
 
         // Conditional customization
@@ -42,7 +47,7 @@ class ImageRenderer extends ParentImageRenderer
         $attrs['alt'] = preg_replace('/\<[^>]*\>/', '', $alt);
 
         if (isset($inline->data['title'])) {
-            $attrs['title'] = Xml::escape($inline->data['title'], true);
+            $attrs['title'] = Xml::escape($inline->data['title']);
         }
 
         // Customize HTML output in case of the internal asset
@@ -55,6 +60,11 @@ class ImageRenderer extends ParentImageRenderer
         } else {
             return new HtmlElement('img', $attrs, '', true);
         }
+    }
+
+    public function setConfiguration(ConfigurationInterface $configuration)
+    {
+        $this->config = $configuration;
     }
 
     protected function convertToAssetThumbLink(string $url): string

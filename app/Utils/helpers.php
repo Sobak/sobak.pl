@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\HtmlString;
+use Illuminate\Support\Str;
 use Illuminate\Support\ViewErrorBag;
 
 /**
@@ -72,7 +73,7 @@ function is_menu_link_active($conditions)
     $routeName = isset($currentRoute) ? $currentRoute->getName() : null;
 
     foreach ($conditions as $condition) {
-        if (starts_with($condition, 'page:')) {
+        if (Str::startsWith($condition, 'page:')) {
             return Request::url() === route('page', [substr($condition, strlen('page:'))]);
         }
 
