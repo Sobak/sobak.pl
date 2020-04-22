@@ -57,9 +57,6 @@
     "config": {
         "preferred-install": "dist",
         "sort-packages": true,
-        "optimize-autoloader": true,
-        "platform": {
-            "php": "7.2.28"
-        }
+        "optimize-autoloader": true
     }
 }
