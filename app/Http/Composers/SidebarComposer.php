@@ -17,7 +17,6 @@ class SidebarComposer
     {
         $view->with([
             'categories' => Category::withCount('posts')->orderBy('name')->get(),
-            'externalLinks' => shuffle_assoc(config('content.links')),
             'twitterEntries' => cache('twitter_entries'),
         ]);
     }
