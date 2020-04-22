@@ -190,8 +190,11 @@ class Indexer extends Command
                 $this->{$indexerName}($fileinfo);
             }
         }
+
+        return true;
     }
 
+    /** @noinspection PhpUnused Method name resolved dynamically but checked for existence */
     protected function indexPost(SplFileInfo $file)
     {
         $this->indentedLine($file->getFilename());
@@ -255,6 +258,7 @@ class Indexer extends Command
         }
     }
 
+    /** @noinspection PhpUnused Method name resolved dynamically but checked for existence */
     protected function indexPage(SplFileInfo $file)
     {
         $this->indentedLine($file->getFilename());
@@ -275,6 +279,7 @@ class Indexer extends Command
         ]);
     }
 
+    /** @noinspection PhpUnused Method name resolved dynamically but checked for existence */
     protected function indexProject(SplFileInfo $file)
     {
         $this->indentedLine($file->getFilename());
@@ -318,6 +323,7 @@ class Indexer extends Command
 
         $this->line("\nIndexing redirects");
 
+        /** @noinspection PhpIncludeInspection */
         $redirects = require $redirectsPath;
 
         foreach ($redirects as $from => $to) {
@@ -332,7 +338,7 @@ class Indexer extends Command
     protected function cacheBlogStats()
     {
         if ($this->option('dry-run')) {
-            return true;
+            return;
         }
 
         $wordCountQuery = DB::raw("SUM(LENGTH(content) - LENGTH(REPLACE(content, ' ', '')) + 1) AS words");
@@ -378,7 +384,7 @@ class Indexer extends Command
     {
         if ($this->option('no-assets') || $this->option('dry-run')) {
             $this->line("\nSkipped assets processing\n");
-            return true;
+            return;
         }
 
         $this->line("\nProcessing assets");
