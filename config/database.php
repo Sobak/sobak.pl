@@ -45,6 +45,13 @@ return [
             'prefix' => '',
         ],
 
+        // This is a permanent database that is not recreated on every content change
+        'permanent' => [
+            'driver' => 'sqlite',
+            'database' => database_path('permanent.sqlite'),
+            'prefix' => '',
+        ],
+
     ],
 
     /*
