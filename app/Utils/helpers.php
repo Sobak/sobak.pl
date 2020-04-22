@@ -46,7 +46,7 @@ function localized_date(\Carbon\Carbon $date, $withTime = false)
  */
 function blog_title($page)
 {
-    return config('app.name') . ' | ' . ($page === 1 ? config('app.description') : "Strona {$page}");
+    return config('app.name') . ' | ' . ($page === 1 ? config('site.description') : "Strona {$page}");
 }
 
 /**

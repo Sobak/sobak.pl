@@ -4,7 +4,7 @@
         <title>{{ config('app.name') }}</title>
         <link>{{ route('index') }}</link>
         <atom:link href="{{ route('feed') }}" rel="self" type="application/rss+xml" />
-        <description>{{ config('app.description') }}</description>
+        <description>{{ config('site.description') }}</description>
         <lastBuildDate>{{ $buildDate }}</lastBuildDate>
         <language>pl</language>
         <ttl>180</ttl>

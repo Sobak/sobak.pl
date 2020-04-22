@@ -13,7 +13,7 @@
     <div class="site-header-wrapper">
         <div class="site-branding">
             <h1 class="site-title"><a href="{{ url('/') }}" rel="home">{{ config('app.name') }}</a></h1>
-            <h2 class="site-description">{{ config('app.description') }}</h2>
+            <h2 class="site-description">{{ config('site.description') }}</h2>
         </div>
     </div>
 </header>
