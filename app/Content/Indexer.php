@@ -1,7 +1,10 @@
 <?php
 
-namespace App\Console\Commands;
+declare(strict_types=1);
 
+namespace App\Content;
+
+use App\Interfaces\OutputInterface;
 use App\Models\Category;
 use App\Models\Page;
 use App\Models\Post;
@@ -11,102 +14,57 @@ use App\Models\Tag;
 use App\Utils\CommonMark\CodeBlockRenderer;
 use App\Utils\CommonMark\ImageRenderer;
 use App\Utils\CommonMark\LinkRenderer;
-use Cache;
 use Carbon\Carbon;
-use DB;
 use DirectoryIterator;
-use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
-use Joli\JoliNotif\Notification;
-use Joli\JoliNotif\NotifierFactory;
 use League\CommonMark\DocParser;
 use League\CommonMark\Environment;
 use League\CommonMark\HtmlRenderer;
 use SplFileInfo;
+use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\Yaml\Yaml;
 
-class Indexer extends Command
+class Indexer
 {
     /** @var string Placeholder which will be replaced with assets root path when parsing content */
-    const ASSETS_PATH_PLACEHOLDER = '{{{assets}}}';
+    private const ASSETS_PATH_PLACEHOLDER = '{{{assets}}}';
 
     /** @var string Placeholder which will be replaced with root site URL when parsing content */
-    const BASE_URL_PLACEHOLDER = '{{{base}}}';
-
-    /** @var integer Indentation level step used for indexer's output */
-    const INDENTATION_STEP = 2;
+    private const BASE_URL_PLACEHOLDER = '{{{base}}}';
 
     /** @var string Optional text marker which indicates end of an excerpt within the posts */
-    const MORE_DELIMITER = '{{{more}}}';
+    private const MORE_DELIMITER = '{{{more}}}';
 
-    /** @var mixed Zero verbosity level flag used by underlying Symfony's Console component */
-    const VERBOSITY_NONE = null;
+    private OutputInterface $output;
+    private DocParser $markdownParser;
+    private HtmlRenderer $markdownHtmlRenderer;
 
-    /** @var string Verbosity level flag used by underlying Symfony's Console component */
-    const VERBOSITY_VERBOSE = 'v';
-
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
-    protected $signature = 'content:index
-        {--D|dry-run : Dry run does not alter the live database}
-        {--N|no-assets : Skip assets processing (default in dry run mode)}';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Indexes content for the homepage';
-
-    /**
-     * Instance of Markdown parser with proper environment config.
-     *
-     * @var DocParser
-     */
-    protected $markdownParser;
-
-    /**
-     * Instance of Markdown HTML renderer with proper environment config.
-     *
-     * @var HtmlRenderer
-     */
-    protected $markdownHtmlRenderer;
-
-    /**
-     * Execute the console command.
-     *
-     * @return void
-     */
-    public function handle()
+    public function __construct(OutputInterface $output)
     {
-        $timeStart = microtime(true);
-
-        $this->info('Indexing started');
-
-        $this->prepareIndexerDatabase();
-        $this->setupMarkdownRenderer();
-        $this->iterateOverContentTypes();
-        $this->indexRedirects();
-        $this->cacheBlogStats();
-        $this->processAssets();
-        $this->switchWebsiteDatabase();
-        $this->sendSuccessNotification();
-
-        $time = number_format(microtime(true) - $timeStart, 4);
-
-        $this->info("Indexing finished in {$time}");
+        $this->output = $output;
     }
 
-    protected function prepareIndexerDatabase()
+    public function index(bool $isDryRun, bool $enableAssetsProcessing)
     {
-        if ($this->option('dry-run') === false) {
-            $this->line('Initializing temporary indexer database');
+        $this->prepareIndexerDatabase($isDryRun);
+        $this->setupMarkdownRenderer();
+        $this->iterateOverContentTypes();
+        $this->indexRedirects($isDryRun);
+        $this->cacheBlogStats($isDryRun);
+        $this->processAssets($isDryRun, $enableAssetsProcessing);
+        $this->switchWebsiteDatabase($isDryRun);
+    }
+
+    private function prepareIndexerDatabase(bool $isDryRun)
+    {
+        if ($isDryRun === false) {
+            $this->output->line('Initializing temporary indexer database');
         } else {
-            $this->line('Running in dry run mode - no changes will be applied');
+            $this->output->line('Running in dry run mode - no changes will be applied');
         }
 
         $indexerDatabase = config('database.connections.indexer.database');
@@ -121,20 +79,24 @@ class Indexer extends Command
 
         config('database.default', 'indexer');
 
-        $this->callSilent('migrate', [
-            '--database' => 'indexer',
-            '--force' => true,
-        ]);
+        Artisan::call(
+            'migrate',
+            [
+                '--database' => 'indexer',
+                '--force' => true,
+            ],
+            new NullOutput()
+        );
     }
 
-    protected function switchWebsiteDatabase()
+    private function switchWebsiteDatabase(bool $isDryRun)
     {
-        if ($this->option('dry-run')) {
-            $this->line('Dry run finished - website database has not been changed');
+        if ($isDryRun) {
+            $this->output->line('Dry run finished - website database has not been changed');
             return true;
         }
 
-        $this->line('Switching website database to new build');
+        $this->output->line('Switching website database to new build');
 
         $indexerDatabase = config('database.connections.indexer.database');
         $websiteDatabase = config('database.connections.website.database');
@@ -151,7 +113,7 @@ class Indexer extends Command
         return true;
     }
 
-    protected function setupMarkdownRenderer()
+    private function setupMarkdownRenderer()
     {
         $environment = Environment::createCommonMarkEnvironment();
         $environment->addBlockRenderer('League\CommonMark\Block\Element\FencedCode', new CodeBlockRenderer());
@@ -162,7 +124,7 @@ class Indexer extends Command
         $this->markdownHtmlRenderer = new HtmlRenderer($environment);
     }
 
-    protected function iterateOverContentTypes()
+    private function iterateOverContentTypes()
     {
         $iterator = new DirectoryIterator(config('content.path'));
 
@@ -173,7 +135,7 @@ class Indexer extends Command
         }
     }
 
-    protected function indexContentType($contentType)
+    private function indexContentType($contentType)
     {
         $indexerName = 'index' . Str::studly(Str::singular($contentType));
 
@@ -181,7 +143,7 @@ class Indexer extends Command
             return false;
         }
 
-        $this->line("\nIndexing {$contentType}");
+        $this->output->line("\nIndexing {$contentType}");
 
         $iterator = new DirectoryIterator(config('content.path') . '/' . $contentType);
 
@@ -194,10 +156,10 @@ class Indexer extends Command
         return true;
     }
 
-    /** @noinspection PhpUnused Method name resolved dynamically but checked for existence */
-    protected function indexPost(SplFileInfo $file)
+    /** @noinspection PhpUnusedPrivateMethodInspection Method name resolved dynamically but checked for existence */
+    private function indexPost(SplFileInfo $file)
     {
-        $this->indentedLine($file->getFilename());
+        $this->output->indentedLine($file->getFilename());
 
         $post = $this->parseContentFile($file->getPathname(), [
             'aliases' => [],
@@ -227,7 +189,7 @@ class Indexer extends Command
         if (count($contentParts) === 2) {
             $excerpt = trim($contentParts[0]);
 
-            $this->indentedLine('> indexed excerpt for the post', 2, self::VERBOSITY_VERBOSE);
+            $this->output->indentedLine('> indexed excerpt for the post', 2, OutputInterface::VERBOSITY_VERBOSE);
         }
 
         $content = str_replace(self::MORE_DELIMITER, '', $post->body);
@@ -258,10 +220,10 @@ class Indexer extends Command
         }
     }
 
-    /** @noinspection PhpUnused Method name resolved dynamically but checked for existence */
-    protected function indexPage(SplFileInfo $file)
+    /** @noinspection PhpUnusedPrivateMethodInspection Method name resolved dynamically but checked for existence */
+    private function indexPage(SplFileInfo $file)
     {
-        $this->indentedLine($file->getFilename());
+        $this->output->indentedLine($file->getFilename());
 
         $page = $this->parseContentFile($file->getPathname(), [
             'slug' => $file->getBasename('.md'),
@@ -279,10 +241,10 @@ class Indexer extends Command
         ]);
     }
 
-    /** @noinspection PhpUnused Method name resolved dynamically but checked for existence */
-    protected function indexProject(SplFileInfo $file)
+    /** @noinspection PhpUnusedPrivateMethodInspection Method name resolved dynamically but checked for existence */
+    private function indexProject(SplFileInfo $file)
     {
-        $this->indentedLine($file->getFilename());
+        $this->output->indentedLine($file->getFilename());
 
         $project = $this->parseContentFile($file->getPathname(), [
             'slug' => $file->getBasename('.md'),
@@ -308,10 +270,10 @@ class Indexer extends Command
         ]);
     }
 
-    protected function indexRedirects()
+    private function indexRedirects(bool $isDryRun)
     {
-        if ($this->option('dry-run')) {
-            $this->line("\nSkipped indexing redirects");
+        if ($isDryRun) {
+            $this->output->line("\nSkipped indexing redirects");
             return true;
         }
 
@@ -321,13 +283,13 @@ class Indexer extends Command
             return false;
         }
 
-        $this->line("\nIndexing redirects");
+        $this->output->line("\nIndexing redirects");
 
         /** @noinspection PhpIncludeInspection */
         $redirects = require $redirectsPath;
 
         foreach ($redirects as $from => $to) {
-            $this->indentedLine("> $from => $to", 2, self::VERBOSITY_VERBOSE);
+            $this->output->indentedLine("> $from => $to", 2, OutputInterface::VERBOSITY_VERBOSE);
 
             $this->createRedirect($from, $to);
         }
@@ -335,9 +297,9 @@ class Indexer extends Command
         return true;
     }
 
-    protected function cacheBlogStats()
+    private function cacheBlogStats(bool $isDryRun)
     {
-        if ($this->option('dry-run')) {
+        if ($isDryRun) {
             return;
         }
 
@@ -351,43 +313,14 @@ class Indexer extends Command
         });
     }
 
-    protected function sendSuccessNotification()
+    private function processAssets(bool $isDryRun, bool $enableAssetsProcessing)
     {
-        $this->sendSystemNotification('Build successful', resource_path('assets/cli/pass.png'));
-    }
-
-    protected function sendFailureNotification()
-    {
-        $this->sendSystemNotification('Build failed', resource_path('assets/cli/fail.png'));
-    }
-
-    protected function sendSystemNotification($body, $icon)
-    {
-        if (app()->environment() !== 'local' || class_exists(NotifierFactory::class) === false) {
-            return true;
-        }
-
-        $notifier = NotifierFactory::create();
-
-        $notification =
-            (new Notification())
-                ->setTitle('Perception')
-                ->setBody($body)
-                ->setIcon($icon);
-
-        $notifier->send($notification);
-
-        return true;
-    }
-
-    protected function processAssets()
-    {
-        if ($this->option('no-assets') || $this->option('dry-run')) {
-            $this->line("\nSkipped assets processing\n");
+        if ($enableAssetsProcessing === false || $isDryRun) {
+            $this->output->line("\nSkipped assets processing\n");
             return;
         }
 
-        $this->line("\nProcessing assets");
+        $this->output->line("\nProcessing assets");
 
         $iterator = new DirectoryIterator(config('content.path') . '/assets/');
 
@@ -399,26 +332,26 @@ class Indexer extends Command
 
         foreach ($iterator as $fileinfo) {
             if ($fileinfo->isFile()) {
-                $this->indentedLine($fileinfo->getFilename());
+                $this->output->indentedLine($fileinfo->getFilename());
 
                 $this->copyAsset($fileinfo, $targetPath);
 //              $this->createAssetThumbnail($fileinfo, $targetPath);
             }
         }
 
-        $this->line('');
+        $this->output->line('');
     }
 
-    protected function copyAsset(SplFileInfo $file, string $targetPath)
+    private function copyAsset(SplFileInfo $file, string $targetPath)
     {
         $copy = copy($file->getPathname(), $targetPath . $file->getFilename());
 
         if ($copy === false) {
-            $this->indentedLine('> FAIL when copying the file', 2);
+            $this->output->indentedLine('> FAIL when copying the file', 2);
         }
     }
 
-    protected function createAssetThumbnail(SplFileInfo $file, string $targetPath)
+    private function createAssetThumbnail(SplFileInfo $file, string $targetPath)
     {
         // It's a bit ironic but thumbnails generated by Intervention's Image
         // library turn out to have much bigger size than the originals so let's
@@ -431,23 +364,23 @@ class Indexer extends Command
         $copy = copy($file->getPathname(), $targetPathName);
 
         if ($copy === false) {
-            $this->indentedLine('> FAIL when creating the thumbnail', 2);
+            $this->output->indentedLine('> FAIL when creating the thumbnail', 2);
         }
     }
 
-    protected function createAlias(Post $post, $alias)
+    private function createAlias(Post $post, $alias)
     {
-        $this->indentedLine('> aliased post from ' . $alias, 2, self::VERBOSITY_VERBOSE);
+        $this->output->indentedLine('> aliased post from ' . $alias, 2, OutputInterface::VERBOSITY_VERBOSE);
 
         $this->createRedirect($alias, route('post', $post, false), 302);
     }
 
-    protected function createCategory($name)
+    private function createCategory($name)
     {
         $category = Category::where('name', $name)->first();
 
         if ($category === null) {
-            $this->indentedLine('> created category "' . $name . '"', 2, self::VERBOSITY_VERBOSE);
+            $this->output->indentedLine('> created category "' . $name . '"', 2, OutputInterface::VERBOSITY_VERBOSE);
 
             $category = Category::create([
                 'name' => $name,
@@ -455,12 +388,12 @@ class Indexer extends Command
             ]);
         }
 
-        $this->indentedLine('> assigned to category "' . $name . '"', 2, self::VERBOSITY_VERBOSE);
+        $this->output->indentedLine('> assigned to category "' . $name . '"', 2, OutputInterface::VERBOSITY_VERBOSE);
 
         return $category;
     }
 
-    protected function createRedirect($from, $to, $httpCode = 301)
+    private function createRedirect($from, $to, $httpCode = 301)
     {
         $redirect = Redirect::where('source_url', $from)->first();
 
@@ -475,12 +408,12 @@ class Indexer extends Command
         return $redirect;
     }
 
-    protected function createTag($name)
+    private function createTag($name)
     {
         $tag = Tag::where('name', $name)->first();
 
         if ($tag === null) {
-            $this->indentedLine('> created tag "' . $name . '"', 2, self::VERBOSITY_VERBOSE);
+            $this->output->indentedLine('> created tag "' . $name . '"', 2, OutputInterface::VERBOSITY_VERBOSE);
 
             $tag = Tag::create([
                 'name' => $name,
@@ -488,12 +421,12 @@ class Indexer extends Command
             ]);
         }
 
-        $this->indentedLine('> assigned to tag "' . $name . '"', 2, self::VERBOSITY_VERBOSE);
+        $this->output->indentedLine('> assigned to tag "' . $name . '"', 2, OutputInterface::VERBOSITY_VERBOSE);
 
         return $tag;
     }
 
-    protected function parseContentFile($path, array $defaultMetadata = [])
+    private function parseContentFile($path, array $defaultMetadata = [])
     {
         $content = file_get_contents($path);
 
@@ -502,9 +435,9 @@ class Indexer extends Command
         $parts = preg_split($pattern, PHP_EOL . ltrim($content), 3);
 
         if (count($parts) < 3) {
-            $this->indentedLine('FAIL: No YAML front matter found', 2);
-            $this->sendFailureNotification();
-            exit(2);
+            $this->output->indentedLine('FAIL: No YAML front matter found', 2);
+
+            throw new IndexerException('', 2);
         }
 
         $body = $parts[2];
@@ -534,7 +467,7 @@ class Indexer extends Command
         ];
     }
 
-    protected function parseSingularMetadataAliases($post, $mappings)
+    private function parseSingularMetadataAliases($post, $mappings)
     {
         foreach ($mappings as $key => $alias) {
             if (!isset($post->metadata[$alias])) {
@@ -547,31 +480,23 @@ class Indexer extends Command
         return $post;
     }
 
-    protected function parseMarkdown($string)
+    private function parseMarkdown($string)
     {
         $document = $this->markdownParser->parse($string);
 
         return $this->markdownHtmlRenderer->renderBlock($document);
     }
 
-    protected function validateMetadata($metadata, $rules)
+    private function validateMetadata($metadata, $rules)
     {
         $validator = Validator::make($metadata, $rules);
 
         foreach ($validator->errors()->all() as $error) {
-            $this->indentedLine("FAIL: {$error}", 2);
+            $this->output->indentedLine("FAIL: {$error}", 2);
         }
 
         if ($validator->fails()) {
-            $this->sendFailureNotification();
-            exit(3);
+            throw new IndexerException('', 3);
         }
-    }
-
-    protected function indentedLine($text, $levels = 1, $verbosity = self::VERBOSITY_NONE)
-    {
-        $indentation = str_repeat(' ', $levels * self::INDENTATION_STEP);
-
-        $this->line($indentation . $text, null, $verbosity);
     }
 }
