@@ -52,7 +52,7 @@ class Indexer
     {
         $this->prepareIndexerDatabase($isDryRun);
         $this->setupMarkdownRenderer();
-        $this->iterateOverContentTypes();
+        $this->indexContentTypes();
         $this->indexRedirects($isDryRun);
         $this->cacheBlogStats($isDryRun);
         $this->processAssets($isDryRun, $enableAssetsProcessing);
@@ -124,7 +124,7 @@ class Indexer
         $this->markdownHtmlRenderer = new HtmlRenderer($environment);
     }
 
-    private function iterateOverContentTypes()
+    private function indexContentTypes()
     {
         $iterator = new DirectoryIterator(config('content.path'));
 
