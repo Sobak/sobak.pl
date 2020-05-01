@@ -12,6 +12,7 @@ class CreatePostsTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->string('slug')->unique();
+            $table->string('project')->nullable();
             $table->text('excerpt')->nullable();
             $table->text('content');
             $table->string('language', 10);

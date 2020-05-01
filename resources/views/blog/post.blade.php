@@ -22,6 +22,16 @@ $single = $single ?? false;
             </div>
         @endif
 
+        @if ($post->project !== null)
+            <div class="box box-info">
+                <p>
+                    Ten post przedstawia doświadczenia lub przemyślenia nabyte (bezpośrednio lub nie) podczas prac nad
+                    <a href="{{ route('project', $post->project()->first()->slug) }}">projektem {{ $post->project()->first()->title }}</a>.
+                    Kliknij w link aby zobaczyć go w portfolio.
+                </p>
+            </div>
+        @endif
+
         {!! !$single && $post->excerpt ? $post->excerpt : $post->content !!}
 
         @if (!$single && $post->excerpt)

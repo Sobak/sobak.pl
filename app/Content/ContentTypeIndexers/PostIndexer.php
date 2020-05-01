@@ -39,6 +39,7 @@ class PostIndexer extends AbstractContentIndexer implements ContentTypeIndexerIn
             'aliases' => 'array',
             'categories' => 'required|array',
             'date' => 'required|date',
+            'project' => 'exists:indexer.projects,slug',
             'slug' => 'alpha_dash|unique:indexer.posts',
             'tags' => 'array',
             'title' => 'required',
@@ -57,10 +58,11 @@ class PostIndexer extends AbstractContentIndexer implements ContentTypeIndexerIn
 
         $postEntity = Post::create([
             'title' => $post->metadata['title'],
+            'slug' => $post->metadata['slug'],
+            'project' => $post->metadata['project'] ?? null,
             'excerpt' => $excerpt,
             'content' => $content,
             'language' => $post->metadata['language'],
-            'slug' => $post->metadata['slug'],
             'created_at' => Carbon::createFromTimestamp(strtotime($post->metadata['date'])),
         ]);
 

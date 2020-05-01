@@ -31,8 +31,9 @@ class Indexer
         $this->output = $output;
 
         $this->registerContentTypeIndexer('pages', new PageIndexer($output));
-        $this->registerContentTypeIndexer('posts', new PostIndexer($output));
+        // Posts can optionally link to projects so we have to index them firsts
         $this->registerContentTypeIndexer('projects', new ProjectIndexer($output));
+        $this->registerContentTypeIndexer('posts', new PostIndexer($output));
     }
 
     public function index(bool $isDryRun, bool $enableAssetsProcessing)
@@ -108,10 +109,17 @@ class Indexer
     {
         $iterator = new DirectoryIterator(config('content.path'));
 
+        $directories = [];
         foreach ($iterator as $fileinfo) {
             if ($fileinfo->isDir() && $fileinfo->isDot() === false) {
-                $this->indexContentType($fileinfo->getBasename());
+                $directories[] = $fileinfo->getBasename();
             }
+        }
+
+        $directories = array_intersect_key(array_keys($this->contentTypeIndexers), $directories);
+
+        foreach ($directories as $directory) {
+            $this->indexContentType($directory);
         }
     }
 
