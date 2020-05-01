@@ -1,18 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
 use Illuminate\Support\ViewErrorBag;
 
-/**
- * There must be a better way...
- *
- * @param \Carbon\Carbon $date
- * @param bool $withTime
- * @return string
- */
-function localized_date(\Carbon\Carbon $date, $withTime = false)
+function localized_date(Carbon $date, bool $withTime = false): string
 {
     $genitives = [
         'stycznia',
@@ -38,24 +34,12 @@ function localized_date(\Carbon\Carbon $date, $withTime = false)
     return $out;
 }
 
-/**
- * Generate proper blog title given the current page.
- *
- * @param int $page Current page number
- * @return string
- */
-function blog_title($page)
+function blog_title(int $pageNumber): string
 {
-    return config('app.name') . ' | ' . ($page === 1 ? config('site.description') : "Strona {$page}");
+    return config('app.name') . ' | ' . ($pageNumber === 1 ? config('site.description') : "Strona {$pageNumber}");
 }
 
-/**
- * Generate standard format page title.
- *
- * @param string $title
- * @return string
- */
-function page_title($title)
+function page_title(string $title): string
 {
     return $title . ' | ' . config('app.name');
 }
@@ -117,14 +101,7 @@ function shuffle_assoc($array) {
     return $new;
 }
 
-/**
- * Handle errors for the given form input
- *
- * @param string $inputName Form input name
- * @param \Illuminate\Support\ViewErrorBag $errors Form errors bag instance
- * @return \Illuminate\Support\HtmlString
- */
-function form_error($inputName, ViewErrorBag $errors)
+function form_error(string $inputName, ViewErrorBag $errors): HtmlString
 {
     if ($errors->has($inputName)) {
         $output = '<span class="validation-error">' . $errors->first($inputName) . '</span>';
