@@ -30,10 +30,6 @@
         "symfony/polyfill-php73": "*"
     },
     "autoload": {
-        "classmap": [
-            "database/seeds",
-            "database/factories"
-        ],
         "files": [
             "app/Utils/helpers.php"
         ],
