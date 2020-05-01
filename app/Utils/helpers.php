@@ -82,25 +82,6 @@ function if_active($conditions)
     return $isActive ? 'class="current-menu-item"' : '';
 }
 
-/**
- * Shuffle an array preserving the keys.
- *
- * @param array $array
- * @return array
- */
-function shuffle_assoc($array) {
-    $keys = array_keys($array);
-
-    shuffle($keys);
-
-    $new = [];
-    foreach($keys as $key) {
-        $new[$key] = $array[$key];
-    }
-
-    return $new;
-}
-
 function form_error(string $inputName, ViewErrorBag $errors): HtmlString
 {
     if ($errors->has($inputName)) {
