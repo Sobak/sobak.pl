@@ -1,3 +1,7 @@
+@php
+/** @var $project \App\Models\Project */
+@endphp
+
 <li class="{{ $project->type }}">
     <h6>{{ $project->title }}</h6>
 

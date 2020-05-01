@@ -1,5 +1,8 @@
 @extends('layout')
 
+@php
+/** @var $page \App\Models\Page */
+@endphp
 @push('header_extras')
     <meta name="og:title" content="{{ $page->title }}">
     <meta name="og:type" content="article">
