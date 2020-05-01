@@ -21,7 +21,7 @@ class ProjectIndexer extends AbstractContentIndexer implements ContentTypeIndexe
 
         $this->validateMetadata($project->metadata, [
             'date' => 'required|date',
-            'slug' => 'alpha_dash|unique:indexer.pages',
+            'slug' => 'alpha_dash|unique:indexer.projects',
             'title' => 'required',
             'thumbnail' => 'required',
             'type' => 'required',
