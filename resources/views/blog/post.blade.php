@@ -2,7 +2,7 @@
 $single = $single ?? false;
 /** @var $post \App\Models\Post */
 @endphp
-<article class="hentry"@if ($post->language !== config('app.locale')) lang="{{ $post->language }}" @endif>
+<article @if ($post->language !== config('app.locale')) lang="{{ $post->language }}" @endif>
     <header class="entry-header">
         <h1 class="entry-title">
             @if ($single)

@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-    <article class="hentry type-none">
+    <article class="type-none">
         <header class="entry-header">
             <h1 class="entry-title">Nic nie znaleziono</h1>
         </header>

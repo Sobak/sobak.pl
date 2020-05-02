@@ -11,7 +11,7 @@
 @endpush
 
 @section('content')
-    <article class="hentry type-page">
+    <article class="type-page">
         <header class="entry-header">
             <h1 class="entry-title">{{ $page->title }}</h1>
         </header>
