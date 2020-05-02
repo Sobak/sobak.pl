@@ -40,7 +40,7 @@
                     {{ form_error('g-recaptcha-response', $errors)  }}
                 </div>
                 <p>
-                    <input type="submit" value="Wyślij">
+                    <button>Wyślij</button>
                 </p>
             </form>
         </div>
