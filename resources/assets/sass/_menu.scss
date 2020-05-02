@@ -21,6 +21,7 @@
 .toggles .toggle:before,
 .social-links ul a:before {
   -webkit-font-smoothing: antialiased;
+  //noinspection CssNoGenericFontName
   font-family: "Genericons";
   font-style: normal;
   font-weight: normal;

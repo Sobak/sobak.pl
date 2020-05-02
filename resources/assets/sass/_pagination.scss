@@ -58,6 +58,7 @@
 // Sibblings pagination
 .sibblings-navigation a:before {
   -webkit-font-smoothing: antialiased;
+  //noinspection CssNoGenericFontName
   font-family: "Genericons";
   font-size: 24px;
   font-style: normal;
