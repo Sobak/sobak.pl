@@ -4,6 +4,7 @@
     "type": "project",
     "require": {
         "php": ">=7.4",
+        "ext-json": "*",
         "abraham/twitteroauth": "^3.3.0",
         "fideloper/proxy": "^4.0",
         "guzzlehttp/guzzle": "^6.3",
