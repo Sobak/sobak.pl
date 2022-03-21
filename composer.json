@@ -25,6 +25,10 @@
         "nunomaduro/collision": "^3.0",
         "phpunit/phpunit": "8.0"
     },
+    "replace": {
+        "symfony/polyfill-php72": "*",
+        "symfony/polyfill-php73": "*"
+    },
     "autoload": {
         "classmap": [
             "database/seeds",
