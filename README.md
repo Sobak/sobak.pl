@@ -11,4 +11,20 @@ is strictly forbidden.
 The success/failure icons used for CLI notifications are owned by Jeffrey Way, author
 of [laravel-mix](https://github.com/JeffreyWay/laravel-mix).
 
+## Local development
+
+Suggested setup for the local development (which attached Docker config follows) is to put
+this repository in its own directory, besides the directory with compatible website content
+files.
+
+Something along the lines of...
+
+```sh
+mkdir sobak.pl
+cd sobak.pl
+git clone git@github.com:Sobak/sobak.pl.git website
+# grab website files into "content' directory
+cd website && docker-compose up -d
+```
+
 [homepage]: http://sobak.pl
