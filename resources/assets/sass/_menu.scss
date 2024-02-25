@@ -218,16 +218,15 @@
   margin: 0;
 }
 .main-navigation a {
-  color: rgba(255, 255, 255, 0.6);
+  color: white;
   display: inline-block;
   text-decoration: none;
 }
-.main-navigation a:hover {
-  color: white;
-}
+.main-navigation a:hover,
 .main-navigation .current_page_item > a,
 .main-navigation .current-menu-item > a {
-  color: white;
+  color: #fcf5e5;
+  font-weight: normal;
 }
 @media screen and (max-width: 47.2226em) {
   .main-navigation {
