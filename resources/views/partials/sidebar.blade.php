@@ -11,14 +11,6 @@
     </aside>
 
     <aside class="widget">
-        <h1>Linki</h1>
-        <ul>
-        @foreach ($externalLinks as $url => $name)
-            <li><a href="{!! $url !!}">{{ $name }}</a></li>
-        @endforeach
-        </ul>
-    </aside>
-    <aside class="widget">
         <h1>Kategorie</h1>
         <ul>
         @foreach ($categories as $category)

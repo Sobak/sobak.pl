@@ -66,7 +66,7 @@
                     <span class="sr-only">Wyszukiwanie:</span>
                     <input type="search" name="q" placeholder="Wpisz szukany tekst…" required>
                 </label>
-                <input type="submit" value="Szukaj">
+                <button>Szukaj</button>
             </form>
         </div>
     </div>

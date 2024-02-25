@@ -1,5 +1,8 @@
 @extends('layout')
 
+@php
+/** @var $page \App\Models\Page */
+@endphp
 @push('header_extras')
     <meta name="og:title" content="{{ $page->title }}">
     <meta name="og:type" content="article">
@@ -8,7 +11,7 @@
 @endpush
 
 @section('content')
-    <article class="hentry type-page">
+    <article class="type-page">
         <header class="entry-header">
             <h1 class="entry-title">{{ $page->title }}</h1>
         </header>

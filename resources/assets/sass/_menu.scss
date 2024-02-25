@@ -21,6 +21,7 @@
 .toggles .toggle:before,
 .social-links ul a:before {
   -webkit-font-smoothing: antialiased;
+  //noinspection CssNoGenericFontName
   font-family: "Genericons";
   font-style: normal;
   font-weight: normal;
@@ -96,23 +97,21 @@
   max-width: 55.556em;
   padding: 13.5px 0;
 }
-.panel .search-wrapper input[type="search"] {
+.panel .search-wrapper input {
   font-size: 1.27778em;
   line-height: 1.17391em;
   border: 0;
   border-radius: 0;
   margin: 0;
-  padding: 13.5px 27px;
   width: 70%;
 }
 @media screen and (max-width: 47.2226em) {
-  .panel .search-wrapper input[type="search"] {
+  .panel .search-wrapper input {
     font-size: 0.83333em;
     line-height: 1.8em;
-    padding: 13.5px;
   }
 }
-.panel .search-wrapper input[type="submit"] {
+.panel .search-wrapper button {
   font-size: 1.27778em;
   line-height: 1.17391em;
   float: right;
@@ -120,7 +119,7 @@
   width: 25%;
 }
 @media screen and (max-width: 47.2226em) {
-  .panel .search-wrapper input[type="submit"] {
+  .panel .search-wrapper button {
     font-size: 0.83333em;
     line-height: 1.8em;
     padding: 13.5px 6.75px;

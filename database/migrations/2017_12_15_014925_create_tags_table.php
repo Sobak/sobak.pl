@@ -6,11 +6,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateTagsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('tags', function (Blueprint $table) {
@@ -28,11 +23,6 @@ class CreateTagsTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('post_tag');

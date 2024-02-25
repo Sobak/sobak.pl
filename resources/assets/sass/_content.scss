@@ -27,12 +27,13 @@ a.more-link,
   clear: both;
 }
 
-.entry-format, .hentry:before,
+.entry-format, article:before,
 .post-date:before,
 .sticky .post-date:before,
 .page-title:before,
 .tags-links:before {
   -webkit-font-smoothing: antialiased;
+  //noinspection CssNoGenericFontName
   font-family: "Genericons";
   font-size: 24px;
   font-style: normal;
@@ -42,7 +43,7 @@ a.more-link,
   vertical-align: text-bottom;
 }
 
-.entry-format, .hentry:before {
+.entry-format, article:before {
   font-size: 48px;
   background: #f45145;
   border-radius: 50%;
@@ -58,7 +59,7 @@ a.more-link,
   height: 80px;
 }
 @media screen and (max-width: 47.2226em) {
-  .entry-format, .hentry:before {
+  .entry-format, article:before {
     font-size: 29px;
     width: 60px;
     height: 60px;
@@ -230,14 +231,14 @@ a.more-link,
   z-index: 2;
 }
 
-.hentry {
+article {
   background-color: white;
   border-top: 8px solid #f45145;
   margin: 0 0 81px;
   padding: 27px 27px 22px;
   position: relative;
 }
-.hentry:after {
+article:after {
   border-top: 3px solid #f23628;
   content: "";
   display: block;
@@ -248,88 +249,88 @@ a.more-link,
   height: 0;
   z-index: 1;
 }
-.hentry:before {
+article:before {
   content: "\f100";
   z-index: 2;
 }
-.hentry.type-page:before {
+article.type-page:before {
   content: "\f443";
 }
-.hentry.type-none:before {
+article.type-none:before {
   display: none;
 }
-.hentry.sticky, .hentry.format-image {
+article.sticky, article.format-image {
   border-color: #cdd851;
 }
-.hentry.sticky:before, .hentry.format-image:before {
+article.sticky:before, article.format-image:before {
   background: #cdd851;
   content: "\f308";
 }
-.hentry.sticky:after, .hentry.format-image:after {
+article.sticky:after, article.format-image:after {
   border-color: #c6d238;
 }
-.hentry.format-image:before {
+article.format-image:before {
   content: "\f102";
 }
-.hentry.format-gallery, .hentry.format-aside {
+article.format-gallery, article.format-aside {
   border-color: #f77e75;
 }
-.hentry.format-gallery:before, .hentry.format-aside:before {
+article.format-gallery:before, article.format-aside:before {
   background: #f77e75;
   border-color: #f67167;
   content: "\f101";
 }
-.hentry.format-gallery:after, .hentry.format-aside:after {
+article.format-gallery:after, article.format-aside:after {
   border-color: #f67167;
 }
-.hentry.format-link {
+article.format-link {
   border-color: #b1e8e6;
 }
-.hentry.format-link:before {
+article.format-link:before {
   background: #b1e8e6;
   content: "\f107";
 }
-.hentry.format-link:after {
+article.format-link:after {
   border-color: #a1e3e1;
 }
-.hentry.format-video, .hentry.format-audio {
+article.format-video, article.format-audio {
   border-color: #9ba2af;
 }
-.hentry.format-video:before, .hentry.format-audio:before {
+article.format-video:before, article.format-audio:before {
   background: #9ba2af;
   content: "\f104";
 }
-.hentry.format-video:after, .hentry.format-audio:after {
+article.format-video:after, article.format-audio:after {
   border-color: #8a92a1;
 }
-.hentry.format-audio:before {
+article.format-audio:before {
   content: "\f109";
 }
-.hentry.format-status, .hentry.format-quote, .hentry.format-error {
+article.format-status, article.format-quote, article.format-error {
   border-color: #242d36;
 }
-.hentry.format-status:before, .hentry.format-quote:before, .hentry.format-error:before {
+article.format-status:before, article.format-quote:before, article.format-error:before {
   background: #242d36;
   content: "\f106";
 }
-.hentry.format-status:after, .hentry.format-quote:after, .hentry.format-error:after {
+article.format-status:after, article.format-quote:after, article.format-error:after {
   border-color: #050708;
 }
-.hentry.format-status:before {
+article.format-status:before {
   content: "\f105";
 }
-.hentry.format-error:before {
+article.format-error:before {
   content: "\2639";
   font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
 }
-.hentry.format-error .entry-title {
+article.format-error .entry-title {
    color: #242d36;
 }
-.hentry.format-gallery:before {
+article.format-gallery:before {
   content: "\f103";
 }
 @media screen and (max-width: 47.2226em) {
-  .hentry {
+  article {
     margin-bottom: 54px;
   }
 }
@@ -486,25 +487,6 @@ a.more-link {
   line-height: 1.8em;
   margin: 0;
   padding: 0 1%;
-}
-
-.comments-disabled {
-  background: white;
-  border-top: 8px solid #9ba2af;
-  margin-top: -30px;
-  padding: 15px;
-  position: relative;
-}
-.comments-disabled:after {
-  border-top: 3px solid #8a92a1;
-  content: "";
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 0;
-  z-index: 1;
 }
 
 main.full-width {

@@ -30,7 +30,7 @@
 <div id="content" class="site-content">
     <div class="content-area">
         <main id="main" class="site-main">
-            <article class="hentry format-error">
+            <article class="format-error">
                 <header class="entry-header">
                     <h1 class="entry-title">Wystąpił błąd</h1>
                 </header>

@@ -12,7 +12,7 @@ class BlogController extends Controller
 {
     public function index()
     {
-        $posts = Post::latest()->paginate(10);
+        $posts = Post::with(['project'])->latest()->paginate(10);
 
         if ($posts->isEmpty()) {
             abort(404);
@@ -39,7 +39,7 @@ class BlogController extends Controller
         return view('blog.category', [
             'body_classes' => ['archive', 'category'],
             'category' => $category,
-            'posts' => $category->posts()->latest()->paginate(10),
+            'posts' => $category->posts()->with(['project'])->latest()->paginate(10),
             'title' => page_title($category->name),
         ]);
     }
@@ -49,7 +49,8 @@ class BlogController extends Controller
         $phrase = $request->get('q');
         $phraseQuoted = str_replace("'", "\\'", $phrase);
 
-        $posts = Post::where('title', 'like', "%{$phrase}%")
+        $posts = Post::with(['project'])
+            ->where('title', 'like', "%{$phrase}%")
             ->orWhere('content', 'like', "%{$phrase}%")
             ->orderBy(DB::raw("title LIKE '%{$phraseQuoted}%'"), 'desc')
             ->latest()
@@ -66,7 +67,7 @@ class BlogController extends Controller
     {
         return view('blog.tag', [
             'body_classes' => ['archive', 'tag'],
-            'posts' => $tag->posts()->latest()->paginate(10),
+            'posts' => $tag->posts()->with(['project'])->latest()->paginate(10),
             'tag' => $tag,
             'title' => page_title($tag->name),
         ]);

@@ -1,7 +1,8 @@
 @php
 $single = $single ?? false;
+/** @var $post \App\Models\Post */
 @endphp
-<article class="hentry"@if ($post->language !== config('app.locale')) lang="{{ $post->language }}" @endif>
+<article @if ($post->language !== config('app.locale')) lang="{{ $post->language }}" @endif>
     <header class="entry-header">
         <h1 class="entry-title">
             @if ($single)
@@ -17,6 +18,16 @@ $single = $single ?? false;
             <div class="box box-warning">
                 <p>
                     Publikacja tego wpisu została zaplanowana na {{ localized_date($post->created_at, true) }}.
+                </p>
+            </div>
+        @endif
+
+        @if ($post->project !== null)
+            <div class="box box-info">
+                <p>
+                    Ten post przedstawia doświadczenia lub przemyślenia nabyte (bezpośrednio lub nie) podczas prac nad
+                    <a href="{{ route('project', $post->project()->first()->slug) }}">projektem {{ $post->project()->first()->title }}</a>.
+                    Kliknij w link aby zobaczyć go w portfolio.
                 </p>
             </div>
         @endif

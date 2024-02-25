@@ -30,7 +30,7 @@
 <div id="content" class="site-content">
     <div class="content-area">
         <main id="main" class="site-main">
-            <article class="hentry type-none">
+            <article class="type-none">
                 <header class="entry-header">
                     <h1 class="entry-title">Przerwa techniczna</h1>
                 </header>

@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-    <article class="hentry type-page">
+    <article class="type-page">
         <header class="entry-header">
             <h1 class="entry-title">Kontakt</h1>
         </header>
@@ -40,7 +40,7 @@
                     {{ form_error('g-recaptcha-response', $errors)  }}
                 </div>
                 <p>
-                    <input type="submit" value="Wyślij">
+                    <button>Wyślij</button>
                 </p>
             </form>
         </div>
