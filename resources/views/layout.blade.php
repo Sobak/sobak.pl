@@ -52,9 +52,8 @@
         <div class="social-links">
             <ul>
                 <li><a href="https://www.linkedin.com/in/msobaczewski/"><span class="sr-only">LinkedIn</span></a></li>
-                <li><a href="https://twitter.com/SobakPL"><span class="sr-only">Twitter</span></a></li>
                 <li><a href="https://github.com/Sobak"><span class="sr-only">GitHub</span></a></li>
-                <li><a href="https://facebook.com/SobakPL"><span class="sr-only">Facebook</span></a></li>
+                <li><a href="https://twitter.com/SobakPL"><span class="sr-only">Twitter</span></a></li>
                 <li><a href="{{ route('feed') }}"><span class="sr-only">RSS</span></a></li>
             </ul>
         </div>

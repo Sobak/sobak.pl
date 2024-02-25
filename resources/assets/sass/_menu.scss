@@ -333,9 +333,6 @@
 .social-links ul:last-of-type {
   margin-right: 0;
 }
-.social-links ul a[href*="facebook.com"]:before {
-  content: "\f204";
-}
 .social-links ul a[href*="twitter.com"]:before {
   content: "\f202";
 }
@@ -345,6 +342,6 @@
 .social-links ul a[href*="linkedin.com"]:before {
   content: "\f207";
 }
-.social-links ul a[href*="/feed/"]:before {
+.social-links ul a[href*="/feed"]:before {
   content: "\f413";
 }
