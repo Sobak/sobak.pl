@@ -218,7 +218,7 @@ a.more-link,
 }
 
 .site-description {
-  color: rgba(240, 241, 243, 0.6);
+  color: $color-meta-hover;
   font-size: 0.83333em;
   line-height: 1.8em;
   font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
@@ -352,8 +352,12 @@ article.format-gallery:before {
 a.more-link {
   font-size: 0.83333em;
   line-height: 1.8em;
-  color: #9ba2af;
+  color: $color-meta;
   text-decoration: none;
+
+  &:hover {
+    color: $color-meta-hover;
+  }
 }
 
 .entry-title {
@@ -377,12 +381,16 @@ a.more-link {
 }
 
 .entry-meta, .entry-meta a {
-  color: #9ba2af;
+  color: $color-meta;
   font-size: 0.83333em;
   line-height: 1.8em;
 }
 .entry-meta a {
   font-size: inherit;
+
+  &:hover {
+    color: $color-meta-hover;
+  }
 }
 
 .post-date,
@@ -425,7 +433,7 @@ a.more-link {
 }
 
 .page-title {
-  color: #9ba2af;
+  color: $color-meta;
   display: inline-block;
   font-size: 1.27778em;
   line-height: 1.17391em;
@@ -482,7 +490,7 @@ a.more-link {
 }
 
 .site-content .gallery dd {
-  color: #9ba2af;
+  color: $color-meta;
   font-size: 0.83333em;
   line-height: 1.8em;
   margin: 0;

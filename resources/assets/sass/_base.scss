@@ -12,7 +12,7 @@ html {
 
 body {
   background: #f0f1f3;
-  color: #3d3f43;
+  color: #242628;
   font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   font-size: 18px;
   font-weight: 300;
@@ -147,7 +147,7 @@ hr {
 }
 
 blockquote {
-  color: #9ba2af;
+  color: $color-meta;
   border-left: 5px solid rgba(155, 162, 175, 0.25);
   font-weight: bolder;
   margin: 0 0 27px 0;
@@ -209,14 +209,15 @@ th {
 
 // Links
 a {
-  color: #f45145;
+  color: #f23628;
   text-decoration: none;
   transition: all 0.2s ease-in-out;
-}
-a:visited {
-  color: #f45145;
-}
-a:hover, a:focus, a:active {
-  color: #f77e75;
-  transition: all 0.2s ease-in-out;
+
+  &:visited {
+    color: #f23628;
+  }
+
+  &:hover, &:focus, &:active {
+    color: #f45145;
+  }
 }
