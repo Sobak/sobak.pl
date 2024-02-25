@@ -63,7 +63,7 @@
             <form role="search" method="get" class="search-form" action="{{ route('search') }}">
                 <label>
                     <span class="sr-only">Wyszukiwanie:</span>
-                    <input type="search" name="q" placeholder="Wpisz szukany tekst…" required>
+                    <input type="search" name="q" placeholder="Wpisz szukany tekst…" value="{{ request()->query('q') }}" required>
                 </label>
                 <button>Szukaj</button>
             </form>
