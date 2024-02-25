@@ -69,7 +69,7 @@
             </form>
         </div>
     </div>
-    <div id="content" class="site-content">
+    <div id="content" class="site-content @yield('site-content-extra-classes')">
         <div class="content-area">
             <main id="main" class="site-main">
 

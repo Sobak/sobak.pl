@@ -83,6 +83,20 @@ a.more-link,
   margin: 81px auto 0;
   max-width: 55.556em;
 }
+
+.site-content.with-page-title {
+  margin-top: 0;
+
+  .page-title {
+    margin-top: 20px;
+    margin-bottom: 27px;
+  }
+
+  .widget-area {
+    margin-top: 81px;
+  }
+}
+
 @media screen and (max-width: 59.306em) {
   .site-content {
     max-width: 41.667em;
