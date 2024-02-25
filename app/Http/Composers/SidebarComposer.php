@@ -17,7 +17,6 @@ class SidebarComposer
     {
         $view->with([
             'categories' => Category::withCount('posts')->orderBy('name')->get(),
-            'twitterEntries' => cache('twitter_entries'),
         ]);
     }
 }

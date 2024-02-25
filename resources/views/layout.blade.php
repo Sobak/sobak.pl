@@ -94,16 +94,6 @@
 
 <script src="{{ mix('assets/js/bundle.js') }}"></script>
 
-@if (cache()->has('twitter_entries') === false)
-<script>
-    $(function () {
-        $.get('{{ route('twitter.entries') }}', function (data) {
-            twitterWidget(data, '#twitter-widget-tweets');
-        });
-    });
-</script>
-@endif
-
 @stack('footer_extras')
 
 </body>
