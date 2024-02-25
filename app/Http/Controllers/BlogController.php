@@ -57,6 +57,7 @@ class BlogController extends Controller
             ->paginate(10);
 
         return view('blog.search', [
+            'body_classes' => ['archive', 'search'],
             'phrase' => $phrase,
             'posts' => $posts,
             'title' => page_title('Wyniki wyszukiwania'),

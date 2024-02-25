@@ -473,6 +473,10 @@ a.more-link {
   content: "\f302";
 }
 
+.archive.search .page-title:before {
+  content: "\f400";
+}
+
 // Media
 .entry-content img.wp-smiley {
   border: none;
