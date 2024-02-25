@@ -62,6 +62,7 @@ class PostIndexer extends AbstractContentIndexer implements ContentTypeIndexerIn
             'project' => $post->metadata['project'] ?? null,
             'excerpt' => $excerpt,
             'content' => $content,
+            'content_searchable' => $this->createSearchableContent($content),
             'language' => $post->metadata['language'],
             'created_at' => Carbon::createFromTimestamp(strtotime($post->metadata['date'])),
         ]);
@@ -137,5 +138,19 @@ class PostIndexer extends AbstractContentIndexer implements ContentTypeIndexerIn
         }
 
         return $post;
+    }
+
+    private function createSearchableContent(string $content): string
+    {
+        $content = strip_tags($content);
+
+        $trimmedLines = array_map(function (string $line) {
+            return trim($line, ' ');
+        }, explode("\n", $content));
+
+        $content = join("\n", $trimmedLines);
+
+        // Replace single newlines with space character
+        return preg_replace('/(?<!\n)\n(?!\n)/', ' ', $content);
     }
 }

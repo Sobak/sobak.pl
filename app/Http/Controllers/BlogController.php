@@ -51,7 +51,7 @@ class BlogController extends Controller
 
         $posts = Post::with(['project'])
             ->where('title', 'like', "%{$phrase}%")
-            ->orWhere('content', 'like', "%{$phrase}%")
+            ->orWhere('content_searchable', 'like', "%{$phrase}%")
             ->orderBy(DB::raw("title LIKE '%{$phraseQuoted}%'"), 'desc')
             ->latest()
             ->paginate(10);
