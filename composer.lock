@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "40bc3f42d4b69e4c3508ddd1a35ac532",
+    "content-hash": "dddbafa68b3aeadbb635ba8374881138",
     "packages": [
         {
             "name": "carbonphp/carbon-doctrine-types",
@@ -733,16 +733,16 @@
         },
         {
             "name": "kadet/keylighter",
-            "version": "dev-master",
+            "version": "v0.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kadet1090/KeyLighter.git",
-                "reference": "a43b647"
+                "reference": "d9f41b8947efa685e91d8b8f631f71aa49704781"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kadet1090/KeyLighter/zipball/a43b647",
-                "reference": "a43b647",
+                "url": "https://api.github.com/repos/kadet1090/KeyLighter/zipball/d9f41b8947efa685e91d8b8f631f71aa49704781",
+                "reference": "d9f41b8947efa685e91d8b8f631f71aa49704781",
                 "shasum": ""
             },
             "require": {
@@ -761,7 +761,6 @@
             "suggest": {
                 "symfony/console": "Allows usage of keylighters CLI utility."
             },
-            "default-branch": true,
             "bin": [
                 "bin/keylighter"
             ],
@@ -787,9 +786,9 @@
             "description": "Yet another syntax highlighter for PHP",
             "support": {
                 "issues": "https://github.com/kadet1090/KeyLighter/issues",
-                "source": "https://github.com/kadet1090/KeyLighter/tree/master"
+                "source": "https://github.com/kadet1090/KeyLighter/tree/v0.9.0"
             },
-            "time": "2024-01-26T17:43:52+00:00"
+            "time": "2024-01-26T17:37:10+00:00"
         },
         {
             "name": "laravel/framework",
@@ -8292,9 +8291,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "kadet/keylighter": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
