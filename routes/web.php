@@ -1,21 +1,27 @@
 <?php
 
-Route::paginate('/', 'BlogController@index')->name('index');
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\FeedController;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\ProjectController;
 
-Route::get('blog/{post}', 'BlogController@show')->name('post');
+Route::paginate('/', [BlogController::class, 'index'])->name('index');
 
-Route::get('feed', 'FeedController@index')->name('feed');
+Route::get('blog/{post}', [BlogController::class, 'show'])->name('post');
 
-Route::paginate('kategoria/{category}', 'BlogController@category')->name('category');
+Route::get('feed', [FeedController::class, 'index'])->name('feed');
 
-Route::get('kontakt', 'ContactController@show')->middleware('stateful')->name('contact');
-Route::post('kontakt', 'ContactController@send')->middleware('stateful');
+Route::paginate('kategoria/{category}', [BlogController::class, 'category'])->name('category');
 
-Route::get('portfolio', 'ProjectController@index')->name('projects');
-Route::get('portfolio/{project}', 'ProjectController@show')->name('project');
+Route::get('kontakt', [ContactController::class, 'show'])->middleware('stateful')->name('contact');
+Route::post('kontakt', [ContactController::class, 'send'])->middleware('stateful');
 
-Route::paginate('szukaj', 'BlogController@search')->name('search');
+Route::get('portfolio', [ProjectController::class, 'index'])->name('projects');
+Route::get('portfolio/{project}', [ProjectController::class, 'show'])->name('project');
 
-Route::paginate('tag/{tag}', 'BlogController@tag')->name('tag');
+Route::paginate('szukaj', [BlogController::class, 'search'])->name('search');
 
-Route::get('{page}', 'PageController@show')->name('page');
+Route::paginate('tag/{tag}', [BlogController::class, 'tag'])->name('tag');
+
+Route::get('{page}', [PageController::class, 'show'])->name('page');
