@@ -12,7 +12,7 @@ RUN apt-get update -qq && \
         git \
         unzip
 
-RUN docker-php-ext-install bcmath intl
+RUN docker-php-ext-install bcmath intl pdo_mysql
 
 RUN ln -snf /usr/share/zoneinfo/Europe/Warsaw /etc/localtime && \
     echo "date.timezone = Europe/Warsaw" >> /usr/local/etc/php/conf.d/datetime.ini;

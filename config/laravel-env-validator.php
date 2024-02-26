@@ -5,6 +5,9 @@ return [
     'live_validation' => false,
 
     'rules' => [
+        'DB_HOST' => 'required',
+        'DB_DATABASE' => 'required',
+        'DB_USERNAME' => 'required',
         'GOOGLE_ANALYTICS_ID' => 'required',
         'GOOGLE_RECAPTCHA_KEY' => 'required',
         'GOOGLE_RECAPTCHA_SECRET' => 'required',
