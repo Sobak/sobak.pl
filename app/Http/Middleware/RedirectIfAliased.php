@@ -17,13 +17,17 @@ class RedirectIfAliased
         $redirect = Redirect::where('source_url', $sourceUrl)->first();
 
         if ($redirect !== null) {
-            $redirectLog = new RedirectLog();
-            $redirectLog->source_url = $sourceUrl;
-            $redirectLog->target_url = $redirect->target_url;
-            $redirectLog->referrer = Str::limit($request->header('referer'), 255);
-            $redirectLog->ip = $request->getClientIp();
-            $redirectLog->user_agent = Str::limit($request->userAgent(), 255);
-            $redirectLog->save();
+            try {
+                $redirectLog = new RedirectLog();
+                $redirectLog->source_url = $sourceUrl;
+                $redirectLog->target_url = $redirect->target_url;
+                $redirectLog->referrer = Str::limit($request->header('referer'), 255);
+                $redirectLog->ip = $request->getClientIp();
+                $redirectLog->user_agent = Str::limit($request->userAgent(), 255);
+                $redirectLog->save();
+            } catch (\Exception $exception) {
+                // Never fail a redirect if we can't save the log
+            }
 
             return redirect($redirect->target_url, $redirect->http_code);
         }
