@@ -20,8 +20,9 @@ class RedirectIfAliased
             $redirectLog = new RedirectLog();
             $redirectLog->source_url = $sourceUrl;
             $redirectLog->target_url = $redirect->target_url;
+            $redirectLog->referrer = Str::limit($request->header('referer'), 255);
             $redirectLog->ip = $request->getClientIp();
-            $redirectLog->user_agent = $request->userAgent();
+            $redirectLog->user_agent = Str::limit($request->userAgent(), 255);
             $redirectLog->save();
 
             return redirect($redirect->target_url, $redirect->http_code);
