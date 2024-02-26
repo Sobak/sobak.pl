@@ -28,3 +28,14 @@ The `persistent` database is different, it follows the classic approach of commi
 schema changes into the repository. This database is never recreated so every change must be
 done with a regular migration. Migrations for this database are kept in 
 `database/migrations/persistent/`
+
+## Running migrations
+
+For the `indexer` and `permanent` databases there's no need to ever invoke migrations manually,
+this is done as part of the content indexing process by the `php artisan content:index` command.
+
+For the persistent database, it's migrated using
+
+```sh
+php artisan migrate --database=persistent --path=database/migrations/persistent/
+```

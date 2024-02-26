@@ -31,4 +31,12 @@ git clone git@github.com:Sobak/sobak.pl.git website
 cd website && docker-compose up -d
 ```
 
+Then review `.env` and adjust settings if necessary. Finally, the container and run
+
+```sh
+composer install
+php artisan migrate --database=persistent --path=database/migrations/persistent/
+php artisan content:index
+```
+
 [homepage]: http://sobak.pl
