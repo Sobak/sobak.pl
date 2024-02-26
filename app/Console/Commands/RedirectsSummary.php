@@ -26,12 +26,29 @@ class RedirectsSummary extends Command
                 $redirect->source_url,
                 $redirect->target_url,
                 $redirect->total,
+                $this->getLastUsedDate($redirect->target_url),
             ];
         }
 
         $this->table(
-            ['Source URL', 'Target URL', 'Total redirects'],
+            ['Source URL', 'Target URL', 'Total redirects', 'Last used'],
             $tableRows
         );
+    }
+
+    private function getLastUsedDate(string $targetUrl): string
+    {
+        $lastLog = RedirectLog::query()
+            ->select('created_at')
+            ->where('target_url', '=', $targetUrl)
+            ->orderBy('created_at', 'desc')
+            ->limit(1)
+            ->first();
+
+        if ($lastLog === null) {
+            return 'not used';
+        }
+
+        return $lastLog->created_at->format('Y-m-d');
     }
 }
