@@ -24,7 +24,7 @@ schema. Just update old ones and re-run the command.
 For this reason, all migrations stored directly in `database/migrations/` are meant for the 
 `indexer` and `website` databases only.
 
-The `permanent` database is different, it follows the classic approach of committing the DB 
+The `persistent` database is different, it follows the classic approach of committing the DB 
 schema changes into the repository. This database is never recreated so every change must be
 done with a regular migration. Migrations for this database are kept in 
-`database/migrations/permanent/`
+`database/migrations/persistent/`

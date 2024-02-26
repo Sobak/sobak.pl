@@ -26,12 +26,12 @@ return [
     | from the site files. Once it is built, we swap the "website" database with
     | "indexer" one, providing zero-downtime deployments - like Capistrano does!
     |
-    | And then there's a connection/database called "permanent" which, like it's
+    | And then there's a connection/database called "persistent" which, like its
     | name implies, is a regular kind of DB. It's _not_ reset at all, so it uses
-    | the classical migration flow. It's not used a lot, but you should be aware.
+    | the classical migration flow. It's not used a lot, but you should be aware
     |
     | You should check database/migrations/README.md to learn more, and how that
-    | affects the development process. No worries, I'd say it is actually simple.
+    | affects the development process. No worries, I'd say it's actually simple.
     |
     */
 
@@ -49,10 +49,9 @@ return [
             'prefix' => '',
         ],
 
-        // This is a permanent database that is not recreated on every content change
-        'permanent' => [
+        'persistent' => [
             'driver' => 'sqlite',
-            'database' => database_path('permanent.sqlite'),
+            'database' => database_path('persistent.sqlite'),
             'prefix' => '',
         ],
 

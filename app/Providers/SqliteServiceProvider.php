@@ -8,7 +8,7 @@ class SqliteServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        if ((file_exists($path = config('database.connections.permanent.database'))) === false) {
+        if ((file_exists($path = config('database.connections.persistent.database'))) === false) {
             touch($path);
         }
     }
