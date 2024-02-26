@@ -1,0 +1,30 @@
+# Perception
+
+## The database and migrations structure
+
+This project uses somehow untypical database setup. Most of the website is powered
+by the SQLite database that gets re-created from the content files (Markdown, some
+configs) every time you run `php artisan migrate`.
+
+There's actually three databases (and their connections) defined in `config/database.php`:
+
+- `indexer`: created when the `php artisan content:index` is running. Once the process is
+  is completed, the old `website` DB gets deleted and `indexer` database gets renamed into
+  `website.sqlite`. This provides essentially zero-downtime deployments
+- `website`: created once the indexing process finishes. That database is used to power most
+  of the website like blog, projects and pages.
+- `permantent`: for a few cases where persistent database storage is needed
+
+Because of that setup, there are some important considerations about database migrations.
+Most importantly, there's no typical schema update process for `indexer` nor `website`
+databases. Both of them use same schema but since they get created upon running
+`php artisan content:index`, there's no point in creating new migrations which update the
+schema. Just update old ones and re-run the command.
+
+For this reason, all migrations stored directly in `database/migrations/` are meant for the 
+`indexer` and `website` databases only.
+
+The `permanent` database is different, it follows the classic approach of committing the DB 
+schema changes into the repository. This database is never recreated so every change must be
+done with a regular migration. Migrations for this database are kept in 
+`database/migrations/permanent/`

@@ -11,6 +11,10 @@ is strictly forbidden.
 The success/failure icons used for CLI notifications are owned by Jeffrey Way, author
 of [laravel-mix](https://github.com/JeffreyWay/laravel-mix).
 
+## Database setup
+
+Check the [dedicated README](database/migrations/README.md) file in `database/migrations/`
+
 ## Local development
 
 Suggested setup for the local development (which attached Docker config follows) is to put

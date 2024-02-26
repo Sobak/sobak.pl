@@ -17,17 +17,21 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Database Connections
+    | Database Connections (custom logic ahead!)
     |--------------------------------------------------------------------------
     |
-    | Here are each of the database connections setup for your application.
-    | Of course, examples of configuring each database platform that is
-    | supported by Laravel is shown below to make development simple.
+    | My little engine uses rather distinctive logic for the databases. The main
+    | database used to power the website is recreated from scratch on every site
+    | deployment. The "indexer" database gets populated with information fetched
+    | from the site files. Once it is built, we swap the "website" database with
+    | "indexer" one, providing zero-downtime deployments - like Capistrano does!
     |
+    | And then there's a connection/database called "permanent" which, like it's
+    | name implies, is a regular kind of DB. It's _not_ reset at all, so it uses
+    | the classical migration flow. It's not used a lot, but you should be aware.
     |
-    | All database work in Laravel is done through the PHP PDO facilities
-    | so make sure you have the driver for your particular database of
-    | choice installed on your machine before you begin development.
+    | You should check database/migrations/README.md to learn more, and how that
+    | affects the development process. No worries, I'd say it is actually simple.
     |
     */
 
