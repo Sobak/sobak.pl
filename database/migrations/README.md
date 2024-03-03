@@ -2,18 +2,25 @@
 
 ## The database and migrations structure
 
-This project uses somehow untypical database setup. Most of the website is powered
-by the SQLite database that gets re-created from the content files (Markdown, some
-configs) every time you run `php artisan migrate`.
+This project uses somehow untypical database setup. This is because database is _not_
+a primary source of data for most of the project. Content is stored as Markdown files
+with accompanied by few extra configs.
+
+Any time the content changes, a `php artisan content:index` command must be run, which
+straight up removes the old SQLite file, creates new one (so it also runs migrations
+starting from clean state) and populates it with data.
+
+Think of it as a semi-static-site-generator. Except we don't generate the complete HTML
+pages but rather a database which is then read by the application.
 
 There's actually three databases (and their connections) defined in `config/database.php`:
 
 - `indexer`: created when the `php artisan content:index` is running. Once the process is
-  is completed, the old `website` DB gets deleted and `indexer` database gets renamed into
+  completed, the old `website` DB gets deleted and `indexer` database gets renamed into
   `website.sqlite`. This provides essentially zero-downtime deployments
 - `website`: created once the indexing process finishes. That database is used to power most
   of the website like blog, projects and pages.
-- `permantent`: for a few cases where persistent database storage is needed
+- `permantent`: for a few cases where persistent database storage is needed. Uses MySQL.
 
 Because of that setup, there are some important considerations about database migrations.
 Most importantly, there's no typical schema update process for `indexer` nor `website`
