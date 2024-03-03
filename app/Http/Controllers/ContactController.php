@@ -18,12 +18,17 @@ class ContactController extends Controller
 
     public function send(Request $request)
     {
-        $this->validate($request, [
+        $validationRules = [
             'name' => 'required',
             'email' => 'required|email',
             'message' => 'required',
-            'g-recaptcha-response' => ['required', new ReCaptcha()],
-        ]);
+        ];
+
+        if (config('services.google.recaptcha.key')) {
+            $validationRules['g-recaptcha-response'] = ['required', new ReCaptcha()];
+        }
+
+        $this->validate($request, $validationRules);
 
         try {
             Mail::send(new ContactMail(

@@ -35,10 +35,12 @@
                     {{ form_error('message', $errors)  }}
                 </p>
 
+                @if (config('services.google.recaptcha.key'))
                 <div class="form-input">
                     <div class="g-recaptcha" data-sitekey="{{ config('services.google.recaptcha.key') }}"></div>
                     {{ form_error('g-recaptcha-response', $errors)  }}
                 </div>
+                @endif
                 <p>
                     <button>Wyślij</button>
                 </p>
@@ -48,5 +50,7 @@
 @endsection
 
 @push('footer_extras')
-    <script src="https://www.google.com/recaptcha/api.js"></script>
+    @if (config('services.google.recaptcha.key'))
+        <script src="https://www.google.com/recaptcha/api.js"></script>
+    @endif
 @endpush
