@@ -83,8 +83,8 @@
 
     <footer class="site-footer">
         <div class="site-info">
-            <a href="https://github.com/Sobak/homepage" title="Napędzane silnikiem Perception">Perception</a>
-            <a href="http://wordpress.com/themes/sorbet/" title="Motyw Sorbet od Automattic">Sorbet</a>
+            <a href="https://github.com/Sobak/homepage" title="Napędzane silnikiem Perception">Silnik: Perception</a>
+            <a href="http://wordpress.com/themes/sorbet/" title="Motyw Sorbet od Automattic">Theme: Sorbet</a>
             <a href="{{ route('page', ['polityka-prywatnosci']) }}" title="Zapoznaj się z polityką prywatności">Polityka prywatności</a>
         </div>
     </footer>
