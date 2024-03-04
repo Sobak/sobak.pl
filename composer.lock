@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dddbafa68b3aeadbb635ba8374881138",
+    "content-hash": "700e97999458e17b3009edbf2a954d42",
     "packages": [
         {
             "name": "carbonphp/carbon-doctrine-types",
@@ -1251,67 +1251,6 @@
                 }
             ],
             "time": "2024-01-28T23:22:08+00:00"
-        },
-        {
-            "name": "melihovv/laravel-env-validator",
-            "version": "7.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/melihovv/laravel-env-validator.git",
-                "reference": "7c1316e2d39a312c43269c16b7dec66d1d80fc77"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/melihovv/laravel-env-validator/zipball/7c1316e2d39a312c43269c16b7dec66d1d80fc77",
-                "reference": "7c1316e2d39a312c43269c16b7dec66d1d80fc77",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/config": "^6.0|^7.0|^8.0",
-                "illuminate/console": "^6.0|^7.0|^8.0",
-                "illuminate/support": "^6.0|^7.0|^8.0",
-                "illuminate/validation": "^6.0|^7.0|^8.0",
-                "php": ">=7.2"
-            },
-            "require-dev": {
-                "orchestra/testbench": "^4.0|^5.0|^6.0",
-                "phpunit/phpunit": "^8.4|^9.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Melihovv\\LaravelEnvValidator\\ServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Melihovv\\LaravelEnvValidator\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Alexander Melihov",
-                    "email": "amelihovv@ya.ru"
-                }
-            ],
-            "description": "Laravel Validator for the .env file",
-            "keywords": [
-                "env",
-                "env-validator",
-                "laravel",
-                "validation"
-            ],
-            "support": {
-                "issues": "https://github.com/melihovv/laravel-env-validator/issues",
-                "source": "https://github.com/melihovv/laravel-env-validator/tree/7.0.2"
-            },
-            "time": "2020-09-15T22:05:11+00:00"
         },
         {
             "name": "monolog/monolog",
