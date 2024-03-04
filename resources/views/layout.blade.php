@@ -83,7 +83,7 @@
 
     <footer class="site-footer">
         <div class="site-info">
-            <a href="https://github.com/Sobak/homepage" title="{{ __('app.footer.engine_tooltip') }}">{{ __('app.footer.engine') }}</a>
+            <a href="https://github.com/Sobak/sobak.pl" title="{{ __('app.footer.engine_tooltip') }}">{{ __('app.footer.engine') }}</a>
             <a href="https://wordpress.com/themes/sorbet/" title="{{ __('app.footer.theme_tooltip') }}">{{ __('app.footer.theme') }}</a>
             <a href="{{ route('page', ['polityka-prywatnosci']) }}" title="{{ __('app.footer.privacy_policy_tooltip') }}">{{ __('app.footer.privacy_policy') }}</a>
         </div>
