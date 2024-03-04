@@ -6,9 +6,9 @@
         "php": ">=7.4",
         "ext-json": "*",
         "fideloper/proxy": "^4.0",
-        "guzzlehttp/guzzle": "^6.3",
+        "guzzlehttp/guzzle": "^7.0",
         "kadet/keylighter": "^0.9.0",
-        "laravel/framework": "^6.0",
+        "laravel/framework": "^8.0",
         "laravel/tinker": "^2.0",
         "league/commonmark": "^1.0",
         "spatie/laravel-paginateroute": "^2.6",
@@ -17,12 +17,12 @@
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.4",
         "doctrine/dbal": "~2.0",
-        "facade/ignition": "^1.4",
+        "facade/ignition": "^2.0",
         "fzaninotto/faker": "~1.4",
         "jolicode/jolinotif": "^2.0",
         "mockery/mockery": "~1.0",
-        "nunomaduro/collision": "^3.0",
-        "phpunit/phpunit": "8.0"
+        "nunomaduro/collision": "^5.0",
+        "phpunit/phpunit": "^9.0"
     },
     "replace": {
         "symfony/polyfill-php72": "*",
@@ -51,6 +51,9 @@
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover"
+        ],
+        "post-update-cmd": [
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
         ],
         "ide-helpers": [
             "@php artisan ide-helper:generate",
