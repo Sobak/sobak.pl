@@ -12,7 +12,7 @@ class BlogController extends Controller
 {
     public function index()
     {
-        $posts = Post::with(['project'])->latest()->paginate(10);
+        $posts = Post::with(['project'])->latest()->paginate(10)->onEachSide(2);
 
         if ($posts->isEmpty()) {
             abort(404);
@@ -39,7 +39,7 @@ class BlogController extends Controller
         return view('blog.category', [
             'body_classes' => ['archive', 'category'],
             'category' => $category,
-            'posts' => $category->posts()->with(['project'])->latest()->paginate(10),
+            'posts' => $category->posts()->with(['project'])->latest()->paginate(10)->onEachSide(2),
             'title' => page_title($category->name),
         ]);
     }
@@ -54,7 +54,8 @@ class BlogController extends Controller
             ->orWhere('content_searchable', 'like', "%{$phrase}%")
             ->orderBy(DB::raw("title LIKE '%{$phraseQuoted}%'"), 'desc')
             ->latest()
-            ->paginate(10);
+            ->paginate(10)
+            ->onEachSide(2);
 
         return view('blog.search', [
             'body_classes' => ['archive', 'search'],
@@ -68,7 +69,7 @@ class BlogController extends Controller
     {
         return view('blog.tag', [
             'body_classes' => ['archive', 'tag'],
-            'posts' => $tag->posts()->with(['project'])->latest()->paginate(10),
+            'posts' => $tag->posts()->with(['project'])->latest()->paginate(10)->onEachSide(2),
             'tag' => $tag,
             'title' => page_title($tag->name),
         ]);
