@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Mail\ContactMail;
+use App\Models\ContactFormMessage;
 use App\Rules\ReCaptcha;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class ContactController extends Controller
 {
@@ -30,6 +33,8 @@ class ContactController extends Controller
 
         $this->validate($request, $validationRules);
 
+        $error = null;
+
         try {
             Mail::send(new ContactMail(
                 $request->get('name'),
@@ -37,8 +42,10 @@ class ContactController extends Controller
                 $request->get('subject'),
                 $request->get('message')
             ));
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             report($exception);
+
+            $error = (string) $exception;
 
             return redirect()
                 ->route('contact')
@@ -47,6 +54,22 @@ class ContactController extends Controller
                 ->with('message', 'Wystąpił błąd przy wysyłaniu wiadomości. Spróbuj ponownie później
                         lub wyśli ją bezpośrednio pod podany niżej adres email. Przepraszam
                         za utrudnienia.');
+        } finally {
+            $log = new ContactFormMessage();
+            $log->name = $request->get('name');
+            $log->email = $request->get('email');
+            $log->subject = $request->get('subject');
+            $log->content = $request->get('message');
+            $log->error = $error;
+            $log->ip = $request->getClientIp();
+            $log->user_agent = Str::limit($request->userAgent(), 255);
+
+            try {
+                $log->save();
+            } catch (Exception $exception) {
+                // Never fail if we can't save the log, just report
+                report($exception);
+            }
         }
 
         return redirect()

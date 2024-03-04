@@ -17,17 +17,17 @@
                 {{ csrf_field() }}
                 <p class="form-input">
                     <label for="name" class="required">Podpis</label>
-                    <input type="text" name="name" id="name" size="40" value="{{ old('name') }}" required>
+                    <input type="text" name="name" id="name" size="40" maxlength="150" value="{{ old('name') }}" required>
                     {{ form_error('name', $errors)  }}
                 </p>
                 <p class="form-input">
                     <label for="email" class="required">Email</label>
-                    <input type="email" name="email" id="email" size="40" value="{{ old('email') }}" required>
+                    <input type="email" name="email" id="email" size="40" maxlength="200" value="{{ old('email') }}" required>
                     {{ form_error('email', $errors)  }}
                 </p>
                 <p class="form-input">
                     <label for="subject">Temat</label>
-                    <input type="text" name="subject" id="subject" size="40"  value="{{ old('subject') }}">
+                    <input type="text" name="subject" id="subject" size="40" maxlength="150" value="{{ old('subject') }}">
                 </p>
                 <p class="form-input">
                     <label for="message" class="required">Wiadomość</label>
