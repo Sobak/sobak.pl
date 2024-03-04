@@ -4,7 +4,7 @@
 
 @section('content')
     <header class="page-header">
-        <h1 class="page-title">Tag: {{ $tag->name }}</h1>
+        <h1 class="page-title">{{ __('blog.tag.page_title') }}: {{ $tag->name }}</h1>
     </header>
 
     @each('blog.post', $posts, 'post')

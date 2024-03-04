@@ -1,6 +1,6 @@
 <div id="sidebar" class="widget-area" role="complementary">
     <aside class="widget">
-        <h1>Kategorie</h1>
+        <h1>{{ __('app.sidebar.categories') }}</h1>
         <ul>
         @foreach ($categories as $category)
             <li>

@@ -6,7 +6,7 @@
     <title>{{ $title ?? config('app.name') }}</title>
     <link rel="stylesheet" href="{{ mix('assets/css/app.css') }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|PT+Serif:400,400italic&amp;subset=latin,latin-ext">
-    <link rel="alternate" href="{{ route('feed') }}" type="application/rss+xml" title="Kanał ze wpisami">
+    <link rel="alternate" href="{{ route('feed') }}" type="application/rss+xml" title="{{ __('app.rss_entries_title') }}">
     @stack('header_extras')
 </head>
 
@@ -19,31 +19,31 @@
             </div>
 
             <div class="toggles">
-                <div id="menu-toggle" class="toggle active" title="Menu"><span class="sr-only">Menu</span></div>
-                <div id="social-links-toggle" class="toggle" title="Social media"><span class="sr-only">Social media</span></div>
-                <div id="search-toggle" class="toggle" title="Szukaj"><span class="sr-only">Szukaj</span></div>
+                <div id="menu-toggle" class="toggle active" title="{{ __('app.menu.section_menu') }}"><span class="sr-only">{{ __('app.menu.section_menu') }}</span></div>
+                <div id="social-links-toggle" class="toggle" title="{{ __('app.menu.section_social_links') }}"><span class="sr-only">{{ __('app.menu.section_social_links') }}</span></div>
+                <div id="search-toggle" class="toggle" title="{{ __('app.menu.section_search') }}"><span class="sr-only">{{ __('app.menu.section_search') }}</span></div>
             </div>
         </div>
     </header>
     <div id="menu-toggle-nav" class="panel">
         <nav class="main-navigation">
             <div class="sr-only">
-                <a href="#content">Przejdź do treści</a><br>
-                <a href="#sidebar">Przejdź do menu bocznego</a>
+                <a href="#content">{{ __('app.jump_to_content') }}</a><br>
+                <a href="#sidebar">{{ __('app.jump_to_sidebar') }}</a>
             </div>
 
             <ul>
                 <li {!! if_active(['index', 'blog', 'post', 'category', 'tag', 'search']) !!}>
-                    <a href="{{ route('index') }}">Blog</a>
+                    <a href="{{ route('index') }}">{{ __('app.menu.blog') }}</a>
                 </li>
                 <li {!! if_active(['projects', 'project']) !!}>
-                    <a href="{{ route('projects') }}">Portfolio</a>
+                    <a href="{{ route('projects') }}">{{ __('app.menu.projects') }}</a>
                 </li>
                 <li {!! if_active('page:o-mnie') !!}>
-                    <a href="{{ route('page', ['o-mnie']) }}">O mnie</a>
+                    <a href="{{ route('page', ['o-mnie']) }}">{{ __('app.menu.about_me') }}</a>
                 </li>
                 <li {!! if_active('contact') !!}>
-                    <a href="{{ route('contact') }}">Kontakt</a>
+                    <a href="{{ route('contact') }}">{{ __('app.menu.contact') }}</a>
                 </li>
             </ul>
         </nav>
@@ -62,10 +62,10 @@
         <div class="search-wrapper">
             <form role="search" method="get" class="search-form" action="{{ route('search') }}">
                 <label>
-                    <span class="sr-only">Wyszukiwanie:</span>
-                    <input type="search" name="q" placeholder="Wpisz szukany tekst…" value="{{ request()->query('q') }}" required>
+                    <span class="sr-only">{{ __('app.search.label') }}:</span>
+                    <input type="search" name="q" placeholder="{{ __('app.search.placeholder') }}" value="{{ request()->query('q') }}" required>
                 </label>
-                <button>Szukaj</button>
+                <button>{{ __('app.search.button') }}</button>
             </form>
         </div>
     </div>
@@ -83,9 +83,9 @@
 
     <footer class="site-footer">
         <div class="site-info">
-            <a href="https://github.com/Sobak/homepage" title="Napędzane silnikiem Perception">Silnik: Perception</a>
-            <a href="http://wordpress.com/themes/sorbet/" title="Motyw Sorbet od Automattic">Theme: Sorbet</a>
-            <a href="{{ route('page', ['polityka-prywatnosci']) }}" title="Zapoznaj się z polityką prywatności">Polityka prywatności</a>
+            <a href="https://github.com/Sobak/homepage" title="{{ __('app.footer.engine_tooltip') }}">{{ __('app.footer.engine') }}</a>
+            <a href="http://wordpress.com/themes/sorbet/" title="{{ __('app.footer.theme_tooltip') }}">{{ __('app.footer.theme') }}</a>
+            <a href="{{ route('page', ['polityka-prywatnosci']) }}" title="{{ __('app.footer.privacy_policy_tooltip') }}">{{ __('app.footer.privacy_policy') }}</a>
         </div>
     </footer>
 

@@ -17,7 +17,7 @@ $single = $single ?? false;
         @if (config('content.show_scheduled') && $post->created_at > now())
             <div class="box box-warning">
                 <p>
-                    Publikacja tego wpisu została zaplanowana na {{ localized_date($post->created_at, true) }}.
+                    {{ __('blog.post.scheduled') }} {{ localized_date($post->created_at, true) }}.
                 </p>
             </div>
         @endif
@@ -25,9 +25,10 @@ $single = $single ?? false;
         @if ($post->project !== null)
             <div class="box box-info">
                 <p>
-                    Ten post przedstawia doświadczenia lub przemyślenia nabyte (bezpośrednio lub nie) podczas prac nad
-                    <a href="{{ route('project', $post->project()->first()->slug) }}">projektem {{ $post->project()->first()->title }}</a>.
-                    Kliknij w link aby zobaczyć go w portfolio.
+                    {{ __('blog.post.project_linked', [
+                        'project_name' => $post->project()->first()->title,
+                        'url' => $post->project()->first()->slug,
+                    ]) }}
                 </p>
             </div>
         @endif
@@ -37,7 +38,7 @@ $single = $single ?? false;
         @if (!$single && $post->excerpt)
             <p>
                 <a href="{{ route('post', $post) }}" class="more-link">
-                    Czytaj dalej &rarr;
+                    {{ __('blog.post.read_more') }}
                 </a>
             </p>
         @endif

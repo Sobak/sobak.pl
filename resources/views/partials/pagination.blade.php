@@ -1,6 +1,6 @@
 @if ($paginator->hasPages())
     <nav class="navigation sibblings-navigation">
-        <h1 class="sr-only">Nawigacja wpisów</h1>
+        <h1 class="sr-only">{{ __('pagination.header') }}</h1>
         <div class="nav-links">
             @if (PaginateRoute::hasPreviousPage())
             <div class="nav-previous">
@@ -24,7 +24,7 @@
         @if ($paginator->onFirstPage())
             <span>&laquo;</span>
         @else
-            <a href="{{ PaginateRoute::previousPageUrl() }}" class="change-page">&laquo; <span>Poprzednia</span></a>
+            <a href="{{ PaginateRoute::previousPageUrl() }}" class="change-page">&laquo; <span>{{ __('pagination.previous') }}</span></a>
         @endif
 
         {{-- Pagination Elements --}}
@@ -48,7 +48,7 @@
 
         {{-- Next Page Link --}}
         @if (PaginateRoute::hasNextPage($paginator))
-            <a href="{{ PaginateRoute::nextPageUrl($paginator) }}" class="change-page"><span>Następna</span> &raquo;</a>
+            <a href="{{ PaginateRoute::nextPageUrl($paginator) }}" class="change-page"><span>{{ __('pagination.next') }}</span> &raquo;</a>
         @else
             <span>&raquo;</span>
         @endif
