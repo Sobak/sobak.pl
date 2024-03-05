@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Content\ContentTypeIndexers;
+namespace App\Content\Indexing\Indexers;
 
-use App\Content\IndexerException;
-use App\Interfaces\OutputInterface;
-use App\Utils\CommonMark\CodeBlockRenderer;
-use App\Utils\CommonMark\ImageRenderer;
-use App\Utils\CommonMark\LinkRenderer;
+use App\Content\Indexing\IndexerException;
+use App\Content\Indexing\IndexerOutputInterface;
+use App\Content\Parsing\CommonMark\CodeBlockRenderer;
+use App\Content\Parsing\CommonMark\ImageRenderer;
+use App\Content\Parsing\CommonMark\LinkRenderer;
 use Illuminate\Support\Facades\Validator;
 use League\CommonMark\DocParser;
 use League\CommonMark\Environment;
@@ -27,9 +27,9 @@ abstract class AbstractContentIndexer
     private static DocParser $markdownParser;
     private static HtmlRenderer $markdownHtmlRenderer;
 
-    protected OutputInterface $output;
+    protected IndexerOutputInterface $output;
 
-    public function __construct(OutputInterface $output)
+    public function __construct(IndexerOutputInterface $output)
     {
         $this->output = $output;
 

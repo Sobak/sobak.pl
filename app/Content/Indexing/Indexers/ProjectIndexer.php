@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Content\ContentTypeIndexers;
+namespace App\Content\Indexing\Indexers;
 
+use App\Content\Indexing\ContentTypeIndexerInterface;
 use App\Models\Project;
 use Carbon\Carbon;
 use SplFileInfo;

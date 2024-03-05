@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Utils\CommonMark;
+namespace App\Content\Parsing\CommonMark;
 
-use League\CommonMark\Inline\Element\AbstractWebResource;
 use Illuminate\Support\Str;
+use League\CommonMark\Inline\Element\AbstractWebResource;
 
 trait LinksAssets
 {

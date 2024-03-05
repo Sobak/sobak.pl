@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Console\Adapters;
+namespace App\Content\Indexing\Output;
 
-use App\Interfaces\OutputInterface;
+use App\Content\Indexing\IndexerOutputInterface;
 use Illuminate\Console\OutputStyle;
 use Symfony\Component\Console\Formatter\OutputFormatterStyle;
 use Symfony\Component\Console\Output\OutputInterface as SymfonyOutputInterface;
 
-class ConsoleOutput implements OutputInterface
+class ConsoleIndexerOutput implements IndexerOutputInterface
 {
     /** @var integer Indentation level step used for indexer's output */
     private const INDENTATION_STEP = 2;

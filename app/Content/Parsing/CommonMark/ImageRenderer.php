@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Utils\CommonMark;
+namespace App\Content\Parsing\CommonMark;
 
 use League\CommonMark\ElementRendererInterface;
 use League\CommonMark\HtmlElement;

@@ -2,13 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Content;
+namespace App\Content\Indexing;
 
-use App\Content\ContentTypeIndexers\ContentTypeIndexerInterface;
-use App\Content\ContentTypeIndexers\PageIndexer;
-use App\Content\ContentTypeIndexers\PostIndexer;
-use App\Content\ContentTypeIndexers\ProjectIndexer;
-use App\Interfaces\OutputInterface;
+use App\Content\Indexing\Indexers\CreatesRedirects;
+use App\Content\Indexing\Indexers\PageIndexer;
+use App\Content\Indexing\Indexers\PostIndexer;
+use App\Content\Indexing\Indexers\ProjectIndexer;
 use App\Models\Post;
 use DirectoryIterator;
 use Illuminate\Support\Facades\Artisan;
@@ -24,9 +23,9 @@ class Indexer
     /** @var ContentTypeIndexerInterface[] */
     private array $contentTypeIndexers;
 
-    private OutputInterface $output;
+    private IndexerOutputInterface $output;
 
-    public function __construct(OutputInterface $output)
+    public function __construct(IndexerOutputInterface $output)
     {
         $this->output = $output;
 
@@ -64,7 +63,7 @@ class Indexer
         // There might be indexer database lying
         // around after failed validation or dry run
         if (file_exists($indexerDatabase)) {
-            $this->output->line('Removed old indexer database', OutputInterface::VERBOSITY_VERBOSE);
+            $this->output->line('Removed old indexer database', IndexerOutputInterface::VERBOSITY_VERBOSE);
             unlink($indexerDatabase);
         }
 
@@ -164,7 +163,7 @@ class Indexer
         $redirects = require $redirectsPath;
 
         foreach ($redirects as $from => $to) {
-            $this->output->indentedLine("> $from => $to", 2, OutputInterface::VERBOSITY_VERBOSE);
+            $this->output->indentedLine("> $from => $to", 2, IndexerOutputInterface::VERBOSITY_VERBOSE);
 
             $this->createRedirect($from, $to);
         }

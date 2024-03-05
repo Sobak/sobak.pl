@@ -2,14 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Content\ContentTypeIndexers;
+namespace App\Content\Indexing;
 
-use App\Interfaces\OutputInterface;
 use SplFileInfo;
 
 interface ContentTypeIndexerInterface
 {
-    public function __construct(OutputInterface $output);
+    public function __construct(IndexerOutputInterface $output);
 
     public function index(SplFileInfo $file): void;
 }

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Content;
+namespace App\Content\Indexing\Indexers;
 
 use App\Models\Redirect;
 

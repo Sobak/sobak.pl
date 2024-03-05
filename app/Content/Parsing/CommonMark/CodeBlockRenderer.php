@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Utils\CommonMark;
+namespace App\Content\Parsing\CommonMark;
 
 use Kadet\Highlighter\Formatter\HtmlFormatter;
 use Kadet\Highlighter\Language\Language;

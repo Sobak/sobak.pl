@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Utils\CommonMark;
+namespace App\Content\Parsing\CommonMark;
 
+use Illuminate\Support\Str;
 use League\CommonMark\ElementRendererInterface;
 use League\CommonMark\HtmlElement;
 use League\CommonMark\Inline\Element\AbstractInline;
@@ -10,7 +11,6 @@ use League\CommonMark\Inline\Renderer\InlineRendererInterface;
 use League\CommonMark\Util\ConfigurationAwareInterface;
 use League\CommonMark\Util\ConfigurationInterface;
 use League\CommonMark\Util\RegexHelper;
-use Illuminate\Support\Str;
 
 class LinkRenderer implements InlineRendererInterface, ConfigurationAwareInterface
 {

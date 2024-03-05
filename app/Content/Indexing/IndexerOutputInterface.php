@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Interfaces;
+namespace App\Content\Indexing;
 
-interface OutputInterface
+interface IndexerOutputInterface
 {
     public const VERBOSITY_NORMAL = 0;
     public const VERBOSITY_VERBOSE = 1;

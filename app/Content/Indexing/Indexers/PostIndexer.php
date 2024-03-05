@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Content\ContentTypeIndexers;
+namespace App\Content\Indexing\Indexers;
 
-use App\Content\CreatesRedirects;
-use App\Interfaces\OutputInterface;
+use App\Content\Indexing\ContentTypeIndexerInterface;
+use App\Content\Indexing\IndexerOutputInterface;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
@@ -51,7 +51,7 @@ class PostIndexer extends AbstractContentIndexer implements ContentTypeIndexerIn
         if (count($contentParts) === 2) {
             $excerpt = trim($contentParts[0]);
 
-            $this->output->indentedLine('> indexed excerpt for the post', 2, OutputInterface::VERBOSITY_VERBOSE);
+            $this->output->indentedLine('> indexed excerpt for the post', 2, IndexerOutputInterface::VERBOSITY_VERBOSE);
         }
 
         $content = str_replace(self::MORE_DELIMITER, '', $post->body);
@@ -86,7 +86,7 @@ class PostIndexer extends AbstractContentIndexer implements ContentTypeIndexerIn
 
     private function createAlias(Post $post, $alias): void
     {
-        $this->output->indentedLine('> aliased post from ' . $alias, 2, OutputInterface::VERBOSITY_VERBOSE);
+        $this->output->indentedLine('> aliased post from ' . $alias, 2, IndexerOutputInterface::VERBOSITY_VERBOSE);
 
         $this->createRedirect($alias, route('post', $post, false), 302);
     }
@@ -96,7 +96,7 @@ class PostIndexer extends AbstractContentIndexer implements ContentTypeIndexerIn
         $category = Category::where('name', $name)->first();
 
         if ($category === null) {
-            $this->output->indentedLine('> created category "' . $name . '"', 2, OutputInterface::VERBOSITY_VERBOSE);
+            $this->output->indentedLine('> created category "' . $name . '"', 2, IndexerOutputInterface::VERBOSITY_VERBOSE);
 
             $category = Category::create([
                 'name' => $name,
@@ -104,7 +104,7 @@ class PostIndexer extends AbstractContentIndexer implements ContentTypeIndexerIn
             ]);
         }
 
-        $this->output->indentedLine('> assigned to category "' . $name . '"', 2, OutputInterface::VERBOSITY_VERBOSE);
+        $this->output->indentedLine('> assigned to category "' . $name . '"', 2, IndexerOutputInterface::VERBOSITY_VERBOSE);
 
         return $category;
     }
@@ -114,7 +114,7 @@ class PostIndexer extends AbstractContentIndexer implements ContentTypeIndexerIn
         $tag = Tag::where('name', $name)->first();
 
         if ($tag === null) {
-            $this->output->indentedLine('> created tag "' . $name . '"', 2, OutputInterface::VERBOSITY_VERBOSE);
+            $this->output->indentedLine('> created tag "' . $name . '"', 2, IndexerOutputInterface::VERBOSITY_VERBOSE);
 
             $tag = Tag::create([
                 'name' => $name,
@@ -122,7 +122,7 @@ class PostIndexer extends AbstractContentIndexer implements ContentTypeIndexerIn
             ]);
         }
 
-        $this->output->indentedLine('> assigned to tag "' . $name . '"', 2, OutputInterface::VERBOSITY_VERBOSE);
+        $this->output->indentedLine('> assigned to tag "' . $name . '"', 2, IndexerOutputInterface::VERBOSITY_VERBOSE);
 
         return $tag;
     }

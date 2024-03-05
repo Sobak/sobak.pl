@@ -2,10 +2,9 @@
 
 namespace App\Console\Commands;
 
-use App\Console\Adapters\ConsoleOutput;
-use App\Content\Indexer;
-use App\Content\IndexerException;
-use App\Interfaces\OutputInterface;
+use App\Content\Indexing\Indexer;
+use App\Content\Indexing\IndexerException;
+use App\Content\Indexing\Output\ConsoleIndexerOutput;
 use Illuminate\Console\Command;
 use Illuminate\Console\OutputStyle;
 use Joli\JoliNotif\Notification;
@@ -16,15 +15,10 @@ use Symfony\Component\Console\Output\ConsoleOutput as SymfonyConsoleOutput;
 
 class IndexContent extends Command
 {
-    /** @var OutputInterface Cannot define type in PHP since the base class doesn't do it */
-    protected $output;
-
-    /** @var string Cannot define type in PHP since the base class doesn't do it */
     protected $signature = 'content:index
         {--D|dry-run : Dry run does not alter the live database}
         {--N|no-assets : Skip assets processing (default in dry run mode)}';
 
-    /** @var string Cannot define type in PHP since the base class doesn't do it */
     protected $description = 'Indexes content for the homepage';
 
     public function handle(): int
@@ -37,7 +31,7 @@ class IndexContent extends Command
         );
         $consoleOutput->setVerbosity($this->getOutput()->getVerbosity());
 
-        $indexerOutput = new ConsoleOutput($consoleOutput);
+        $indexerOutput = new ConsoleIndexerOutput($consoleOutput);
         $indexer = new Indexer($indexerOutput);
 
         $timeStart = microtime(true);
