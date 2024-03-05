@@ -6,6 +6,7 @@ namespace App\Console\Adapters;
 
 use App\Interfaces\OutputInterface;
 use Illuminate\Console\OutputStyle;
+use Symfony\Component\Console\Formatter\OutputFormatterStyle;
 use Symfony\Component\Console\Output\OutputInterface as SymfonyOutputInterface;
 
 class ConsoleOutput implements OutputInterface
@@ -25,18 +26,34 @@ class ConsoleOutput implements OutputInterface
         $this->output = $output;
     }
 
-    public function line(string $string, ?string $style = null, int $verbosity = self::VERBOSITY_NORMAL): void
+    public function line(string $string, int $verbosity = self::VERBOSITY_NORMAL): void
     {
-        $styled = $style ? "<$style>$string</$style>" : $string;
+        $this->writeLine($string, null, $verbosity);
+    }
 
-        $this->output->writeln($styled, $this->parseVerbosity($verbosity));
+    public function warning(string $string, int $verbosity = self::VERBOSITY_NORMAL): void
+    {
+        if ($this->output->getFormatter()->hasStyle('warning') === false) {
+            $style = new OutputFormatterStyle('yellow');
+
+            $this->output->getFormatter()->setStyle('warning', $style);
+        }
+
+        $this->writeLine($string, 'warning', $verbosity);
     }
 
     public function indentedLine(string $text, int $levels = 1, int $verbosity = self::VERBOSITY_NORMAL): void
     {
         $indentation = str_repeat(' ', $levels * self::INDENTATION_STEP);
 
-        $this->line($indentation . $text, null, $verbosity);
+        $this->writeLine($indentation . $text, null, $verbosity);
+    }
+
+    private function writeLine(string $string, ?string $style = null, int $verbosity = self::VERBOSITY_NORMAL): void
+    {
+        $styled = $style ? "<$style>$string</$style>" : $string;
+
+        $this->output->writeln($styled, $this->parseVerbosity($verbosity));
     }
 
     private function parseVerbosity(int $level = null): int

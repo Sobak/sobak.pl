@@ -64,7 +64,7 @@ class Indexer
         // There might be indexer database lying
         // around after failed validation or dry run
         if (file_exists($indexerDatabase)) {
-            $this->output->line('Removed old indexer database', null, OutputInterface::VERBOSITY_VERBOSE);
+            $this->output->line('Removed old indexer database', OutputInterface::VERBOSITY_VERBOSE);
             unlink($indexerDatabase);
         }
 
@@ -154,8 +154,8 @@ class Indexer
 
         $redirectsPath = config('content.path') . '/redirects.php';
 
-        if (file_exists($redirectsPath) === false) {
-            // TODO Print a warning
+        if (file_exists($redirectsPath)) {
+            $this->output->warning('No redirects.php file found');
             return;
         }
 
