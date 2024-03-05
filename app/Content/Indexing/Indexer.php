@@ -137,10 +137,21 @@ class Indexer
 
         $iterator = new DirectoryIterator(config('content.path') . '/' . $contentType);
 
+        /** @var SplFileInfo[] $files */
+        $files = [];
         foreach ($iterator as $fileInfo) {
             if ($fileInfo->isFile() && $fileInfo->getExtension() === 'md') {
-                $this->contentTypeIndexers[$contentType]->index($fileInfo);
+                // See https://bugs.php.net/bug.php?id=49755
+                $files[] = clone $fileInfo;
             }
+        }
+
+        usort($files, function (SplFileInfo $a, SplFileInfo $b) {
+            return $a->getRealPath() <=> $b->getRealPath();
+        });
+
+        foreach ($files as $fileInfo) {
+            $this->contentTypeIndexers[$contentType]->index($fileInfo);
         }
     }
 
