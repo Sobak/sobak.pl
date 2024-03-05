@@ -8,7 +8,7 @@ use App\Models\Redirect;
 
 trait CreatesRedirects
 {
-    private function createRedirect($from, $to, $httpCode = 301)
+    private function createRedirect($from, $to, $httpCode = 301): Redirect
     {
         $redirect = Redirect::where('source_url', $from)->first();
 

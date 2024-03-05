@@ -31,12 +31,12 @@ class Indexer
         $this->output = $output;
 
         $this->registerContentTypeIndexer('pages', new PageIndexer($output));
-        // Posts can optionally link to projects so we have to index them firsts
+        // Posts can optionally link to projects, so we have to index them in right order
         $this->registerContentTypeIndexer('projects', new ProjectIndexer($output));
         $this->registerContentTypeIndexer('posts', new PostIndexer($output));
     }
 
-    public function index(bool $isDryRun, bool $enableAssetsProcessing)
+    public function index(bool $isDryRun, bool $enableAssetsProcessing): void
     {
         $this->prepareIndexerDatabase($isDryRun);
         $this->indexContentTypes();
@@ -51,7 +51,7 @@ class Indexer
         $this->contentTypeIndexers[$directoryName] = $indexer;
     }
 
-    private function prepareIndexerDatabase(bool $isDryRun)
+    private function prepareIndexerDatabase(bool $isDryRun): void
     {
         if ($isDryRun === false) {
             $this->output->line('Initializing temporary indexer database');
@@ -61,9 +61,10 @@ class Indexer
 
         $indexerDatabase = config('database.connections.indexer.database');
 
-        // There might be indexer database laying
+        // There might be indexer database lying
         // around after failed validation or dry run
         if (file_exists($indexerDatabase)) {
+            $this->output->line('Removed old indexer database', null, OutputInterface::VERBOSITY_VERBOSE);
             unlink($indexerDatabase);
         }
 
@@ -87,11 +88,11 @@ class Indexer
         );
     }
 
-    private function switchWebsiteDatabase(bool $isDryRun)
+    private function switchWebsiteDatabase(bool $isDryRun): void
     {
         if ($isDryRun) {
             $this->output->line('Dry run finished - website database has not been changed');
-            return true;
+            return;
         }
 
         $this->output->line('Switching website database to new build');
@@ -107,18 +108,16 @@ class Indexer
         }
 
         rename($indexerDatabase, $websiteDatabase);
-
-        return true;
     }
 
-    private function indexContentTypes()
+    private function indexContentTypes(): void
     {
         $iterator = new DirectoryIterator(config('content.path'));
 
         $directories = [];
-        foreach ($iterator as $fileinfo) {
-            if ($fileinfo->isDir() && $fileinfo->isDot() === false) {
-                $directories[] = $fileinfo->getBasename();
+        foreach ($iterator as $fileInfo) {
+            if ($fileInfo->isDir() && $fileInfo->isDot() === false) {
+                $directories[] = $fileInfo->getBasename();
             }
         }
 
@@ -129,41 +128,39 @@ class Indexer
         }
     }
 
-    private function indexContentType($contentType)
+    private function indexContentType($contentType): void
     {
         if (isset($this->contentTypeIndexers[$contentType]) === false) {
-            return false;
+            return;
         }
 
-        $this->output->line("\nIndexing {$contentType}");
+        $this->output->line("\nIndexing $contentType");
 
         $iterator = new DirectoryIterator(config('content.path') . '/' . $contentType);
 
-        foreach ($iterator as $fileinfo) {
-            if ($fileinfo->isFile() && $fileinfo->getExtension() === 'md') {
-                $this->contentTypeIndexers[$contentType]->index($fileinfo);
+        foreach ($iterator as $fileInfo) {
+            if ($fileInfo->isFile() && $fileInfo->getExtension() === 'md') {
+                $this->contentTypeIndexers[$contentType]->index($fileInfo);
             }
         }
-
-        return true;
     }
 
-    private function indexRedirects(bool $isDryRun)
+    private function indexRedirects(bool $isDryRun): void
     {
         if ($isDryRun) {
             $this->output->line("\nSkipped indexing redirects");
-            return true;
+            return;
         }
 
         $redirectsPath = config('content.path') . '/redirects.php';
 
         if (file_exists($redirectsPath) === false) {
-            return false;
+            // TODO Print a warning
+            return;
         }
 
         $this->output->line("\nIndexing redirects");
 
-        /** @noinspection PhpIncludeInspection */
         $redirects = require $redirectsPath;
 
         foreach ($redirects as $from => $to) {
@@ -171,11 +168,9 @@ class Indexer
 
             $this->createRedirect($from, $to);
         }
-
-        return true;
     }
 
-    private function cacheBlogStats(bool $isDryRun)
+    private function cacheBlogStats(bool $isDryRun): void
     {
         if ($isDryRun) {
             return;
@@ -191,7 +186,7 @@ class Indexer
         });
     }
 
-    private function processAssets(bool $isDryRun, bool $enableAssetsProcessing)
+    private function processAssets(bool $isDryRun, bool $enableAssetsProcessing): void
     {
         if ($enableAssetsProcessing === false || $isDryRun) {
             $this->output->line("\nSkipped assets processing\n");
@@ -208,18 +203,18 @@ class Indexer
             mkdir($targetPath, 0777, true);
         }
 
-        foreach ($iterator as $fileinfo) {
-            if ($fileinfo->isFile()) {
-                $this->output->indentedLine($fileinfo->getFilename());
+        foreach ($iterator as $fileInfo) {
+            if ($fileInfo->isFile()) {
+                $this->output->indentedLine($fileInfo->getFilename());
 
-                $this->copyAsset($fileinfo, $targetPath);
+                $this->copyAsset($fileInfo, $targetPath);
             }
         }
 
         $this->output->line('');
     }
 
-    private function copyAsset(SplFileInfo $file, string $targetPath)
+    private function copyAsset(SplFileInfo $file, string $targetPath): void
     {
         $copy = copy($file->getPathname(), $targetPath . $file->getFilename());
 

@@ -25,14 +25,14 @@ class ConsoleOutput implements OutputInterface
         $this->output = $output;
     }
 
-    public function line(string $string, ?string $style = null, int $verbosity = self::VERBOSITY_NORMAL)
+    public function line(string $string, ?string $style = null, int $verbosity = self::VERBOSITY_NORMAL): void
     {
         $styled = $style ? "<$style>$string</$style>" : $string;
 
         $this->output->writeln($styled, $this->parseVerbosity($verbosity));
     }
 
-    public function indentedLine(string $text, int $levels = 1, int $verbosity = self::VERBOSITY_NORMAL)
+    public function indentedLine(string $text, int $levels = 1, int $verbosity = self::VERBOSITY_NORMAL): void
     {
         $indentation = str_repeat(' ', $levels * self::INDENTATION_STEP);
 

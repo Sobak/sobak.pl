@@ -27,7 +27,7 @@ class IndexContent extends Command
     /** @var string Cannot define type in PHP since the base class doesn't do it */
     protected $description = 'Indexes content for the homepage';
 
-    public function handle()
+    public function handle(): int
     {
         // The indexer object cannot be created in the constructor because command's
         // verbosity is not yet known at this point.
@@ -48,30 +48,33 @@ class IndexContent extends Command
             $indexer->index($this->option('dry-run'), ! $this->option('no-assets'));
         } catch (IndexerException $exception) {
             $this->sendFailureNotification();
-            exit($exception->getCode());
+
+            return $exception->getCode();
         }
 
         $this->sendSuccessNotification();
 
         $time = number_format(microtime(true) - $timeStart, 4);
 
-        $this->info("Indexing finished in {$time}");
+        $this->info("Indexing finished in $time");
+
+        return self::SUCCESS;
     }
 
-    private function sendSuccessNotification()
+    private function sendSuccessNotification(): void
     {
         $this->sendSystemNotification('Build successful', resource_path('assets/cli/pass.png'));
     }
 
-    private function sendFailureNotification()
+    private function sendFailureNotification(): void
     {
         $this->sendSystemNotification('Build failed', resource_path('assets/cli/fail.png'));
     }
 
-    private function sendSystemNotification($body, $icon)
+    private function sendSystemNotification(string $body, string $icon): void
     {
         if (app()->environment() !== 'local' || class_exists(NotifierFactory::class) === false) {
-            return true;
+            return;
         }
 
         $notifier = NotifierFactory::create();
@@ -83,7 +86,5 @@ class IndexContent extends Command
                 ->setIcon($icon);
 
         $notifier->send($notification);
-
-        return true;
     }
 }

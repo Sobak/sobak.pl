@@ -26,6 +26,7 @@ abstract class AbstractContentIndexer
     private static bool $isMarkdownParserSetUp = false;
     private static DocParser $markdownParser;
     private static HtmlRenderer $markdownHtmlRenderer;
+
     protected OutputInterface $output;
 
     public function __construct(OutputInterface $output)
@@ -43,7 +44,7 @@ abstract class AbstractContentIndexer
     {
         $content = file_get_contents($path);
 
-        $pattern = '/[\s\r\n]---[\s\r\n]/s';
+        $pattern = '/[\s\r\n]---[\s\r\n]/';
 
         $parts = preg_split($pattern, PHP_EOL . ltrim($content), 3);
 
@@ -85,7 +86,7 @@ abstract class AbstractContentIndexer
         $validator = Validator::make($metadata, $rules);
 
         foreach ($validator->errors()->all() as $error) {
-            $this->output->indentedLine("FAIL: {$error}", 2);
+            $this->output->indentedLine("FAIL: $error", 2);
         }
 
         if ($validator->fails()) {

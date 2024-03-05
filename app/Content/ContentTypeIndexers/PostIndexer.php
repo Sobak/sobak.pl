@@ -84,14 +84,14 @@ class PostIndexer extends AbstractContentIndexer implements ContentTypeIndexerIn
         }
     }
 
-    private function createAlias(Post $post, $alias)
+    private function createAlias(Post $post, $alias): void
     {
         $this->output->indentedLine('> aliased post from ' . $alias, 2, OutputInterface::VERBOSITY_VERBOSE);
 
         $this->createRedirect($alias, route('post', $post, false), 302);
     }
 
-    private function createCategory($name)
+    private function createCategory($name): Category
     {
         $category = Category::where('name', $name)->first();
 
@@ -109,7 +109,7 @@ class PostIndexer extends AbstractContentIndexer implements ContentTypeIndexerIn
         return $category;
     }
 
-    private function createTag($name)
+    private function createTag($name): Tag
     {
         $tag = Tag::where('name', $name)->first();
 
@@ -127,7 +127,7 @@ class PostIndexer extends AbstractContentIndexer implements ContentTypeIndexerIn
         return $tag;
     }
 
-    private function parseSingularMetadataAliases($post, $mappings)
+    private function parseSingularMetadataAliases(object $post, array $mappings): object
     {
         foreach ($mappings as $key => $alias) {
             if (!isset($post->metadata[$alias])) {
