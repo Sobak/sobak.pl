@@ -69,7 +69,13 @@ class Indexer
 
         touch($indexerDatabase);
 
-        config('database.default', 'indexer');
+        $originalConnection = config('database.default');
+
+        // Write to "indexer" database for the duration of a script
+        config()->set('database.default', 'indexer');
+
+        // Disconnect from the original connection & forget the cache
+        DB::purge($originalConnection);
 
         Artisan::call(
             'migrate',
