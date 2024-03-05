@@ -10,9 +10,13 @@ use App\Content\Parsing\CommonMark\CodeBlockRenderer;
 use App\Content\Parsing\CommonMark\ImageRenderer;
 use App\Content\Parsing\CommonMark\LinkRenderer;
 use Illuminate\Support\Facades\Validator;
-use League\CommonMark\DocParser;
-use League\CommonMark\Environment;
-use League\CommonMark\HtmlRenderer;
+use League\CommonMark\Environment\Environment;
+use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
+use League\CommonMark\Extension\CommonMark\Node\Block\FencedCode;
+use League\CommonMark\Extension\CommonMark\Node\Inline\Image;
+use League\CommonMark\Extension\CommonMark\Node\Inline\Link;
+use League\CommonMark\Parser\MarkdownParser;
+use League\CommonMark\Renderer\HtmlRenderer;
 use Symfony\Component\Yaml\Yaml;
 
 abstract class AbstractContentIndexer
@@ -24,7 +28,7 @@ abstract class AbstractContentIndexer
     private const BASE_URL_PLACEHOLDER = '{{{base}}}';
 
     private static bool $isMarkdownParserSetUp = false;
-    private static DocParser $markdownParser;
+    private static MarkdownParser $markdownParser;
     private static HtmlRenderer $markdownHtmlRenderer;
 
     protected IndexerOutputInterface $output;
@@ -98,17 +102,19 @@ abstract class AbstractContentIndexer
     {
         $document = self::$markdownParser->parse($string);
 
-        return self::$markdownHtmlRenderer->renderBlock($document);
+        return self::$markdownHtmlRenderer->renderDocument($document)->getContent();
     }
 
     private function setupMarkdownParser(): void
     {
-        $environment = Environment::createCommonMarkEnvironment();
-        $environment->addBlockRenderer('League\CommonMark\Block\Element\FencedCode', new CodeBlockRenderer());
-        $environment->addInlineRenderer('League\CommonMark\Inline\Element\Image', new ImageRenderer());
-        $environment->addInlineRenderer('League\CommonMark\Inline\Element\Link', new LinkRenderer());
+        $environment = new Environment();
+        $environment->addExtension(new CommonMarkCoreExtension());
 
-        self::$markdownParser = new DocParser($environment);
+        $environment->addRenderer(FencedCode::class, new CodeBlockRenderer());
+        $environment->addRenderer(Image::class, new ImageRenderer());
+        $environment->addRenderer(Link::class, new LinkRenderer());
+
+        self::$markdownParser = new MarkdownParser($environment);
         self::$markdownHtmlRenderer = new HtmlRenderer($environment);
     }
 }

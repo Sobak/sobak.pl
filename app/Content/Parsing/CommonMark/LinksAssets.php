@@ -2,14 +2,11 @@
 
 namespace App\Content\Parsing\CommonMark;
 
-use Illuminate\Support\Str;
-use League\CommonMark\Inline\Element\AbstractWebResource;
-
 trait LinksAssets
 {
-    protected function isInternalAsset(AbstractWebResource $link)
+    protected function isInternalAsset(string $url): bool
     {
-        return Str::startsWith($link->getUrl(), '../assets/');
+        return str_starts_with($url, '../assets/');
     }
 
     protected function convertToAssetLink(string $url): string

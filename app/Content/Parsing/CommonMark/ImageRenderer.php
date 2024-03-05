@@ -2,69 +2,111 @@
 
 namespace App\Content\Parsing\CommonMark;
 
-use League\CommonMark\ElementRendererInterface;
-use League\CommonMark\HtmlElement;
-use League\CommonMark\Inline\Element\AbstractInline;
-use League\CommonMark\Inline\Element\Image;
-use League\CommonMark\Inline\Renderer\InlineRendererInterface;
-use League\CommonMark\Util\ConfigurationAwareInterface;
-use League\CommonMark\Util\ConfigurationInterface;
+use League\CommonMark\Extension\CommonMark\Node\Inline\Image;
+use League\CommonMark\Node\Inline\Newline;
+use League\CommonMark\Node\Node;
+use League\CommonMark\Node\NodeIterator;
+use League\CommonMark\Node\StringContainerInterface;
+use League\CommonMark\Renderer\ChildNodeRendererInterface;
+use League\CommonMark\Renderer\NodeRendererInterface;
+use League\CommonMark\Util\HtmlElement;
 use League\CommonMark\Util\RegexHelper;
-use League\CommonMark\Util\Xml;
+use League\CommonMark\Xml\XmlNodeRendererInterface;
+use League\Config\ConfigurationAwareInterface;
+use League\Config\ConfigurationInterface;
+use Stringable;
 
-class ImageRenderer implements InlineRendererInterface, ConfigurationAwareInterface
+class ImageRenderer implements NodeRendererInterface, XmlNodeRendererInterface, ConfigurationAwareInterface
 {
     use LinksAssets;
 
-    /** @var ConfigurationInterface */
-    protected $config;
+    private ConfigurationInterface $config;
 
-    public function render(AbstractInline $inline, ElementRendererInterface $htmlRenderer)
+    /**
+     * @param Image $node
+     *
+     * {@inheritDoc}
+     */
+    public function render(Node $node, ChildNodeRendererInterface $childRenderer): Stringable
     {
-        if (!($inline instanceof Image)) {
-            throw new \InvalidArgumentException('Incompatible inline type: ' . get_class($inline));
-        }
+        Image::assertInstanceOf($node);
 
-        $attrs = [];
-        foreach ($inline->getData('attributes', []) as $key => $value) {
-            $attrs[$key] = Xml::escape($value);
-        }
-
-        $forbidUnsafeLinks = $this->config->get('safe') || !$this->config->get('allow_unsafe_links');
-        if ($forbidUnsafeLinks && RegexHelper::isLinkPotentiallyUnsafe($inline->getUrl())) {
-            $attrs['src'] = '';
-        } else {
-            $attrs['src'] = Xml::escape($inline->getUrl());
-        }
+        $attrs = $node->data->get('attributes');
 
         // Conditional customization
-        if ($this->isInternalAsset($inline)) {
-            $attrs['src'] = $this->convertToAssetLink($inline->getUrl());
+        $isInternalAsset = $this->isInternalAsset($node->getUrl());
+
+        if ($isInternalAsset) {
+            $src = $this->convertToAssetLink($node->getUrl());
+
+            $node->setUrl($src);
         }
 
-        $alt = $htmlRenderer->renderInlines($inline->children());
-        $alt = preg_replace('/\<[^>]*alt="([^"]*)"[^>]*\>/', '$1', $alt);
-        $attrs['alt'] = preg_replace('/\<[^>]*\>/', '', $alt);
+        $forbidUnsafeLinks = ! $this->config->get('allow_unsafe_links');
+        if ($forbidUnsafeLinks && RegexHelper::isLinkPotentiallyUnsafe($node->getUrl())) {
+            $attrs['src'] = '';
+        } else {
+            $attrs['src'] = $node->getUrl();
+        }
 
-        if (isset($inline->data['title'])) {
-            $attrs['title'] = Xml::escape($inline->data['title']);
+        $attrs['alt'] = $this->getAltText($node);
+
+        if (($title = $node->getTitle()) !== null) {
+            $attrs['title'] = $title;
         }
 
         // Customize HTML output in case of the internal asset
-        if ($this->isInternalAsset($inline)) {
+        if ($isInternalAsset) {
             return new HtmlElement(
                 'a',
-                ['href' => $this->convertToAssetLink($inline->getUrl())],
+                ['href' => $node->getUrl()],
                 new HtmlElement('img', $attrs, '', true)
             );
-        } else {
-            return new HtmlElement('img', $attrs, '', true);
         }
+
+        return new HtmlElement('img', $attrs, '', true);
     }
 
-    public function setConfiguration(ConfigurationInterface $configuration)
+    public function setConfiguration(ConfigurationInterface $configuration): void
     {
         $this->config = $configuration;
+    }
+
+    public function getXmlTagName(Node $node): string
+    {
+        return 'image';
+    }
+
+    /**
+     * @param Image $node
+     *
+     * @return array<string, scalar>
+     *
+     * @psalm-suppress MoreSpecificImplementedParamType
+     */
+    public function getXmlAttributes(Node $node): array
+    {
+        Image::assertInstanceOf($node);
+
+        return [
+            'destination' => $node->getUrl(),
+            'title' => $node->getTitle() ?? '',
+        ];
+    }
+
+    private function getAltText(Image $node): string
+    {
+        $altText = '';
+
+        foreach ((new NodeIterator($node)) as $n) {
+            if ($n instanceof StringContainerInterface) {
+                $altText .= $n->getLiteral();
+            } elseif ($n instanceof Newline) {
+                $altText .= "\n";
+            }
+        }
+
+        return $altText;
     }
 
     protected function convertToAssetThumbLink(string $url): string

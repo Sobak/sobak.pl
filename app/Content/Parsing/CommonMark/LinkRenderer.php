@@ -2,70 +2,97 @@
 
 namespace App\Content\Parsing\CommonMark;
 
-use Illuminate\Support\Str;
-use League\CommonMark\ElementRendererInterface;
-use League\CommonMark\HtmlElement;
-use League\CommonMark\Inline\Element\AbstractInline;
-use League\CommonMark\Inline\Element\Link;
-use League\CommonMark\Inline\Renderer\InlineRendererInterface;
-use League\CommonMark\Util\ConfigurationAwareInterface;
-use League\CommonMark\Util\ConfigurationInterface;
+use League\CommonMark\Extension\CommonMark\Node\Inline\Link;
+use League\CommonMark\Node\Node;
+use League\CommonMark\Renderer\ChildNodeRendererInterface;
+use League\CommonMark\Renderer\NodeRendererInterface;
+use League\CommonMark\Util\HtmlElement;
 use League\CommonMark\Util\RegexHelper;
+use League\CommonMark\Xml\XmlNodeRendererInterface;
+use League\Config\ConfigurationAwareInterface;
+use League\Config\ConfigurationInterface;
+use Stringable;
 
-class LinkRenderer implements InlineRendererInterface, ConfigurationAwareInterface
+class LinkRenderer implements NodeRendererInterface, XmlNodeRendererInterface, ConfigurationAwareInterface
 {
     use LinksAssets;
 
-    /** @var ConfigurationInterface */
-    protected $config;
+    private ConfigurationInterface $config;
 
-    public function render(AbstractInline $inline, ElementRendererInterface $htmlRenderer)
+    /**
+     * @param Link $node
+     *
+     * {@inheritDoc}
+     */
+    public function render(Node $node, ChildNodeRendererInterface $childRenderer): Stringable
     {
-        if (!($inline instanceof Link)) {
-            throw new \InvalidArgumentException('Incompatible inline type: ' . get_class($inline));
+        Link::assertInstanceOf($node);
+
+        $attrs = $node->data->get('attributes');
+
+        // Conditional customization for blog://foo links
+        if ($this->isBlogLink($node->getUrl())) {
+            $url = $this->convertToBlogPostLink($node->getUrl());
+
+            $node->setUrl($url);
         }
 
-        if ($this->isBlogLink($inline)) {
-            $url = $this->convertToBlogPostLink($inline->getUrl());
+        // Conditional customization for internal relative links
+        if ($this->isInternalAsset($node->getUrl())) {
+            $url = $this->convertToAssetLink($node->getUrl());
 
-            $inline->setUrl($url);
+            $node->setUrl($url);
         }
 
-        if ($this->isInternalAsset($inline)) {
-            $url = $this->convertToAssetLink($inline->getUrl());
-
-            $inline->setUrl($url);
+        $forbidUnsafeLinks = ! $this->config->get('allow_unsafe_links');
+        if (! ($forbidUnsafeLinks && RegexHelper::isLinkPotentiallyUnsafe($node->getUrl()))) {
+            $attrs['href'] = $node->getUrl();
         }
 
-        $attrs = $inline->getData('attributes', []);
-
-        $forbidUnsafeLinks = !$this->config->get('allow_unsafe_links');
-        if (!($forbidUnsafeLinks && RegexHelper::isLinkPotentiallyUnsafe($inline->getUrl()))) {
-            $attrs['href'] = $inline->getUrl();
+        if (($title = $node->getTitle()) !== null) {
+            $attrs['title'] = $title;
         }
 
-        if (isset($inline->data['title'])) {
-            $attrs['title'] = $inline->data['title'];
-        }
-
-        if (isset($attrs['target']) && $attrs['target'] === '_blank' && !isset($attrs['rel'])) {
+        if (isset($attrs['target']) && $attrs['target'] === '_blank' && ! isset($attrs['rel'])) {
             $attrs['rel'] = 'noopener noreferrer';
         }
 
-        return new HtmlElement('a', $attrs, $htmlRenderer->renderInlines($inline->children()));
+        return new HtmlElement('a', $attrs, $childRenderer->renderNodes($node->children()));
     }
 
-    public function setConfiguration(ConfigurationInterface $configuration)
+    public function setConfiguration(ConfigurationInterface $configuration): void
     {
         $this->config = $configuration;
     }
 
-    protected function isBlogLink(Link $link)
+    public function getXmlTagName(Node $node): string
     {
-        return Str::startsWith($link->getUrl(), 'blog://');
+        return 'link';
     }
 
-    protected function convertToBlogPostLink(string $url): string
+    /**
+     * @param Link $node
+     *
+     * @return array<string, scalar>
+     *
+     * @psalm-suppress MoreSpecificImplementedParamType
+     */
+    public function getXmlAttributes(Node $node): array
+    {
+        Link::assertInstanceOf($node);
+
+        return [
+            'destination' => $node->getUrl(),
+            'title' => $node->getTitle() ?? '',
+        ];
+    }
+
+    private function isBlogLink(string $url): bool
+    {
+        return str_starts_with($url, 'blog://');
+    }
+
+    private function convertToBlogPostLink(string $url): string
     {
         $slug = substr($url, strlen('blog://'));
 
