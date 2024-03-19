@@ -16,8 +16,8 @@ use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
 use League\CommonMark\Extension\CommonMark\Node\Block\FencedCode;
 use League\CommonMark\Extension\CommonMark\Node\Inline\Image;
 use League\CommonMark\Extension\CommonMark\Node\Inline\Link;
-use League\CommonMark\Parser\MarkdownParser;
-use League\CommonMark\Renderer\HtmlRenderer;
+use League\CommonMark\MarkdownConverter;
+use League\CommonMark\Output\RenderedContentInterface;
 use Symfony\Component\Yaml\Yaml;
 
 abstract class AbstractContentIndexer
@@ -28,21 +28,11 @@ abstract class AbstractContentIndexer
     /** @var string Placeholder which will be replaced with root site URL when parsing content */
     private const BASE_URL_PLACEHOLDER = '{{{base}}}';
 
-    private static bool $isMarkdownParserSetUp = false;
-    private static MarkdownParser $markdownParser;
-    private static HtmlRenderer $markdownHtmlRenderer;
-
     protected IndexerOutputInterface $output;
 
     public function __construct(IndexerOutputInterface $output)
     {
         $this->output = $output;
-
-        if (self::$isMarkdownParserSetUp === false) {
-            $this->setupMarkdownParser();
-
-            self::$isMarkdownParserSetUp = true;
-        }
     }
 
     /**
@@ -89,7 +79,7 @@ abstract class AbstractContentIndexer
             self::BASE_URL_PLACEHOLDER => route('index'),
         ]);
 
-        return new $dtoClassString($this->parseMarkdown($body), array_merge($defaultMetadata, $metadata));
+        return new $dtoClassString($this->parseMarkdown($body)->getContent(), array_merge($defaultMetadata, $metadata));
     }
 
     protected function validateMetadata(ContentDTOInterface $contentDTO, $rules): void
@@ -105,23 +95,21 @@ abstract class AbstractContentIndexer
         }
     }
 
-    private function parseMarkdown($string): string
+    private function parseMarkdown($string): RenderedContentInterface
     {
-        $document = self::$markdownParser->parse($string);
+        static $markdownConverter;
 
-        return self::$markdownHtmlRenderer->renderDocument($document)->getContent();
-    }
+        if ($markdownConverter === null) {
+            $environment = new Environment();
+            $environment->addExtension(new CommonMarkCoreExtension());
 
-    private function setupMarkdownParser(): void
-    {
-        $environment = new Environment();
-        $environment->addExtension(new CommonMarkCoreExtension());
+            $environment->addRenderer(FencedCode::class, new CodeBlockRenderer());
+            $environment->addRenderer(Image::class, new ImageRenderer());
+            $environment->addRenderer(Link::class, new LinkRenderer());
 
-        $environment->addRenderer(FencedCode::class, new CodeBlockRenderer());
-        $environment->addRenderer(Image::class, new ImageRenderer());
-        $environment->addRenderer(Link::class, new LinkRenderer());
+            $markdownConverter = new MarkdownConverter($environment);
+        }
 
-        self::$markdownParser = new MarkdownParser($environment);
-        self::$markdownHtmlRenderer = new HtmlRenderer($environment);
+        return $markdownConverter->convert($string);
     }
 }
