@@ -2,12 +2,12 @@
 
 namespace App\Content\Indexing\Indexers;
 
+use App\Content\DTO\PostDTO;
 use App\Content\Indexing\ContentTypeIndexerInterface;
 use App\Content\Indexing\IndexerOutputInterface;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
-use Carbon\Carbon;
 use Illuminate\Support\Str;
 use SplFileInfo;
 
@@ -28,14 +28,9 @@ class PostIndexer extends AbstractContentIndexer implements ContentTypeIndexerIn
             'language' => config('app.locale'),
             'slug' => $file->getBasename('.md'),
             'tags' => [],
-        ]);
+        ], PostDTO::class);
 
-        $post = $this->parseSingularMetadataAliases($post, [
-            'aliases' => 'alias',
-            'categories' => 'category',
-        ]);
-
-        $this->validateMetadata($post->metadata, [
+        $this->validateMetadata($post, [
             'aliases' => 'array',
             'categories' => 'required|array',
             'date' => 'required|date',
@@ -46,7 +41,7 @@ class PostIndexer extends AbstractContentIndexer implements ContentTypeIndexerIn
         ]);
 
         $excerpt = null;
-        $contentParts = explode(self::MORE_DELIMITER, $post->body, 2);
+        $contentParts = explode(self::MORE_DELIMITER, $post->getContent(), 2);
 
         if (count($contentParts) === 2) {
             $excerpt = trim($contentParts[0]);
@@ -54,44 +49,44 @@ class PostIndexer extends AbstractContentIndexer implements ContentTypeIndexerIn
             $this->output->indentedLine('> indexed excerpt for the post', 2, IndexerOutputInterface::VERBOSITY_VERBOSE);
         }
 
-        $content = str_replace(self::MORE_DELIMITER, '', $post->body);
+        $content = str_replace(self::MORE_DELIMITER, '', $post->getContent());
 
         $postEntity = Post::create([
-            'title' => $post->metadata['title'],
-            'slug' => $post->metadata['slug'],
-            'project' => $post->metadata['project'] ?? null,
+            'title' => $post->getTitle(),
+            'slug' => $post->getSlug(),
+            'project' => $post->getProject(),
             'excerpt' => $excerpt,
             'content' => $content,
             'content_searchable' => $this->createSearchableContent($content),
-            'language' => $post->metadata['language'],
-            'created_at' => Carbon::createFromTimestamp(strtotime($post->metadata['date'])),
+            'language' => $post->getLanguage(),
+            'created_at' => $post->getCreatedAt(),
         ]);
 
-        foreach ($post->metadata['aliases'] as $alias) {
+        foreach ($post->getAliases() as $alias) {
             $this->createAlias($postEntity, $alias);
         }
 
-        foreach ($post->metadata['categories'] as $category) {
+        foreach ($post->getCategories() as $category) {
             $category = $this->createCategory($category);
 
             $postEntity->categories()->attach($category->id);
         }
 
-        foreach ($post->metadata['tags'] as $tag) {
+        foreach ($post->getTags() as $tag) {
             $tag = $this->createTag($tag);
 
             $postEntity->tags()->attach($tag->id);
         }
     }
 
-    private function createAlias(Post $post, $alias): void
+    private function createAlias(Post $post, string $alias): void
     {
         $this->output->indentedLine('> aliased post from ' . $alias, 2, IndexerOutputInterface::VERBOSITY_VERBOSE);
 
         $this->createRedirect($alias, route('post', $post, false), 302);
     }
 
-    private function createCategory($name): Category
+    private function createCategory(string $name): Category
     {
         $category = Category::where('name', $name)->first();
 
@@ -109,7 +104,7 @@ class PostIndexer extends AbstractContentIndexer implements ContentTypeIndexerIn
         return $category;
     }
 
-    private function createTag($name): Tag
+    private function createTag(string $name): Tag
     {
         $tag = Tag::where('name', $name)->first();
 
@@ -125,19 +120,6 @@ class PostIndexer extends AbstractContentIndexer implements ContentTypeIndexerIn
         $this->output->indentedLine('> assigned to tag "' . $name . '"', 2, IndexerOutputInterface::VERBOSITY_VERBOSE);
 
         return $tag;
-    }
-
-    private function parseSingularMetadataAliases(object $post, array $mappings): object
-    {
-        foreach ($mappings as $key => $alias) {
-            if (!isset($post->metadata[$alias])) {
-                continue;
-            }
-
-            $post->metadata[$key] = array_merge($post->metadata[$key], [$post->metadata[$alias]]);
-        }
-
-        return $post;
     }
 
     private function createSearchableContent(string $content): string

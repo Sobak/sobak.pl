@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Content\Indexing\Indexers;
 
+use App\Content\DTO\ContentDTOInterface;
 use App\Content\Indexing\IndexerException;
 use App\Content\Indexing\IndexerOutputInterface;
 use App\Content\Parsing\CommonMark\CodeBlockRenderer;
@@ -44,8 +45,17 @@ abstract class AbstractContentIndexer
         }
     }
 
-    protected function parseContentFile($path, array $defaultMetadata = []): object
-    {
+    /**
+     * @param string $path
+     * @param array $defaultMetadata
+     * @param class-string<ContentDTOInterface> $dtoClassString
+     * @return ContentDTOInterface
+     */
+    protected function parseContentFile(
+        string $path,
+        array $defaultMetadata,
+        string $dtoClassString
+    ): ContentDTOInterface {
         $content = file_get_contents($path);
 
         $pattern = '/[\s\r\n]---[\s\r\n]/';
@@ -79,15 +89,12 @@ abstract class AbstractContentIndexer
             self::BASE_URL_PLACEHOLDER => route('index'),
         ]);
 
-        return (object) [
-            'body' => $this->parseMarkdown($body),
-            'metadata' => array_merge($defaultMetadata, $metadata),
-        ];
+        return new $dtoClassString($this->parseMarkdown($body), array_merge($defaultMetadata, $metadata));
     }
 
-    protected function validateMetadata($metadata, $rules): void
+    protected function validateMetadata(ContentDTOInterface $contentDTO, $rules): void
     {
-        $validator = Validator::make($metadata, $rules);
+        $validator = Validator::make($contentDTO->getMetadata(), $rules);
 
         foreach ($validator->errors()->all() as $error) {
             $this->output->indentedLine("FAIL: $error", 2);

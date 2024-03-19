@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Content\Indexing\Indexers;
 
+use App\Content\DTO\PageDTO;
 use App\Content\Indexing\ContentTypeIndexerInterface;
 use App\Models\Page;
 use SplFileInfo;
@@ -16,17 +17,17 @@ class PageIndexer extends AbstractContentIndexer implements ContentTypeIndexerIn
 
         $page = $this->parseContentFile($file->getPathname(), [
             'slug' => $file->getBasename('.md'),
-        ]);
+        ], PageDTO::class);
 
-        $this->validateMetadata($page->metadata, [
+        $this->validateMetadata($page, [
             'slug' => 'alpha_dash|unique:indexer.pages',
             'title' => 'required',
         ]);
 
         Page::create([
-            'title' => $page->metadata['title'],
-            'content' => $page->body,
-            'slug' => $page->metadata['slug'],
+            'title' => $page->getTitle(),
+            'content' => $page->getContent(),
+            'slug' => $page->getSlug(),
         ]);
     }
 }

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Content\Indexing\Indexers;
 
+use App\Content\DTO\ProjectDTO;
 use App\Content\Indexing\ContentTypeIndexerInterface;
 use App\Models\Project;
-use Carbon\Carbon;
 use SplFileInfo;
 
 class ProjectIndexer extends AbstractContentIndexer implements ContentTypeIndexerInterface
@@ -18,9 +18,9 @@ class ProjectIndexer extends AbstractContentIndexer implements ContentTypeIndexe
         $project = $this->parseContentFile($file->getPathname(), [
             'slug' => $file->getBasename('.md'),
             'url' => null,
-        ]);
+        ], ProjectDTO::class);
 
-        $this->validateMetadata($project->metadata, [
+        $this->validateMetadata($project, [
             'date' => 'required|date',
             'slug' => 'alpha_dash|unique:indexer.projects',
             'title' => 'required',
@@ -29,13 +29,13 @@ class ProjectIndexer extends AbstractContentIndexer implements ContentTypeIndexe
         ]);
 
         Project::create([
-            'title' => $project->metadata['title'],
-            'content' => $project->body,
-            'url' => $project->metadata['url'],
-            'slug' => $project->metadata['slug'],
-            'type' => $project->metadata['type'],
-            'thumbnail' => $project->metadata['thumbnail'],
-            'created_at' => Carbon::createFromTimestamp(strtotime($project->metadata['date'])),
+            'title' => $project->getTitle(),
+            'content' => $project->getContent(),
+            'url' => $project->getUrl(),
+            'slug' => $project->getSlug(),
+            'type' => $project->getType(),
+            'thumbnail' => $project->getThumbnailUrl(),
+            'created_at' => $project->getCreatedAt(),
         ]);
     }
 }
