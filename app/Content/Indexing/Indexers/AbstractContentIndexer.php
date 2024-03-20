@@ -19,6 +19,7 @@ use League\CommonMark\Extension\CommonMark\Node\Inline\Link;
 use League\CommonMark\Extension\Footnote\FootnoteExtension;
 use League\CommonMark\Extension\FrontMatter\FrontMatterExtension;
 use League\CommonMark\Extension\FrontMatter\Output\RenderedContentWithFrontMatter;
+use League\CommonMark\Extension\Strikethrough\StrikethroughExtension;
 use League\CommonMark\MarkdownConverter;
 
 abstract class AbstractContentIndexer
@@ -81,6 +82,7 @@ abstract class AbstractContentIndexer
             $environment->addExtension(new CommonMarkCoreExtension());
             $environment->addExtension(new FrontMatterExtension());
             $environment->addExtension(new FootnoteExtension());
+            $environment->addExtension(new StrikethroughExtension());
 
             $environment->addRenderer(FencedCode::class, new CodeBlockRenderer());
             $environment->addRenderer(Image::class, new ImageRenderer());
