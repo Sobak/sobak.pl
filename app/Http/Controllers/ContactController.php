@@ -15,7 +15,7 @@ class ContactController extends Controller
     public function show()
     {
         return view('contact', [
-            'title' => page_title('Kontakt'),
+            'title' => page_title(__('contact.title')),
         ]);
     }
 
@@ -51,9 +51,7 @@ class ContactController extends Controller
                 ->route('contact')
                 ->withInput()
                 ->with('message_type', 'warning')
-                ->with('message', 'Wystąpił błąd przy wysyłaniu wiadomości. Spróbuj ponownie później
-                        lub wyśli ją bezpośrednio pod podany niżej adres email. Przepraszam
-                        za utrudnienia.');
+                ->with('message', __('contact.error'));
         } finally {
             $log = new ContactFormMessage();
             $log->name = $request->get('name');
@@ -75,6 +73,6 @@ class ContactController extends Controller
         return redirect()
             ->route('contact')
             ->with('message_type', 'info')
-            ->with('message', 'Wiadomość została wysłana pomyślnie');
+            ->with('message', __('contact.success'));
     }
 }

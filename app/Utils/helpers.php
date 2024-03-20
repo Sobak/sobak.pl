@@ -36,12 +36,18 @@ function localized_date(Carbon $date, bool $withTime = false): string
 
 function blog_title(int $pageNumber): string
 {
-    return config('app.name') . ' | ' . ($pageNumber === 1 ? config('site.description') : "Strona {$pageNumber}");
+    $title = config('app.name') . ' | ';
+
+    if ($pageNumber === 1) {
+        return $title . __('app.branding.description');
+    }
+
+    return $title . __('pagination.page') . " $pageNumber";
 }
 
 function page_title(string $title): string
 {
-    return $title . ' | ' . config('app.name');
+    return $title . ' | ' . config('app.branding.name');
 }
 
 /**

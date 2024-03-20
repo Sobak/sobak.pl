@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'branding' => [
+        'name' => 'Maciej Sobaczewski',
+        'description' => 'Trochę o wszystkim i wiele o niczym',
+    ],
     'footer' => [
         'engine' => 'Silnik: Perception',
         'engine_tooltip' => 'Napędzane silnikiem Perception',

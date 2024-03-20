@@ -7,7 +7,7 @@ return [
     'post' => [
         'project_linked' => 'Ten post przedstawia doświadczenia lub przemyślenia nabyte (bezpośrednio lub nie) podczas prac nad
                              <a href=":url">projektem :project_name</a>. Kliknij w link aby zobaczyć go w portfolio.',
-        'read_more' => 'Czytaj dalej &rarr;',
+        'read_more' => 'Czytaj dalej →',
         'scheduled' => 'Publikacja tego wpisu została zaplanowana na',
     ],
     'tag' => [
