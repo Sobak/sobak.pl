@@ -2,7 +2,7 @@
 
 return [
     'branding' => [
-        'name' => 'Maciej Sobaczewski',
+        'name' => 'Maciej »Sobak« Sobaczewski',
         'description' => 'Trochę o wszystkim i wiele o niczym',
     ],
     'footer' => [
