@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
+use App\Content\Translation\TranslatableModelInterface;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class Post extends Model implements TranslatableModelInterface
 {
     protected $guarded = ['id'];
 
@@ -24,6 +25,16 @@ class Post extends Model
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    public function getSlug(): string
+    {
+        return $this->slug;
+    }
+
+    public function getTranslatableType(): string
+    {
+        return 'post';
     }
 
     public function categories()

@@ -5,6 +5,7 @@ namespace App\Content\Indexing\Indexers;
 use App\Content\DTO\PostDTO;
 use App\Content\Indexing\ContentTypeIndexerInterface;
 use App\Content\Indexing\IndexerOutputInterface;
+use App\Content\Translation\TranslationsIndexerService;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
@@ -28,6 +29,7 @@ class PostIndexer extends AbstractContentIndexer implements ContentTypeIndexerIn
             'language' => config('app.locale'),
             'slug' => $file->getBasename('.md'),
             'tags' => [],
+            'translations' => [],
         ], PostDTO::class);
 
         $this->validateMetadata($post, [
@@ -38,6 +40,7 @@ class PostIndexer extends AbstractContentIndexer implements ContentTypeIndexerIn
             'slug' => 'alpha_dash|unique:indexer.posts',
             'tags' => 'array',
             'title' => 'required',
+            'translations' => 'array',
         ]);
 
         $excerpt = null;
@@ -61,6 +64,9 @@ class PostIndexer extends AbstractContentIndexer implements ContentTypeIndexerIn
             'language' => $post->getLanguage(),
             'created_at' => $post->getCreatedAt(),
         ]);
+
+        $translationsIndexer = new TranslationsIndexerService($this->output);
+        $translationsIndexer->processTranslations($postEntity, $post->getTranslations());
 
         foreach ($post->getAliases() as $alias) {
             $this->createAlias($postEntity, $alias);

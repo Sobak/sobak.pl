@@ -59,6 +59,11 @@ class PostDTO extends PageDTO implements ContentDTOInterface
         return $this->metadata['tags'];
     }
 
+    public function getTranslations(): array
+    {
+        return $this->metadata['translations'];
+    }
+
     public function getType(): string
     {
         return $this->metadata['type'];
