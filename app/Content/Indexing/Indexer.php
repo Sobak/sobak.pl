@@ -164,7 +164,7 @@ class Indexer
 
         $redirectsPath = config('content.path') . '/redirects.php';
 
-        if (file_exists($redirectsPath)) {
+        if (file_exists($redirectsPath) === false) {
             $this->output->warning('No redirects.php file found');
             return;
         }
