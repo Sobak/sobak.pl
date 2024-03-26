@@ -8,6 +8,10 @@ use SplFileInfo;
 
 interface ContentTypeIndexerInterface
 {
+    public static function getModelClass(): string;
+
+    public static function getTranslatableType(): string;
+
     public function __construct(IndexerOutputInterface $output);
 
     public function index(SplFileInfo $file): void;

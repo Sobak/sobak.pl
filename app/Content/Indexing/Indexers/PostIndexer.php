@@ -19,6 +19,16 @@ class PostIndexer extends AbstractContentIndexer implements ContentTypeIndexerIn
     /** @var string Optional text marker which indicates end of an excerpt within the posts */
     private const MORE_DELIMITER = '{{{more}}}';
 
+    public static function getModelClass(): string
+    {
+        return Post::class;
+    }
+
+    public static function getTranslatableType(): string
+    {
+        return 'post';
+    }
+
     public function index(SplFileInfo $file): void
     {
         $this->output->indentedLine($file->getFilename());

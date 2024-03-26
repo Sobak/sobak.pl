@@ -12,16 +12,26 @@ class TranslationsIndexerService
 {
     private IndexerOutputInterface $output;
 
+    /** @var array<string, class-string<TranslatableModelInterface> */
+    private static array $translatableTypeToModel = [];
+
     public function __construct(IndexerOutputInterface $output)
     {
         $this->output = $output;
     }
 
+    /**
+     * @param class-string<TranslatableModelInterface> $modelClassString
+     * @return void
+     */
+    public static function registerTranslatableModel(string $modelClassString): void
+    {
+        self::$translatableTypeToModel[$modelClassString::getTranslatableType()] = $modelClassString;
+    }
+
     public function processTranslations(TranslatableModelInterface $model, array $translations): void
     {
         foreach ($translations as $language => $translatedSlug) {
-            $this->ensureModelExists($model, $translatedSlug);
-
             if ($this->hasCompatibleDuplicate($model, $model->getSlug(), $language) === false) {
                 $translation = new Translation();
                 $translation->canonical_slug = $model->getSlug();
@@ -48,21 +58,34 @@ class TranslationsIndexerService
         }
     }
 
-    private function ensureModelExists(TranslatableModelInterface $model, string $slug): void
+    public function ensureAllTranslationsExist(string $type): void
     {
-        $result = $model::query()
-            ->where('slug', '=', $slug)
-            ->exists();
+        $model = self::$translatableTypeToModel[$type];
 
-        if ($result === false) {
+        /** @var string[] $allSlugs */
+        $allSlugs = $model::getAllSlugs();
+
+        $canonicalSlugs = Translation::where('type', '=', $type)->pluck('canonical_slug');
+        $translatedSlugs = Translation::where('type', '=', $type)->pluck('translated_slug');
+
+        $nonExistentSlugs = array_merge(
+            $canonicalSlugs->diff($allSlugs)->toArray(),
+            $translatedSlugs->diff($allSlugs)->toArray(),
+        );
+
+        $nonExistentSlugs = array_unique($nonExistentSlugs);
+
+        foreach ($nonExistentSlugs as $nonExistentSlug) {
             $message = sprintf(
-                'No %s found with slug: %s',
-                $model->getTranslatableType(),
-                $slug,
+                '> FAIL: No %s found with slug: %s',
+                $model::getTranslatableType(),
+                $nonExistentSlug,
             );
 
             $this->output->indentedLine($message, 2);
+        }
 
+        if (count($nonExistentSlugs) > 0) {
             throw new IndexerException('', 2);
         }
     }

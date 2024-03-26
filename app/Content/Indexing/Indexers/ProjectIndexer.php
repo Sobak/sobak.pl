@@ -11,6 +11,16 @@ use SplFileInfo;
 
 class ProjectIndexer extends AbstractContentIndexer implements ContentTypeIndexerInterface
 {
+    public static function getModelClass(): string
+    {
+        return Project::class;
+    }
+
+    public static function getTranslatableType(): string
+    {
+        return 'project';
+    }
+
     public function index(SplFileInfo $file): void
     {
         $this->output->indentedLine($file->getFilename());

@@ -9,14 +9,19 @@ class Page extends Model implements TranslatableModelInterface
 {
     protected $guarded = ['id'];
 
+    public static function getTranslatableType(): string
+    {
+        return 'page';
+    }
+
+    public static function getAllSlugs(): array
+    {
+        return Page::pluck('slug')->toArray();
+    }
+
     public function getSlug(): string
     {
         return $this->slug;
-    }
-
-    public function getTranslatableType(): string
-    {
-        return 'page';
     }
 
     public function getRouteKeyName()

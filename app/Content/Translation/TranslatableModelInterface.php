@@ -6,7 +6,9 @@ namespace App\Content\Translation;
 
 interface TranslatableModelInterface
 {
-    public function getSlug(): string;
+    public static function getTranslatableType(): string;
 
-    public function getTranslatableType(): string;
+    public static function getAllSlugs(): array;
+
+    public function getSlug(): string;
 }

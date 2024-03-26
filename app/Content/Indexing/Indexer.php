@@ -8,6 +8,7 @@ use App\Content\Indexing\Indexers\CreatesRedirects;
 use App\Content\Indexing\Indexers\PageIndexer;
 use App\Content\Indexing\Indexers\PostIndexer;
 use App\Content\Indexing\Indexers\ProjectIndexer;
+use App\Content\Translation\TranslationsIndexerService;
 use App\Models\Post;
 use DirectoryIterator;
 use Illuminate\Support\Facades\Artisan;
@@ -133,6 +134,8 @@ class Indexer
             return;
         }
 
+        $indexer = $this->contentTypeIndexers[$contentType];
+
         $this->output->line("\nIndexing $contentType");
 
         $iterator = new DirectoryIterator(config('content.path') . '/' . $contentType);
@@ -151,8 +154,16 @@ class Indexer
         });
 
         foreach ($files as $fileInfo) {
-            $this->contentTypeIndexers[$contentType]->index($fileInfo);
+            $indexer->index($fileInfo);
         }
+
+        $this->output->indentedLine('');
+        $this->output->indentedLine("Verifying that all translations for $contentType exist");
+
+        TranslationsIndexerService::registerTranslatableModel($indexer::getModelClass());
+
+        $translationsIndexer = new TranslationsIndexerService($this->output);
+        $translationsIndexer->ensureAllTranslationsExist($indexer::getTranslatableType());
     }
 
     private function indexRedirects(bool $isDryRun): void

@@ -11,6 +11,16 @@ class Post extends Model implements TranslatableModelInterface
 {
     protected $guarded = ['id'];
 
+    public static function getTranslatableType(): string
+    {
+        return 'post';
+    }
+
+    public static function getAllSlugs(): array
+    {
+        return Post::pluck('slug')->toArray();
+    }
+
     protected static function boot()
     {
         parent::boot();
@@ -30,11 +40,6 @@ class Post extends Model implements TranslatableModelInterface
     public function getSlug(): string
     {
         return $this->slug;
-    }
-
-    public function getTranslatableType(): string
-    {
-        return 'post';
     }
 
     public function categories()

@@ -11,6 +11,16 @@ use SplFileInfo;
 
 class PageIndexer extends AbstractContentIndexer implements ContentTypeIndexerInterface
 {
+    public static function getModelClass(): string
+    {
+        return Page::class;
+    }
+
+    public static function getTranslatableType(): string
+    {
+        return 'page';
+    }
+
     public function index(SplFileInfo $file): void
     {
         $this->output->indentedLine($file->getFilename());

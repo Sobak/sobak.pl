@@ -13,14 +13,19 @@ class Project extends Model implements TranslatableModelInterface
 
     protected $guarded = ['id'];
 
+    public static function getTranslatableType(): string
+    {
+        return 'project';
+    }
+
+    public static function getAllSlugs(): array
+    {
+        return Project::pluck('slug')->toArray();
+    }
+
     public function getSlug(): string
     {
         return $this->slug;
-    }
-
-    public function getTranslatableType(): string
-    {
-        return 'project';
     }
 
     public function getRouteKeyName()
