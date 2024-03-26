@@ -69,8 +69,8 @@ class TranslationsIndexerService
 
     private function hasCompatibleDuplicate(
         TranslatableModelInterface $model,
-        string $language,
-        string $slug
+        string $slug,
+        string $language
     ): bool {
         // A duplicate may exist if both English and Polish articles
         // defined the other side as their translation.
