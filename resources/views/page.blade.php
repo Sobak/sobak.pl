@@ -17,6 +17,16 @@
         </header>
 
         <div class="entry-content">
+            @if ($page->language !== app()->getLocale())
+                <div class="box box-warning">
+                    @if ($translation = $page->getTranslation(app()->getLocale()))
+                        {!! __('pages.translation_available', ['url' => route('page', $translation), 'title' => $translation->title]) !!}
+                    @else
+                        {{ __('pages.translation_unavailable') }}
+                    @endif
+                </div>
+            @endif
+
             {!! $page->content !!}
         </div>
     </article>

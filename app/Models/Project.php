@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use App\Content\Translation\HasTranslations;
 use App\Content\Translation\TranslatableModelInterface;
 use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model implements TranslatableModelInterface
 {
+    use HasTranslations;
+
     protected $appends = [
         'thumbnail_url',
     ];

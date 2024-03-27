@@ -16,7 +16,7 @@ class CreatePostsTable extends Migration
             $table->text('excerpt')->nullable();
             $table->text('content');
             $table->text('content_searchable');
-            $table->string('language', 10);
+            $table->string('language', 2);
             $table->integer('status')->default(1);
             $table->timestamps();
         });

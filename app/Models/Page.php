@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use App\Content\Translation\HasTranslations;
 use App\Content\Translation\TranslatableModelInterface;
 use Illuminate\Database\Eloquent\Model;
 
 class Page extends Model implements TranslatableModelInterface
 {
+    use HasTranslations;
+
     protected $guarded = ['id'];
 
     public static function getTranslatableType(): string

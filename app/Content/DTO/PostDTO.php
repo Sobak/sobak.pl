@@ -43,11 +43,6 @@ class PostDTO extends PageDTO implements ContentDTOInterface
         return Carbon::createFromTimestamp(strtotime($this->metadata['date']));
     }
 
-    public function getLanguage(): string
-    {
-        return $this->metadata['language'];
-    }
-
     public function getProject(): ?string
     {
         return $this->metadata['project'] ?? null;
@@ -57,11 +52,6 @@ class PostDTO extends PageDTO implements ContentDTOInterface
     public function getTags(): array
     {
         return $this->metadata['tags'];
-    }
-
-    public function getTranslations(): array
-    {
-        return $this->metadata['translations'];
     }
 
     public function getType(): string

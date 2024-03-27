@@ -18,6 +18,16 @@
         </header>
 
         <div class="entry-content">
+            @if ($project->language !== app()->getLocale())
+                <div class="box box-warning">
+                    @if ($translation = $project->getTranslation(app()->getLocale()))
+                        {!! __('projects.translation_available', ['url' => route('project', $translation), 'title' => $translation->title]) !!}
+                    @else
+                        {{ __('projects.translation_unavailable') }}
+                    @endif
+                </div>
+            @endif
+
             {!! $project->content !!}
         </div>
     </article>

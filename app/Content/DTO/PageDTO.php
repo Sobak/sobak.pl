@@ -21,6 +21,11 @@ class PageDTO implements ContentDTOInterface
         return $this->content;
     }
 
+    public function getLanguage(): string
+    {
+        return $this->metadata['language'];
+    }
+
     public function getMetadata(): array
     {
         return $this->metadata;
@@ -34,5 +39,10 @@ class PageDTO implements ContentDTOInterface
     public function getTitle(): string
     {
         return $this->metadata['title'];
+    }
+
+    public function getTranslations(): array
+    {
+        return $this->metadata['translations'];
     }
 }

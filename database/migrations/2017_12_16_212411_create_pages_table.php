@@ -13,6 +13,7 @@ class CreatePagesTable extends Migration
             $table->string('title');
             $table->string('slug')->unique();
             $table->text('content');
+            $table->string('language', 2);
             $table->timestamps();
         });
     }
