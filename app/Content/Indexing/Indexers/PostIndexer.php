@@ -36,7 +36,7 @@ class PostIndexer extends AbstractContentIndexer implements ContentTypeIndexerIn
         $post = $this->parseContentFile($file->getPathname(), [
             'aliases' => [],
             'categories' => [],
-            'language' => config('app.locale'),
+            'language' => self::DEFAULT_CONTENT_LANGUAGE,
             'slug' => $file->getBasename('.md'),
             'tags' => [],
             'translations' => [],

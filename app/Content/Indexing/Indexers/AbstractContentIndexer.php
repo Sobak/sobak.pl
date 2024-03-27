@@ -13,6 +13,9 @@ use League\CommonMark\Extension\FrontMatter\Output\RenderedContentWithFrontMatte
 
 abstract class AbstractContentIndexer
 {
+    /** @var string Decoupled from the `app.locale` config to avoid weird results when using `app.locale_override` */
+    protected const DEFAULT_CONTENT_LANGUAGE = 'pl';
+
     /** @var string Placeholder which will be replaced with assets root path when parsing content */
     private const ASSETS_PATH_PLACEHOLDER = '{{{assets}}}';
 
