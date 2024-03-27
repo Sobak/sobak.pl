@@ -51,10 +51,10 @@
     <div id="social-links-toggle-nav" class="panel">
         <div class="social-links">
             <ul>
-                <li><a href="https://www.linkedin.com/in/msobaczewski/"><span class="sr-only">LinkedIn</span></a></li>
-                <li><a href="https://github.com/Sobak"><span class="sr-only">GitHub</span></a></li>
-                <li><a href="https://twitter.com/SobakPL"><span class="sr-only">Twitter</span></a></li>
-                <li><a href="{{ route('feed') }}"><span class="sr-only">RSS</span></a></li>
+                <li><a href="https://www.linkedin.com/in/msobaczewski/" title="LinkedIn"><span class="sr-only">LinkedIn</span></a></li>
+                <li><a href="https://github.com/Sobak" title="GitHub"><span class="sr-only">GitHub</span></a></li>
+                <li><a href="https://twitter.com/SobakPL" title="Twitter"><span class="sr-only">Twitter</span></a></li>
+                <li><a href="{{ route('feed') }}" title="{{ __('app.rss_entries_tooltip') }}"><span class="sr-only">RSS</span></a></li>
             </ul>
         </div>
     </div>
@@ -85,15 +85,15 @@
         <div class="site-info">
             <a href="https://github.com/Sobak/sobak.pl" title="{{ __('app.footer.engine_tooltip') }}">{{ __('app.footer.engine') }}</a>
             <a href="https://wordpress.com/themes/sorbet/" title="{{ __('app.footer.theme_tooltip') }}">{{ __('app.footer.theme') }}</a>
-            <a href="{{ route('page', ['polityka-prywatnosci']) }}" title="{{ __('app.footer.privacy_policy_tooltip') }}">{{ __('app.footer.privacy_policy') }}</a>
+            <a href="{{ route('page', ['polityka-prywatnosci']) }}">{{ __('app.footer.privacy_policy') }}</a>
         </div>
     </footer>
 
-@include('partials.analytics')
+    @include('partials.analytics')
 
-<script src="{{ mix('assets/js/bundle.js') }}"></script>
+    <script src="{{ mix('assets/js/bundle.js') }}"></script>
 
-@stack('footer_extras')
+    @stack('footer_extras')
 
 </body>
 </html>

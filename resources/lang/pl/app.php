@@ -9,7 +9,6 @@ return [
         'engine' => 'Silnik: Perception',
         'engine_tooltip' => 'Napędzane silnikiem Perception',
         'privacy_policy' => 'Polityka prywatności',
-        'privacy_policy_tooltip' => 'Zapoznaj się z polityką prywatności',
         'theme' => 'Theme: Sorbet',
         'theme_tooltip' => 'Oparte o motyw Sorbet od Automattic',
     ],
@@ -26,6 +25,7 @@ return [
         'section_social_links' => 'Social media',
     ],
     'rss_entries_title' => 'Kanał ze wpisami',
+    'rss_entries_tooltip' => 'Kanał RSS (Atom)',
     'search' => [
         'button' => 'Szukaj',
         'label' => 'Wyszukiwanie',
