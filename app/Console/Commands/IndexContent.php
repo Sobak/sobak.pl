@@ -75,7 +75,7 @@ class IndexContent extends Command
 
         $notification =
             (new Notification())
-                ->setTitle('Perception')
+                ->setTitle('sobak.pl')
                 ->setBody($body)
                 ->setIcon($icon);
 

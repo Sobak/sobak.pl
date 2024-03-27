@@ -6,8 +6,8 @@ return [
         //'description'
     ],
     'footer' => [
-        'engine' => 'Engine: Perception',
-        'engine_tooltip' => 'Powered by Perception',
+        'engine' => 'Source code',
+        'engine_tooltip' => 'Check out the code behind this site on GitHub',
         'privacy_policy' => 'Privacy policy',
         'theme' => 'Theme: Sorbet',
         'theme_tooltip' => 'Based off of the Sorbet theme from Automattic',

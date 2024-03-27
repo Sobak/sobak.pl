@@ -6,8 +6,8 @@ return [
         'description' => 'Trochę o wszystkim i wiele o niczym',
     ],
     'footer' => [
-        'engine' => 'Silnik: Perception',
-        'engine_tooltip' => 'Napędzane silnikiem Perception',
+        'engine' => 'Kod źródłowy',
+        'engine_tooltip' => 'Kliknij aby zobaczyć kod na GitHubie',
         'privacy_policy' => 'Polityka prywatności',
         'theme' => 'Theme: Sorbet',
         'theme_tooltip' => 'Oparte o motyw Sorbet od Automattic',

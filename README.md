@@ -1,6 +1,6 @@
-# Perception
+# sobak.pl
 
-Perception is an engine for my [homepage], a shameless attempt to benefit from both
+This repository holds an engine for my [homepage], a shameless attempt to benefit from both
 Static Site Generators concept and typical Laravel setup. Nothing really advanced
 in fact but feel free to take inspiration.
 

@@ -1,4 +1,4 @@
-# Perception
+# sobak.pl
 
 ## The database and migrations structure
 
