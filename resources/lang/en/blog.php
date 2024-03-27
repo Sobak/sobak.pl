@@ -5,7 +5,7 @@ return [
         'page_title' => 'Category',
     ],
     'post' => [
-        'project_linked' => 'This post is based on a experience gained (directly or indirectly) while working on the
+        'project_linked' => 'This post is based on experience gained (directly or indirectly) while working on the
                              <a href=":url">:project_name project</a>. Click on the link to see more in the Projects
                              section.',
         'read_more' => 'Read more →',
