@@ -11,7 +11,7 @@ return [
         'privacy_policy' => 'Polityka prywatności',
         'privacy_policy_tooltip' => 'Zapoznaj się z polityką prywatności',
         'theme' => 'Theme: Sorbet',
-        'theme_tooltip' => 'Motyw Sorbet od Automattic',
+        'theme_tooltip' => 'Oparte o motyw Sorbet od Automattic',
     ],
     'jump_to_content' => 'Przejdź do treści',
     'jump_to_sidebar' => 'Przejdź do menu bocznego',

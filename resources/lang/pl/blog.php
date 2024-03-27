@@ -17,6 +17,7 @@ return [
     ],
     'search' => [
         'page_title' => 'Szukasz',
+        'title' => 'Wyniki wyszukiwania',
     ],
     'search_empty' => [
         'page_title' => 'Nic nie znaleziono',

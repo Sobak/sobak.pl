@@ -61,7 +61,7 @@ class BlogController extends Controller
             'body_classes' => ['archive', 'search'],
             'phrase' => $phrase,
             'posts' => $posts,
-            'title' => page_title('Wyniki wyszukiwania'),
+            'title' => page_title(__('blog.search.title')),
         ]);
     }
 
