@@ -12,7 +12,7 @@ class DetectLanguage
 {
     public function handle(Request $request, Closure $next)
     {
-        app()->setLocale(LanguageDetector::detectVisitorLanguage($request, config('app.locale')));
+        app()->setLocale(LanguageDetector::detect($request));
 
         return $next($request);
     }

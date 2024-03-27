@@ -11,8 +11,24 @@ class LanguageDetector
 {
     private const PRIORITIES = ['pl', 'en'];
 
-    public static function detectVisitorLanguage(Request $request, string $fallbackLanguage): string
+    public static function detect(Request $request): string
     {
+        return self::detectVisitorLanguage(
+            $request,
+            config('app.locale'),
+            config('app.locale_override')
+        );
+    }
+
+    public static function detectVisitorLanguage(
+        Request $request,
+        string $fallbackLanguage,
+        ?string $override
+    ): string {
+        if ($override !== null) {
+            return $override;
+        }
+
         $acceptLanguage = $request->headers->get('Accept-Language');
         if (empty($acceptLanguage)) {
             return $fallbackLanguage;

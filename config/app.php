@@ -91,7 +91,20 @@ return [
     |
     */
 
-    'fallback_locale' => 'pl',
+    'fallback_locale' => env('LOCALE_OVERRIDE', 'pl'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Application Locale Override
+    |--------------------------------------------------------------------------
+    |
+    | The application locale override can be used locally to easily develop
+    | translations for other languages of the website. Setting the override
+    | affects the fallback language as well as the detected user language.
+    |
+    */
+
+    'locale_override' => env('LOCALE_OVERRIDE'),
 
     /*
     |--------------------------------------------------------------------------
