@@ -9,6 +9,8 @@ return [
                              <a href=":url">projektem :project_name</a>. Kliknij w link aby zobaczyć go w portfolio.',
         'read_more' => 'Czytaj dalej →',
         'scheduled' => 'Publikacja tego wpisu została zaplanowana na',
+        'translation_available' => 'Ten wpis jest także dostępny po polsku: <a href=":url">:title</a>.',
+        'translation_unavailable' => 'Niestety ten wpis nie jest dostępny po polsku.',
     ],
     'tag' => [
         'page_title' => 'Tag',

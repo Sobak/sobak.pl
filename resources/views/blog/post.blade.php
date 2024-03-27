@@ -14,6 +14,16 @@ $single = $single ?? false;
     </header>
 
     <div class="entry-content">
+        @if ($single && $post->language !== app()->getLocale())
+            <div class="box box-warning">
+            @if ($translation = $post->getTranslation(app()->getLocale()))
+                {!! __('blog.post.translation_available', ['url' => route('post', $translation), 'title' => $translation->title]) !!}
+            @else
+                {{ __('blog.post.translation_unavailable') }}
+            @endif
+            </div>
+        @endif
+
         @if (config('content.show_scheduled') && $post->created_at > now())
             <div class="box box-warning">
                 <p>

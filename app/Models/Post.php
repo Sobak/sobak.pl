@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Content\Translation\HasTranslations;
 use App\Content\Translation\TranslatableModelInterface;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
@@ -9,6 +10,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model implements TranslatableModelInterface
 {
+    use HasTranslations;
+
     protected $guarded = ['id'];
 
     public static function getTranslatableType(): string
