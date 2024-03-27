@@ -20,10 +20,16 @@ abstract class AbstractContentIndexer
     private const BASE_URL_PLACEHOLDER = '{{{base}}}';
 
     protected IndexerOutputInterface $output;
+    protected array $translations = [];
 
     public function __construct(IndexerOutputInterface $output)
     {
         $this->output = $output;
+    }
+
+    public function setTranslations(array $translations): void
+    {
+        $this->translations = $translations;
     }
 
     /**

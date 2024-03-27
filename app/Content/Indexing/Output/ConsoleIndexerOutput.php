@@ -42,6 +42,17 @@ class ConsoleIndexerOutput implements IndexerOutputInterface
         $this->writeLine($string, 'warning', $verbosity);
     }
 
+    public function error(string $string, int $verbosity = self::VERBOSITY_NORMAL): void
+    {
+        if ($this->output->getFormatter()->hasStyle('error') === false) {
+            $style = new OutputFormatterStyle('red');
+
+            $this->output->getFormatter()->setStyle('error', $style);
+        }
+
+        $this->writeLine($string, 'warning', $verbosity);
+    }
+
     public function indentedLine(string $text, int $levels = 1, int $verbosity = self::VERBOSITY_NORMAL): void
     {
         $indentation = str_repeat(' ', $levels * self::INDENTATION_STEP);

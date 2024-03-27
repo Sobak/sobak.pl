@@ -14,5 +14,7 @@ interface ContentTypeIndexerInterface
 
     public function __construct(IndexerOutputInterface $output);
 
+    public function setTranslations(array $translations): void;
+
     public function index(SplFileInfo $file): void;
 }

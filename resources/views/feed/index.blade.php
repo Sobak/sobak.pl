@@ -14,7 +14,7 @@
             <link>{{ route('post', $post) }}</link>
             <pubDate>{{ $post->created_at->format(DATE_RSS) }}</pubDate>
             @foreach ($post->categories as $category)
-            <category><![CDATA[{{ $category->name }}]]></category>
+            <category><![CDATA[{{ $category->name_pl }}]]></category>
             @endforeach
             <guid>{{ route('post', $post) }}</guid>
             <description><![CDATA[{!! $post->content !!}]]></description>

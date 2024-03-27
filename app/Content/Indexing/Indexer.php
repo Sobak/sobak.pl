@@ -39,7 +39,8 @@ class Indexer
     public function index(bool $isDryRun, bool $enableAssetsProcessing): void
     {
         $this->prepareIndexerDatabase($isDryRun);
-        $this->indexContentTypes();
+        $translations = $this->loadTranslations();
+        $this->indexContentTypes($translations);
         $this->indexRedirects($isDryRun);
         $this->cacheBlogStats($isDryRun);
         $this->processAssets($isDryRun, $enableAssetsProcessing);
@@ -110,7 +111,22 @@ class Indexer
         rename($indexerDatabase, $websiteDatabase);
     }
 
-    private function indexContentTypes(): void
+    private function loadTranslations(): array
+    {
+        $translationsPath = config('content.path') . '/translations.php';
+
+        if (file_exists($translationsPath) === false) {
+            $this->output->error('No translations.php file found');
+
+            throw new IndexerException('', 1);
+        }
+
+        $this->output->line("\nReading translations");
+
+        return require $translationsPath;
+    }
+
+    private function indexContentTypes(array $translations): void
     {
         $iterator = new DirectoryIterator(config('content.path'));
 
@@ -124,11 +140,11 @@ class Indexer
         $directories = array_intersect_key(array_keys($this->contentTypeIndexers), $directories);
 
         foreach ($directories as $directory) {
-            $this->indexContentType($directory);
+            $this->indexContentType($directory, $translations);
         }
     }
 
-    private function indexContentType($contentType): void
+    private function indexContentType(string $contentType, array $translations): void
     {
         if (isset($this->contentTypeIndexers[$contentType]) === false) {
             return;
@@ -152,6 +168,8 @@ class Indexer
         usort($files, function (SplFileInfo $a, SplFileInfo $b) {
             return $a->getRealPath() <=> $b->getRealPath();
         });
+
+        $indexer->setTranslations($translations);
 
         foreach ($files as $fileInfo) {
             $indexer->index($fileInfo);

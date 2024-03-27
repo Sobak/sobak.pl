@@ -15,8 +15,10 @@ class SidebarComposer
      */
     public function compose(View $view)
     {
+        $orderBy = app()->getLocale() === 'pl' ? 'name_pl' : 'name_en';
+
         $view->with([
-            'categories' => Category::withCount('posts')->orderBy('name')->get(),
+            'categories' => Category::withCount('posts')->orderBy($orderBy)->get(),
         ]);
     }
 }

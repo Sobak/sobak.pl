@@ -13,5 +13,7 @@ interface IndexerOutputInterface
 
     public function warning(string $string, int $verbosity = self::VERBOSITY_NORMAL): void;
 
+    public function error(string $string, int $verbosity = self::VERBOSITY_NORMAL): void;
+
     public function indentedLine(string $text, int $levels = 1, int $verbosity = self::VERBOSITY_NORMAL): void;
 }

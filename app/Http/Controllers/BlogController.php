@@ -40,7 +40,7 @@ class BlogController extends Controller
             'body_classes' => ['archive', 'category'],
             'category' => $category,
             'posts' => $category->posts()->with(['project'])->latest()->paginate(10)->onEachSide(2),
-            'title' => page_title($category->name),
+            'title' => page_title(app()->getLocale() === 'pl' ? $category->name_pl : $category->name_en),
         ]);
     }
 

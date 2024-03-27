@@ -104,13 +104,16 @@ class PostIndexer extends AbstractContentIndexer implements ContentTypeIndexerIn
 
     private function createCategory(string $name): Category
     {
-        $category = Category::where('name', $name)->first();
+        $category = Category::where('name_pl', $name)->first();
 
         if ($category === null) {
             $this->output->indentedLine('> created category "' . $name . '"', 2, IndexerOutputInterface::VERBOSITY_VERBOSE);
 
+            $englishName = $this->translations['categories'][$name] ?? null;
+
             $category = Category::create([
-                'name' => $name,
+                'name_pl' => $name,
+                'name_en' => $englishName ?? $name,
                 'slug' => Str::slug(str_replace('&', '-', $name)),
             ]);
         }

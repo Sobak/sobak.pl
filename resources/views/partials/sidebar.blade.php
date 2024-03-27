@@ -4,7 +4,9 @@
         <ul>
         @foreach ($categories as $category)
             <li>
-                <a href="{{ route('category', [$category->slug]) }}">{{ $category->name }}</a>
+                <a href="{{ route('category', [$category->slug]) }}">
+                    {{ app()->getLocale() === 'pl' ? $category->name_pl : $category->name_en }}
+                </a>
                 ({{ $category->posts_count }})
             </li>
         @endforeach
