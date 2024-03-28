@@ -12,14 +12,41 @@ class Parser
 {
     private ?IndexerOutputInterface $output;
 
+    /** @var PreprocessorInterface[] */
+    private array $preprocessors = [];
+
+    /** @var PostprocessorInterface[] */
+    private array $postprocessors = [];
+
+    public static function create(?IndexerOutputInterface $output = null): self
+    {
+        $parser = new self($output);
+
+        return $parser;
+    }
+
     public function __construct(?IndexerOutputInterface $output = null)
     {
         $this->output = $output;
     }
 
-    public function parseContent(string $string): RenderedContentWithFrontMatter
+    public function addPreprocessor(PreprocessorInterface $processor): void
+    {
+        $this->preprocessors[] = $processor;
+    }
+
+    public function addPostprocessor(PostprocessorInterface $processor): void
+    {
+        $this->postprocessors[] = $processor;
+    }
+
+    public function parseContent(string $string): ParsedContent
     {
         $markdownConverter = CommonMarkFactory::create();
+
+        foreach ($this->preprocessors as $preprocessor) {
+            $string = $preprocessor->process($string);
+        }
 
         $result = $markdownConverter->convert($string);
 
@@ -29,6 +56,12 @@ class Parser
             }
 
             throw new IndexerException('', 2);
+        }
+
+        $result = new ParsedContent($result->getContent(), $result->getFrontMatter());
+
+        foreach ($this->postprocessors as $postprocessor) {
+            $result->setContent($postprocessor->process($result->getContent()));
         }
 
         return $result;

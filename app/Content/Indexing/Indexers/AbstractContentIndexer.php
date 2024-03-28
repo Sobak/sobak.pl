@@ -7,10 +7,8 @@ namespace App\Content\Indexing\Indexers;
 use App\Content\DTO\ContentDTOInterface;
 use App\Content\Indexing\IndexerException;
 use App\Content\Indexing\IndexerOutputInterface;
-use App\Content\Parsing\CommonMarkFactory;
 use App\Content\Parsing\Parser;
 use Illuminate\Support\Facades\Validator;
-use League\CommonMark\Extension\FrontMatter\Output\RenderedContentWithFrontMatter;
 
 abstract class AbstractContentIndexer
 {
@@ -31,7 +29,7 @@ abstract class AbstractContentIndexer
     {
         $this->output = $output;
 
-        $this->parser = new Parser($this->output);
+        $this->parser = Parser::create($this->output);
     }
 
     public function setTranslations(array $translations): void
@@ -57,7 +55,7 @@ abstract class AbstractContentIndexer
 
         $result = $this->parser->parseContent($content);
 
-        $metadata = array_merge($defaultMetadata, $result->getFrontMatter());
+        $metadata = array_merge($defaultMetadata, $result->getMetadata());
 
         return new $dtoClassString($result->getContent(), $metadata);
     }
