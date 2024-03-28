@@ -40,7 +40,7 @@
                     <a href="{{ route('projects') }}">{{ __('app.menu.projects') }}</a>
                 </li>
                 <li {!! if_active('page:o-mnie') !!}>
-                    <a href="{{ route('page', ['o-mnie']) }}">{{ __('app.menu.about_me') }}</a>
+                    <a href="{{ localized_page_route('o-mnie') }}">{{ __('app.menu.about_me') }}</a>
                 </li>
                 <li {!! if_active('contact') !!}>
                     <a href="{{ route('contact') }}">{{ __('app.menu.contact') }}</a>
@@ -84,7 +84,7 @@
     <footer class="site-footer">
         <div class="site-info">
             <a href="https://github.com/Sobak/sobak.pl" title="{{ __('app.footer.engine_tooltip') }}">{{ __('app.footer.engine') }}</a>
-            <a href="{{ route('page', ['polityka-prywatnosci']) }}">{{ __('app.footer.privacy_policy') }}</a>
+            <a href="{{ localized_page_route('polityka-prywatnosci') }}">{{ __('app.footer.privacy_policy') }}</a>
             <a href="https://wordpress.com/themes/sorbet/" title="{{ __('app.footer.theme_tooltip') }}">{{ __('app.footer.theme') }}</a>
         </div>
     </footer>

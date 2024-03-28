@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use App\Models\Page;
+use App\Models\Translation;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\HtmlString;
@@ -48,6 +50,23 @@ function blog_title(int $pageNumber): string
 function page_title(string $title): string
 {
     return $title . ' | ' . config('app.branding.name');
+}
+
+function localized_page_route(string $polishSlug): string
+{
+    if (app()->getLocale() === 'pl') {
+        return route('page', [$polishSlug]);
+    }
+
+    $translation = Translation::query()
+        ->where('canonical_slug', '=', $polishSlug)
+        ->where('language', '=', 'en')
+        ->where('type', '=', Page::getTranslatableType())
+        ->first();
+
+    $slug = $translation->translated_slug ?? $polishSlug;
+
+    return route('page', [$slug]);
 }
 
 /**
