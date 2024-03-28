@@ -8,6 +8,7 @@ use App\Content\DTO\ContentDTOInterface;
 use App\Content\Indexing\IndexerException;
 use App\Content\Indexing\IndexerOutputInterface;
 use App\Content\Parsing\CommonMarkFactory;
+use App\Content\Parsing\Parser;
 use Illuminate\Support\Facades\Validator;
 use League\CommonMark\Extension\FrontMatter\Output\RenderedContentWithFrontMatter;
 
@@ -24,10 +25,13 @@ abstract class AbstractContentIndexer
 
     protected IndexerOutputInterface $output;
     protected array $translations = [];
+    private Parser $parser;
 
     public function __construct(IndexerOutputInterface $output)
     {
         $this->output = $output;
+
+        $this->parser = new Parser($this->output);
     }
 
     public function setTranslations(array $translations): void
@@ -51,7 +55,7 @@ abstract class AbstractContentIndexer
             self::BASE_URL_PLACEHOLDER => route('index'),
         ]);
 
-        $result = $this->parseMarkdown($content);
+        $result = $this->parser->parseContent($content);
 
         $metadata = array_merge($defaultMetadata, $result->getFrontMatter());
 
@@ -69,20 +73,5 @@ abstract class AbstractContentIndexer
         if ($validator->fails()) {
             throw new IndexerException('', 3);
         }
-    }
-
-    private function parseMarkdown($string): RenderedContentWithFrontMatter
-    {
-        $markdownConverter = CommonMarkFactory::create();
-
-        $result = $markdownConverter->convert($string);
-
-        if ($result instanceof RenderedContentWithFrontMatter === false) {
-            $this->output->indentedLine('FAIL: No YAML front matter found', 2);
-
-            throw new IndexerException('', 2);
-        }
-
-        return $result;
     }
 }
