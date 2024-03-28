@@ -6,6 +6,7 @@ namespace App\Content\Parsing;
 
 use App\Content\Indexing\IndexerException;
 use App\Content\Indexing\IndexerOutputInterface;
+use App\Content\Parsing\Processor\NotePostprocessor;
 use League\CommonMark\Extension\FrontMatter\Output\RenderedContentWithFrontMatter;
 
 class Parser
@@ -21,6 +22,8 @@ class Parser
     public static function create(?IndexerOutputInterface $output = null): self
     {
         $parser = new self($output);
+
+        $parser->addPostprocessor(new NotePostprocessor());
 
         return $parser;
     }
