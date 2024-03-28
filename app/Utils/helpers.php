@@ -75,15 +75,15 @@ function localized_page_route(string $polishSlug): string
  * @param array|string $conditions
  * @return bool
  */
-function is_menu_link_active($conditions)
+function is_menu_link_active($conditions): bool
 {
     $conditions = (array) $conditions;
     $currentRoute = Request::route();
     $routeName = isset($currentRoute) ? $currentRoute->getName() : null;
 
     foreach ($conditions as $condition) {
-        if (Str::startsWith($condition, 'page:')) {
-            return Request::url() === route('page', [substr($condition, strlen('page:'))]);
+        if (str_starts_with($condition, 'page:')) {
+            return Request::url() === localized_page_route(Str::after($condition, 'page:'));
         }
 
         if ($routeName === $condition) {
