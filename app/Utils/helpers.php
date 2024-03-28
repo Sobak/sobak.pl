@@ -49,7 +49,7 @@ function blog_title(int $pageNumber): string
 
 function page_title(string $title): string
 {
-    return $title . ' | ' . config('app.branding.name');
+    return $title . ' | ' . config('app.name');
 }
 
 function localized_page_route(string $polishSlug): string
