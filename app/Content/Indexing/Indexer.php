@@ -204,9 +204,9 @@ class Indexer
 
         foreach ($redirects as $from => $to) {
             $this->output->indentedLine("> $from => $to", 2, IndexerOutputInterface::VERBOSITY_VERBOSE);
-
-            $this->createRedirect($from, $to);
         }
+
+        $this->createMultipleRedirects($redirects);
     }
 
     private function cacheBlogStats(bool $isDryRun): void
