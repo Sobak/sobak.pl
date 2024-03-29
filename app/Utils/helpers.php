@@ -12,6 +12,10 @@ use Illuminate\Support\ViewErrorBag;
 
 function localized_date(Carbon $date, bool $withTime = false): string
 {
+    if (app()->getLocale() === 'en') {
+        return $date->format('F jS, Y');
+    }
+
     $genitives = [
         'stycznia',
         'lutego',
