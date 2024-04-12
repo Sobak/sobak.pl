@@ -16,7 +16,7 @@ class LanguageDetector
         return self::detectVisitorLanguage(
             $request,
             config('app.locale'),
-            config('app.locale_override')
+            $request->cookie('current_language') ?? config('app.locale_override')
         );
     }
 
@@ -25,7 +25,7 @@ class LanguageDetector
         string $fallbackLanguage,
         ?string $override
     ): string {
-        if ($override !== null) {
+        if (in_array($override, self::PRIORITIES)) {
             return $override;
         }
 

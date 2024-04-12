@@ -24,6 +24,11 @@
                 <div id="menu-toggle" class="toggle active" title="{{ __('app.menu.section_menu') }}"><span class="sr-only">{{ __('app.menu.section_menu') }}</span></div>
                 <div id="social-links-toggle" class="toggle" title="{{ __('app.menu.section_social_links') }}"><span class="sr-only">{{ __('app.menu.section_social_links') }}</span></div>
                 <div id="search-toggle" class="toggle" title="{{ __('app.menu.section_search') }}"><span class="sr-only">{{ __('app.menu.section_search') }}</span></div>
+                <div id="language-toggle" class="toggle">
+                    <a href="{{ route('language_switch', ['lang' => $oppositeLanguage]) }}" title="{{ __("app.menu.language_$oppositeLanguage") }}">
+                        <img src="{{ asset("assets/images/$oppositeLanguage.svg") }}" width="50" height="50" alt="{{ $oppositeLanguage }}">
+                    </a>
+                </div>
             </div>
         </div>
     </header>

@@ -20,6 +20,9 @@ return [
         'about_me' => 'About me',
         'contact' => 'Contact',
 
+        'language_en' => 'Switch to English',
+        'language_pl' => 'Przełącz na j. polski',
+
         'section_menu' => 'Menu',
         'section_search' => 'Search',
         'section_social_links' => 'Social media',

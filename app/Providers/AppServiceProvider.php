@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Http\Composers\LayoutComposer;
 use App\Http\Composers\SidebarComposer;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\View;
@@ -13,6 +14,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::defaultView('partials.pagination');
 
+        View::composer('layout', LayoutComposer::class);
         View::composer('partials.sidebar', SidebarComposer::class);
     }
 
