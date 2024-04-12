@@ -6,7 +6,9 @@
     <title>{{ $title ?? config('app.name') }}</title>
     <link rel="stylesheet" href="{{ mix('assets/css/app.css') }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|PT+Serif:400,400italic&amp;subset=latin,latin-ext">
-    <link rel="alternate" href="{{ route('feed') }}" type="application/rss+xml" title="{{ __('app.rss_entries_title') }}">
+    <link rel="alternate" href="{{ route('feed.all') }}" type="application/rss+xml" title="{{ __('app.rss_entries_all_title') }}">
+    <link rel="alternate" href="{{ route('feed.pl') }}" type="application/rss+xml" title="{{ __('app.rss_entries_pl_title') }}">
+    <link rel="alternate" href="{{ route('feed.en') }}" type="application/rss+xml" title="{{ __('app.rss_entries_en_title') }}">
     @stack('header_extras')
 </head>
 
@@ -54,7 +56,14 @@
                 <li><a href="https://www.linkedin.com/in/msobaczewski/" title="LinkedIn"><span class="sr-only">LinkedIn</span></a></li>
                 <li><a href="https://github.com/Sobak" title="GitHub"><span class="sr-only">GitHub</span></a></li>
                 <li><a href="https://twitter.com/SobakPL" title="Twitter"><span class="sr-only">Twitter</span></a></li>
-                <li><a href="{{ route('feed') }}" title="{{ __('app.rss_entries_tooltip') }}"><span class="sr-only">RSS</span></a></li>
+                <li>
+                    <a href="#" class="feed" title="{{ __('app.rss_entries_tooltip') }}"><span class="sr-only">RSS</span></a>
+                    <ul>
+                        <li><a href="{{ route('feed.all') }}">{{ __('app.rss_entries_all_title') }}</a></li>
+                        <li><a href="{{ route('feed.pl') }}">{{ __('app.rss_entries_pl_title') }}</a></li>
+                        <li><a href="{{ route('feed.en') }}">{{ __('app.rss_entries_en_title') }}</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>

@@ -24,8 +24,10 @@ return [
         'section_search' => 'Szukaj',
         'section_social_links' => 'Social media',
     ],
-    'rss_entries_title' => 'Kanał ze wpisami',
-    'rss_entries_tooltip' => 'Kanał RSS (Atom)',
+    'rss_entries_all_title' => 'Wszystkie wpisy',
+    'rss_entries_pl_title' => 'Wpisy po polsku',
+    'rss_entries_en_title' => 'Wpisy po angielsku',
+    'rss_entries_tooltip' => 'Kanały RSS',
     'search' => [
         'button' => 'Szukaj',
         'label' => 'Wyszukiwanie',

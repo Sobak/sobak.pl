@@ -10,7 +10,9 @@ Route::paginate('/', [BlogController::class, 'index'])->name('index');
 
 Route::get('blog/{post}', [BlogController::class, 'show'])->name('post');
 
-Route::get('feed', [FeedController::class, 'index'])->name('feed');
+Route::get('feed', [FeedController::class, 'polish'])->name('feed.all');
+Route::get('feed/pl', [FeedController::class, 'polish'])->name('feed.pl');
+Route::get('feed/en', [FeedController::class, 'english'])->name('feed.en');
 
 Route::paginate('kategoria/{category}', [BlogController::class, 'category'])->name('category');
 

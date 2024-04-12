@@ -298,6 +298,12 @@
   margin: 0;
   padding: 0;
 }
+.social-links ul li:hover > ul,
+.social-links ul li:focus > ul {
+  transition: all 0.2s ease-in-out;
+  opacity: 1;
+  visibility: visible;
+}
 .social-links ul li {
   display: inline-block;
   list-style: none;
@@ -329,6 +335,15 @@
   text-decoration: none;
   transition: all 0.1s ease-in-out;
 }
+.social-links ul ul a {
+  color: white;
+  display: inline-block;
+  text-decoration: none;
+}
+.social-links ul ul a:hover {
+  color: #fcf5e5;
+  font-weight: normal;
+}
 .social-links ul:last-of-type {
   margin-right: 0;
 }
@@ -341,6 +356,48 @@
 .social-links ul a[href*="linkedin.com"]:before {
   content: "\f207";
 }
-.social-links ul a[href*="/feed"]:before {
+.social-links ul a.feed:before {
   content: "\f413";
+}
+.social-links ul ul {
+  display: block;
+  float: left;
+  left: -6.75px;
+  position: absolute;
+  top: 27px;
+  text-align: left;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 999;
+}
+.social-links ul ul a {
+  line-height: 1.19118em;
+  width: 216px;
+  padding: 13.5px;
+}
+.social-links ul ul a:hover {
+  color: #f0f1f3;
+}
+.social-links ul ul:before {
+  border-top: 0;
+  border-left: 13.5px solid transparent;
+  border-right: 13.5px solid transparent;
+  border-bottom: 13.5px solid #242d36;
+  content: "";
+  display: block;
+  position: relative;
+  top: 0;
+  left: 27px;
+  width: 0;
+  height: 13.5px;
+}
+.social-links li {
+  display: inline-block;
+  margin: 3.375px 13.5px;
+  position: relative;
+}
+.social-links li li {
+  background: #242d36;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  margin: 0;
 }

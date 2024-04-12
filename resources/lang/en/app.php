@@ -24,8 +24,10 @@ return [
         'section_search' => 'Search',
         'section_social_links' => 'Social media',
     ],
-    'rss_entries_title' => 'Blog posts feed',
-    'rss_entries_tooltip' => 'RSS (Atom) feed',
+    'rss_entries_all_title' => 'All blog posts',
+    'rss_entries_pl_title' => 'Polish blog posts',
+    'rss_entries_en_title' => 'English blog posts',
+    'rss_entries_tooltip' => 'RSS feeds',
     'search' => [
         'button' => 'Search',
         'label' => 'Search',
