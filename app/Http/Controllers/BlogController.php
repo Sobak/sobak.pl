@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -12,16 +13,17 @@ class BlogController extends Controller
 {
     public function index()
     {
-        $posts = Post::with(['project'])->latest()->paginate(10)->onEachSide(2);
+        return $this->buildPostsResponseForLanguage(null);
+    }
 
-        if ($posts->isEmpty()) {
-            abort(404);
-        }
+    public function indexPolish()
+    {
+        return $this->buildPostsResponseForLanguage('pl');
+    }
 
-        return view('blog.index', [
-            'posts' => $posts,
-            'title' => blog_title($posts->currentPage()),
-        ]);
+    public function indexEnglish()
+    {
+        return $this->buildPostsResponseForLanguage('en');
     }
 
     public function show(Post $post)
@@ -72,6 +74,27 @@ class BlogController extends Controller
             'posts' => $tag->posts()->with(['project'])->latest()->paginate(10)->onEachSide(2),
             'tag' => $tag,
             'title' => page_title($tag->name),
+        ]);
+    }
+
+    private function buildPostsResponseForLanguage(?string $language)
+    {
+        $posts = Post::query()
+            ->with(['project'])
+            ->latest()
+            ->when($language, function (Builder $query, string $language) {
+                $query->where('language', '=', $language);
+            })
+            ->paginate(10)
+            ->onEachSide(2);
+
+        if ($posts->isEmpty()) {
+            abort(404);
+        }
+
+        return view('blog.index', [
+            'posts' => $posts,
+            'title' => blog_title($posts->currentPage()),
         ]);
     }
 }

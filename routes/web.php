@@ -8,6 +8,8 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProjectController;
 
 Route::paginate('/', [BlogController::class, 'index'])->name('index');
+Route::paginate('pl', [BlogController::class, 'indexPolish'])->name('index.polish');
+Route::paginate('en', [BlogController::class, 'indexEnglish'])->name('index.english');
 
 Route::get('blog/{post}', [BlogController::class, 'show'])->name('post');
 

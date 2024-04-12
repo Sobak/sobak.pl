@@ -38,5 +38,9 @@ return [
     ],
     'sidebar' => [
         'categories' => 'Categories',
+        'blog_language' => 'Display posts in',
+        'blog_language_all' => 'Both languages',
+        'blog_language_pl' => 'Polish',
+        'blog_language_en' => 'English',
     ],
 ];

@@ -35,5 +35,9 @@ return [
     ],
     'sidebar' => [
         'categories' => 'Kategorie',
+        'blog_language' => 'Wyświetlaj wpisy',
+        'blog_language_all' => 'w obu językach',
+        'blog_language_pl' => 'w języku polskim',
+        'blog_language_en' => 'w języku angielskim',
     ],
 ];
