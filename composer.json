@@ -12,7 +12,7 @@
         "laravel/tinker": "^2.0",
         "league/commonmark": "^2.4",
         "spatie/laravel-paginateroute": "^2.6",
-        "symfony/yaml": "^4.0",
+        "symfony/yaml": "^5.4",
         "willdurand/negotiation": "^3.1"
     },
     "require-dev": {
